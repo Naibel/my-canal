@@ -11,12 +11,12 @@ type ModalProps = {
 const Modal = ({ modalDetails, handleClose }: ModalProps) => {
   return (
     <div className="bg-black/70 fixed overflow-auto left-0 right-0 h-screen z-10">
-      <div className="bg-black max-w-4xl overflow-hidden mx-auto md:mt-6 md:rounded-md shadow-lg">
+      <div className="bg-black max-w-5xl overflow-hidden mx-auto md:mt-6 md:rounded-md shadow-lg">
         <div
           style={{
             backgroundImage: `url(${modalDetails.bgImage})`,
           }}
-          className="relative px-10 pt-72 pb-4 bg-cover bg-center"
+          className="aspect-video relative px-10 pt-72 pb-4 bg-cover bg-center"
         >
           <div
             className="rounded-full p-1 bg-black/70 hover:bg-black cursor-pointer absolute z-10 top-3 right-3 "

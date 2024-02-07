@@ -7,6 +7,7 @@ import {
   APITrendingSerie,
   APITrendingSeries,
 } from "@_types/api";
+import styles from "./List.module.css";
 
 export interface ListProps {
   title: string;
@@ -17,16 +18,16 @@ export interface ListProps {
 const List = ({ title, data, onClick }: ListProps) => (
   <div>
     <Title>{title}</Title>
-    <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-      {data.map((item: APITrendingMovie | APITrendingSerie) => (
-        <Item
-          key={item.id}
-          id={item.id}
-          title={item.media_type === "movie" ? item.title : item.name}
-          poster={item.poster_path}
-          onClick={() => onClick(item.id)}
-        />
-      ))}
+    <div className={`${styles.carousel_wrapper} mt-4 overflow-x-auto`}>
+      <div className={`${styles.carousel} flex gap-5`}>
+        {data.map((item: APITrendingMovie | APITrendingSerie) => (
+          <Item
+            key={item.id}
+            poster={item.poster_path}
+            onClick={() => onClick(item.id)}
+          />
+        ))}
+      </div>
     </div>
   </div>
 );
