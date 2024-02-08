@@ -2,7 +2,7 @@
 import NavBar from "@/components/NavBar/NavBar";
 import List from "@components/List/List";
 import Modal from "@components/Modal/Modal";
-import { ModalDetails, ModalMovieDetails, ModalTVDetails } from "@_types";
+import { ModalMovieDetails, ModalTVDetails } from "@_types";
 import {
   APIMovieDetails,
   APIResponse,
@@ -10,7 +10,7 @@ import {
   APITrendingMovies,
   APITrendingSeries,
 } from "@_types/api";
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 const urls: Array<string> = [
   "https://api.themoviedb.org/3/trending/tv/day?language=en-US",
@@ -21,8 +21,7 @@ const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1OTc5ZGZlOTA0MTJjNmI1N2VhODA2MjVmYmU4Y2Y1MSIsInN1YiI6IjY1YzBmNjI0YmYwOWQxMDE4NGE3YjYwOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3m_L7c5iB9d_pgyVzZsAP6iwDT83qiZ8rT2jVynK1eo",
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_ACCESS_TOKEN}`,
   },
 };
 
