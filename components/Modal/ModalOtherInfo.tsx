@@ -15,7 +15,7 @@ export const InfoLine = ({
   );
 };
 
-const OtherInfo = ({ modalDetails }: { modalDetails: ModalTVDetails }) => {
+const ModalOtherInfo = ({ modalDetails }: { modalDetails: ModalTVDetails }) => {
   return (
     <div className="bg-neutral-900 flex flex-col gap-2 rounded-md p-5">
       <InfoLine label="Première diffusion" value={modalDetails.firstAirDate} />
@@ -29,4 +29,4 @@ const OtherInfo = ({ modalDetails }: { modalDetails: ModalTVDetails }) => {
   );
 };
 
-export default OtherInfo;
+export default ModalOtherInfo;
