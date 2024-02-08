@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-const Title = ({ children }: { children: ReactNode }) => {
+const HeaderTitle = ({ children }: { children: ReactNode }) => {
   return (
     <h2 className={`text-2xl text-left uppercase font-semibold italic`}>
       {children}
@@ -8,4 +8,4 @@ const Title = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default Title;
+export default HeaderTitle;

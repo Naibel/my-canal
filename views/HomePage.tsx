@@ -3,11 +3,13 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import NavBar from "@components/NavBar/NavBar";
-import List from "@components/List/List";
 import Modal from "@components/Modal/Modal";
 import { fetch, fetchTrendingMovies, fetchTrendingSeries } from "@utils/fetch";
 import { ModalMovieDetails, ModalTVDetails } from "@_types";
 import { APIMovieDetails, APISerieDetails } from "@_types/api";
+import HeaderTitle from "@components/HeaderTitle/HeaderTitle";
+import CarouselSkeleton from "@components/Carousel/CarouselSkeleton/CarouselSkeleton";
+import Carousel from "@components/Carousel/Carousel";
 
 const HomePage = () => {
   const [isModalDisplayed, setIsModalDisplayed] = useState<boolean>(false);
@@ -73,10 +75,6 @@ const HomePage = () => {
     setModalDetails(null);
   };
 
-  // if (isPending) {
-  //   return <span>Loading...</span>;
-  // }
-
   // if (isError) {
   //   return <span>Error: {error.message}</span>;
   // }
@@ -88,20 +86,26 @@ const HomePage = () => {
       )}
       <NavBar />
       <main className="flex flex-col py-20 px-5 gap-5">
-        {moviesQuery.data?.results && (
-          <List
-            title="Les films du moment"
-            data={moviesQuery.data.results}
-            onClick={handleOnMovieItemClick}
-          />
-        )}
-        {seriesQuery.data?.results && (
-          <List
-            title="Les séries du moment"
-            data={seriesQuery.data?.results}
-            onClick={handleOnTVItemClick}
-          />
-        )}
+        <div>
+          <HeaderTitle>Les films du moment</HeaderTitle>
+          {moviesQuery.isPending && <CarouselSkeleton />}
+          {moviesQuery.data?.results && (
+            <Carousel
+              data={moviesQuery.data.results}
+              onClick={handleOnMovieItemClick}
+            />
+          )}
+        </div>
+        <div>
+          <HeaderTitle>Les séries du moment</HeaderTitle>
+          {seriesQuery.isPending && <CarouselSkeleton />}
+          {seriesQuery.data?.results && (
+            <Carousel
+              data={seriesQuery.data.results}
+              onClick={handleOnTVItemClick}
+            />
+          )}
+        </div>
       </main>
       <footer className="bg-black px-5 py-3">Dorian Belhaj - 2024</footer>
     </>
