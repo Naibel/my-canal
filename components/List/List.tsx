@@ -20,7 +20,7 @@ const List = ({ title, data, onClick }: ListProps) => (
     <Title>{title}</Title>
     <div className={`${styles.carousel_wrapper} mt-4 overflow-x-auto`}>
       <div className={`${styles.carousel} flex gap-5`}>
-        {data.map((item: APITrendingMovie | APITrendingSerie) => (
+        {data?.map((item: APITrendingMovie | APITrendingSerie) => (
           <Item
             key={item.id}
             poster={item.poster_path}
