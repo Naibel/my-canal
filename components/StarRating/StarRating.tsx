@@ -1,6 +1,4 @@
-import { IoMdStar } from "react-icons/io";
-import { IoMdStarHalf } from "react-icons/io";
-import { IoMdStarOutline } from "react-icons/io";
+import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from "react-icons/io";
 
 const SIZE = 25;
 
