@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react";
+
 import { ModalMovieDetails, ModalTVDetails } from "@_types";
 import ModalHeader from "./ModalHeader";
-import ModalContent from "./ModalContent";
-import { useEffect, useState } from "react";
+import ModalContent from "./ModalContent/ModalContent";
 
 type ModalProps = {
   modalDetails: ModalMovieDetails | ModalTVDetails;
@@ -10,15 +11,6 @@ type ModalProps = {
 
 const Modal = ({ modalDetails, handleClose }: ModalProps) => {
   const [displayModal, setDisplayModal] = useState(false);
-  const {
-    bgImage,
-    title,
-    originalTitle,
-    mediaType,
-    rating,
-    yearOfRelease,
-    nbOfVotes,
-  } = modalDetails;
 
   //EASE-IN ANIMATION
   useEffect(() => {
@@ -51,16 +43,7 @@ const Modal = ({ modalDetails, handleClose }: ModalProps) => {
         }}
         className={`bg-black max-w-5xl overflow-hidden mx-auto md:rounded-md shadow-lg`}
       >
-        <ModalHeader
-          title={title}
-          originalTitle={originalTitle}
-          mediaType={mediaType}
-          bgImage={bgImage}
-          onClose={onClose}
-          yearOfRelease={yearOfRelease}
-          rating={rating}
-          nbOfVotes={nbOfVotes}
-        />
+        <ModalHeader modalDetails={modalDetails} onClose={onClose} />
         <ModalContent modalDetails={modalDetails} />
       </div>
     </div>
