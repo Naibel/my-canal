@@ -68,7 +68,7 @@ export type APIMovieDetails = APIItemDetails & {
 };
 
 export type APISerieDetails = APIItemDetails & {
-  created_by: Array<any>;
+  created_by: Array<Person>;
   episode_run_time: Array<number>;
   first_air_date: string;
   in_production: boolean;
@@ -86,6 +86,14 @@ export type APISerieDetails = APIItemDetails & {
   type: string;
 };
 
+export type Person = {
+  credit_id: string;
+  gender: number;
+  id: number;
+  name: string;
+  profile_path: string;
+};
+
 export type EpisodeDetails = {
   air_date: string;
   episode_number: number;
@@ -95,7 +103,7 @@ export type EpisodeDetails = {
   overview: string;
   production_code: string;
   runtime: number;
-  session_number: number;
+  season_number: number;
   show_id: number;
   still_path: string;
   vote_average: number;
