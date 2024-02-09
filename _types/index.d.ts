@@ -41,4 +41,5 @@ export type ModalTVDetails = ModalDetails & {
   nextEpisodeToAir: EpisodeDetails;
   nbOfEpisodes: number;
   nbOfSeasons: number;
+  yearOfEnd?: number;
 };

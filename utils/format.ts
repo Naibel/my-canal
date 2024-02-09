@@ -5,7 +5,6 @@ import { APIMovieDetails, APISerieDetails } from "@_types/api";
 export const formatMovieData = (
   apiData: APIMovieDetails
 ): ModalMovieDetails => {
-  // Format the price above to USD using the locale, style, and currency.
   let USDollar = new Intl.NumberFormat("fr-FR", {
     style: "currency",
     currency: "USD",
@@ -36,6 +35,15 @@ export const formatMovieData = (
 };
 
 export const formatTVData = (apiData: APISerieDetails): ModalTVDetails => {
+  const checkStatus = () => {
+    if (apiData.in_production && apiData.status === "In Production")
+      return "En cours de production";
+    else if (apiData.in_production && apiData.status === "Returning Series")
+      return "En cours de diffusion";
+    else if (!apiData.in_production && apiData.status === "Ended")
+      return "Diffusion terminée";
+    else return "Inconnu";
+  };
   return {
     bgImage: `https://image.tmdb.org/t/p/original${apiData.backdrop_path}`,
     createdBy: apiData.created_by,
@@ -43,7 +51,9 @@ export const formatTVData = (apiData: APISerieDetails): ModalTVDetails => {
     genres: apiData.genres,
     homepage: apiData.homepage,
     id: apiData.id,
-    lastAirDate: new Date(apiData.last_air_date).toLocaleDateString("fr"),
+    lastAirDate: apiData.last_air_date
+      ? new Date(apiData.last_air_date).toLocaleDateString("fr")
+      : "",
     lastEpisodeToAir: apiData.last_episode_to_air,
     mediaType: "tv",
     nextEpisodeToAir: apiData.next_episode_to_air,
@@ -54,10 +64,13 @@ export const formatTVData = (apiData: APISerieDetails): ModalTVDetails => {
     overview: apiData.overview,
     originalTitle: apiData.original_name,
     rating: apiData.vote_average,
-    status: apiData.in_production ? "En cours de diffusion" : "Terminée",
+    status: checkStatus(),
     tagline: apiData.tagline,
     title: apiData.name,
     yearOfRelease: new Date(apiData.first_air_date).getFullYear(),
+    yearOfEnd: apiData.in_production
+      ? undefined
+      : new Date(apiData.last_air_date).getFullYear(),
   };
 };
 //

@@ -39,24 +39,32 @@ const ModalHeader = ({ modalDetails, onClose }: ModalHeaderProps) => (
           </h2>
         )}
         <h3 className={`text-md text-left uppercase italic`}>
-          {modalDetails.mediaType === "movie" ? "Film" : "Série télévisée"} -{" "}
+          {modalDetails.mediaType === "movie" ? "Film" : "Série télévisée"}{" "}
+          {"· "}
           {modalDetails.yearOfRelease}{" "}
-          {modalDetails.mediaType === "movie" && `- ${modalDetails.runtime}''`}
+          {modalDetails.mediaType === "tv" &&
+            modalDetails.yearOfEnd &&
+            modalDetails.yearOfRelease !== modalDetails.yearOfEnd &&
+            `- ${modalDetails.yearOfEnd || ""}`}
+          {modalDetails.mediaType === "movie" && `· ${modalDetails.runtime}'`}
         </h3>
       </div>
-      <div className="flex flex-col items-center md:items-end py-5 md:py-0">
-        <StarRating note={modalDetails.rating} />
-        <div>
-          <span className="uppercase italic">Note moyenne </span>:{" "}
-          <span className="uppercase italic font-semibold">
-            {modalDetails.rating}/10{" "}
-          </span>
-          <span className="italic">
-            sur <span className="font-semibold">{modalDetails.nbOfVotes}</span>{" "}
-            votes
-          </span>
+      {modalDetails.nbOfVotes > 0 && (
+        <div className="flex flex-col items-center md:items-end py-5 md:py-0">
+          <StarRating note={modalDetails.rating} />
+          <div>
+            <span className="uppercase italic">Note moyenne </span>:{" "}
+            <span className="uppercase italic font-semibold">
+              {modalDetails.rating}/10{" "}
+            </span>
+            <span className="italic">
+              sur{" "}
+              <span className="font-semibold">{modalDetails.nbOfVotes}</span>{" "}
+              votes
+            </span>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   </div>
 );

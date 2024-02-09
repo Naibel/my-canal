@@ -40,13 +40,15 @@ const ModalContent = ({
             </div>
           )}
           <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-2 gap-5">
-            <div>
-              <ModalTitle>Dernier épisode diffusé</ModalTitle>
-              <ModalEpisode episode={modalDetails.lastEpisodeToAir} />
-            </div>
+            {modalDetails.lastEpisodeToAir && (
+              <div>
+                <ModalTitle>Dernier épisode diffusé</ModalTitle>
+                <ModalEpisode episode={modalDetails.lastEpisodeToAir} />
+              </div>
+            )}
             {modalDetails.nextEpisodeToAir && (
               <div>
-                <ModalTitle>Et le Prochain épisode ?</ModalTitle>
+                <ModalTitle>Prochain épisode</ModalTitle>
                 <ModalEpisode episode={modalDetails.nextEpisodeToAir} />
               </div>
             )}
