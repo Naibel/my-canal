@@ -6,7 +6,7 @@ import {
 } from "./api";
 
 export type ModalDetails = {
-  bgImage: string;
+  bgImage?: string;
   genres: Array<Genre>;
   homepage: string;
   id: number;
@@ -18,17 +18,17 @@ export type ModalDetails = {
   yearOfRelease: number;
   status: string;
   tagline: string;
+  spokenLanguages: Array<SpokenLanguages>;
 };
 
 export type ModalMovieDetails = ModalDetails & {
   boxOffice: string;
   budget: string;
-  imdbUrl: string;
+  imdbUrl?: string;
   mediaType: "movie";
   productionCompanies: Array<ProductionCompany>;
   releaseDate: string;
   runtime: number;
-  spokenLanguages: Array<SpokenLanguages>;
 };
 
 export type ModalTVDetails = ModalDetails & {

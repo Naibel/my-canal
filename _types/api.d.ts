@@ -1,11 +1,11 @@
-export type APIResponse = {
+export type APIResponse<T> = {
   page: number;
-  results: any;
+  results: Array<T>;
   total_pages: number;
   total_results: number;
 };
 
-export type APITrendingItem = {
+export type APIDataItem = {
   adult: boolean;
   backdrop_path: string | null;
   genre_ids: Array<number>;
@@ -20,23 +20,17 @@ export type APITrendingItem = {
   vote_count: number;
 };
 
-export type APITrendingItems = Array<APITrendingItem>;
-
-export type APITrendingSerie = APITrendingItem & {
+export type APITVSeries = APIDataItem & {
   media_type: "tv";
   first_air_date: string;
   name: string;
 };
-export type APITrendingSeries = Array<APITrendingSerie>;
-
-export type APITrendingMovie = APITrendingItem & {
+export type APIMovie = APIDataItem & {
   media_type: "movie";
   release_date: string;
   title: string;
 };
-export type APITrendingMovies = Array<APITrendingMovie>;
-
-export type APIItemDetails = {
+export type APIDataItemDetails = {
   adult: boolean;
   backdrop_path: string;
   genres: Array<Genre>;
@@ -55,7 +49,7 @@ export type APIItemDetails = {
   vote_count: number;
 };
 
-export type APIMovieDetails = APIItemDetails & {
+export type APIMovieDetails = APIDataItemDetails & {
   belongs_to_collection: BelongToCollection | null;
   budget: number;
   imdb_id: string;
@@ -67,17 +61,17 @@ export type APIMovieDetails = APIItemDetails & {
   video: boolean;
 };
 
-export type APISerieDetails = APIItemDetails & {
+export type APITVSeriesDetails = APIDataItemDetails & {
   created_by: Array<Person>;
   episode_run_time: Array<number>;
   first_air_date: string;
   in_production: boolean;
   languages: Array<string>;
   last_air_date: string;
-  last_episode_to_air: EpisodeDetails;
+  last_episode_to_air: EpisodeInfo;
   name: string;
   networks: Array<Network>;
-  next_episode_to_air: EpisodeDetails;
+  next_episode_to_air: EpisodeInfo;
   number_of_episodes: number;
   number_of_seasons: number;
   origin_country: Array<string>;
@@ -94,7 +88,7 @@ export type Person = {
   profile_path: string;
 };
 
-export type EpisodeDetails = {
+export type EpisodeInfo = {
   air_date: string;
   episode_number: number;
   episode_type: string;
