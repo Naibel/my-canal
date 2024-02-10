@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { ModalMovieDetails, ModalTVDetails } from "@_types";
-import ModalHeader from "./ModalHeader";
+import ModalHeader from "./ModalHeader/ModalHeader";
 import ModalContent from "./ModalContent/ModalContent";
 
 type ModalProps = {
