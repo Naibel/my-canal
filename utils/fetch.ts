@@ -30,15 +30,10 @@ export const fetchTrendingSeries = async (): Promise<
   return await fetch("/trending/tv/day?language=en-US");
 };
 
-export const searchMovies = async (
-  query: string
+export const search = async (
+  query: string,
+  mediaType: string
 ): Promise<APIResponse<APIMovie>> => {
-  return await fetch("/search/movie", { query });
-};
-
-export const searchTVSeries = async (
-  query: string
-): Promise<APIResponse<APITVSeries>> => {
-  return await fetch("/search/tv", { query });
+  return await fetch(`/search/${mediaType}`, { query });
 };
 //
