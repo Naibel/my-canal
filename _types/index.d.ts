@@ -5,6 +5,8 @@ import {
   SpokenLanguages,
 } from "./api";
 
+export type MediaType = "movie" | "tv";
+
 export type ModalDetails = {
   bgImage?: string;
   genres: Array<Genre>;
@@ -41,5 +43,6 @@ export type ModalTVDetails = ModalDetails & {
   nextEpisodeToAir: EpisodeDetails;
   nbOfEpisodes: number;
   nbOfSeasons: number;
+  seasons: Array<Season>;
   yearOfEnd?: number;
 };

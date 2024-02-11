@@ -1,4 +1,4 @@
-import { LogoMyCanal } from "@components/NavBar/LogoMyCanal";
+import { LogoMyCanal } from "@components/LogoMyCanal/LogoMyCanal";
 import styles from "./Item.module.css";
 
 type ItemProps = {
