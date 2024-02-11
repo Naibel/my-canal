@@ -2,17 +2,19 @@
 import { ChangeEvent, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import useDebounce from "@hooks/useDebounce";
+import { ModalMovieDetails, ModalTVDetails } from "~/types";
+import { APIMovieDetails, APITVSeriesDetails } from "~/types/api";
 
-import { fetch, search } from "@utils/fetch";
-import { formatMovieData, formatTVData } from "@utils/format";
-import { ModalMovieDetails, ModalTVDetails } from "@_types";
-import { APIMovieDetails, APITVSeriesDetails } from "@_types/api";
+import { fetch, search } from "~/utils/fetch";
+import { formatMovieData, formatTVData } from "~/utils/format";
 
-import NavBar from "@components/NavBar/NavBar";
-import Modal from "@components/Modal/Modal";
-import SearchResults from "./SearchResults";
-import Trending from "./Trending";
+import useDebounce from "~/hooks/useDebounce";
+
+import Modal from "~/components/Modal/Modal";
+import NavBar from "~/components/NavBar/NavBar";
+
+import SearchResults from "./SearchPage/SearchResults";
+import Trending from "./Trending/Trending";
 
 const HomePage = () => {
   const [modalDetails, setModalDetails] = useState<
@@ -56,8 +58,6 @@ const HomePage = () => {
   ) => {
     setSearchMediaType(event.target.value);
   };
-
-  console.log(searchResultsData.data);
 
   return (
     <>

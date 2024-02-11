@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 
-import Carousel from "@components/Carousel/Carousel";
-import CarouselSkeleton from "@components/Carousel/CarouselSkeleton/CarouselSkeleton";
-import HeaderTitle from "@components/HeaderTitle/HeaderTitle";
-import { fetchTrendingMovies, fetchTrendingSeries } from "@utils/fetch";
+import { fetchTrendingMovies, fetchTrendingSeries } from "~/utils/fetch";
+
+import Carousel from "~/components/Carousel/Carousel";
+import CarouselSkeleton from "~/components/Carousel/CarouselSkeleton";
+import HeaderTitle from "~/components/HeaderTitle/HeaderTitle";
 
 const Trending = ({
   onMovieItemClick,
