@@ -1,84 +1,60 @@
-import { Person, ProductionCompany } from "@_types/api";
+import { useState } from "react";
+
 import { ModalMovieDetails, ModalTVDetails } from "@_types";
 
 import ModalOtherInfo from "./ModalOtherInfo/ModalOtherInfo";
-import ModalTitle from "./ModalTitle";
-import GenreList from "./GenreList";
-import EpisodeCard from "../../Cards/EpisodeCard";
-import ProductionCard from "../../Cards/ProductionCard";
-import PersonCard from "../../Cards/PersonCard";
+import ModalSeasons from "./ModalSeasons";
+import ModalOverview from "./ModalOverview";
 
+type MenuParts = "overview" | "seasons";
 const ModalContent = ({
   modalDetails,
 }: {
   modalDetails: ModalMovieDetails | ModalTVDetails;
-}) => (
-  <div className="flex flex-col md:flex-row">
-    <div className="flex flex-1 pt-5 p-8 flex-col gap-5">
-      {modalDetails.genres.length > 0 && (
-        <div className="flex justify-between items-start">
-          <GenreList genres={modalDetails.genres} />
-        </div>
-      )}
-      {modalDetails.overview && (
-        <div>
-          <ModalTitle>Résumé</ModalTitle>
-          <p>{modalDetails.overview}</p>
-        </div>
-      )}
-      {modalDetails.mediaType === "tv" && (
-        <>
-          {modalDetails.createdBy.length > 0 && (
-            <div>
-              <ModalTitle>Une série créée par</ModalTitle>
-              <div className="grid grid-rows-1 grid-cols-4 md:grid-cols-6 gap-5">
-                {modalDetails.createdBy.map((person: Person) => (
-                  <PersonCard
-                    key={person.id}
-                    bgProfile={person.profile_path}
-                    name={person.name}
-                    gender={person.gender}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-          <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-2 gap-5">
-            {modalDetails.lastEpisodeToAir && (
-              <div>
-                <ModalTitle>Dernier épisode diffusé</ModalTitle>
-                <EpisodeCard episode={modalDetails.lastEpisodeToAir} />
-              </div>
-            )}
-            {modalDetails.nextEpisodeToAir && (
-              <div>
-                <ModalTitle>Prochain épisode</ModalTitle>
-                <EpisodeCard episode={modalDetails.nextEpisodeToAir} />
-              </div>
-            )}
-          </div>
-        </>
-      )}
-      {modalDetails.mediaType === "movie" &&
-        modalDetails.productionCompanies.length > 0 && (
-          <div>
-            <ModalTitle>Produit par</ModalTitle>
-            <div className="grid grid-rows-1 grid-cols-3 md:grid-cols-5 gap-5">
-              {modalDetails.productionCompanies.map(
-                (company: ProductionCompany) => (
-                  <ProductionCard
-                    key={company.id}
-                    logo={company.logo_path}
-                    name={company.name}
-                  />
-                )
-              )}
-            </div>
+}) => {
+  const [modalPart, setModalPart] = useState<MenuParts>("overview");
+
+  const handlePartChange = (value: MenuParts) => {
+    setModalPart(value);
+  };
+
+  return (
+    <div className="flex flex-col md:flex-row">
+      <div className="flex flex-1 pt-5 p-8 flex-col gap-5">
+        {modalDetails.mediaType === "tv" && (
+          <div className="flex flex-1 justify-start gap-10">
+            <h2
+              className={`text-xl uppercase font-semibold italic ${
+                modalPart === "overview"
+                  ? "border-b-2"
+                  : "opacity-50 hover:opacity-80 active:opacity-60 cursor-pointer"
+              }`}
+              onClick={() => handlePartChange("overview")}
+            >
+              En résumé
+            </h2>
+            <h2
+              className={`text-xl uppercase font-semibold italic ${
+                modalPart === "seasons"
+                  ? "border-b-2"
+                  : "opacity-50 hover:opacity-80 active:opacity-60 cursor-pointer"
+              } hover:`}
+              onClick={() => handlePartChange("seasons")}
+            >
+              Saisons
+            </h2>
           </div>
         )}
+        {modalPart === "overview" && (
+          <ModalOverview modalDetails={modalDetails} />
+        )}
+        {modalPart === "seasons" && modalDetails.mediaType === "tv" && (
+          <ModalSeasons seasons={modalDetails.seasons} />
+        )}
+      </div>
+      <ModalOtherInfo modalDetails={modalDetails} />
     </div>
-    <ModalOtherInfo modalDetails={modalDetails} />
-  </div>
-);
+  );
+};
 
 export default ModalContent;
