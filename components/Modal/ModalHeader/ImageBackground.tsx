@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { LogoMyCanal } from "@components/NavBar/LogoMyCanal";
+import { LogoMyCanal } from "@components/LogoMyCanal/LogoMyCanal";
 
 type ImageBackgroundProps = {
   bgImage?: string;
@@ -14,7 +14,11 @@ const ImageBackground = ({ bgImage, children }: ImageBackgroundProps) => (
     }}
     className="bg-neutral-700 flex justify-center aspect-video relative px-10 pt-72 pb-4 bg-cover bg-center"
   >
-    {!bgImage && <LogoMyCanal />}
+    {!bgImage && (
+      <div className="opacity-30">
+        <LogoMyCanal large />
+      </div>
+    )}
     {children}
   </div>
 );

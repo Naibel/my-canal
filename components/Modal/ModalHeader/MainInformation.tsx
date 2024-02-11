@@ -1,8 +1,10 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
+
+import { MediaType } from "@_types";
 
 type MainInformationProps = {
   endYear: number;
-  mediaType: "movie" | "tv";
+  mediaType: MediaType;
   originalTitle: string;
   releaseYear: number;
   runtime: number;
@@ -17,7 +19,10 @@ const MainInformation = ({
   runtime,
   title,
 }: MainInformationProps) => {
-  const canDisplayOriginalTitle = useMemo(() => title !== originalTitle, []);
+  const canDisplayOriginalTitle = useMemo(
+    () => title.toUpperCase() !== originalTitle.toUpperCase(),
+    []
+  );
   const canDisplayEndYear = useMemo(
     () => mediaType === "tv" && endYear && releaseYear !== endYear,
     []
@@ -33,9 +38,10 @@ const MainInformation = ({
         </h2>
       )}
       <h3 className={`text-md text-left uppercase italic`}>
-        {mediaType === "movie" ? "Film" : "Série télévisée"} {"· "}
-        {releaseYear} {canDisplayEndYear && `- ${endYear}`}
-        {mediaType === "movie" && `· ${runtime}'`}
+        {mediaType === "movie" ? "Film" : "Série télévisée"}
+        {releaseYear ? ` · ${releaseYear}` : ""}
+        {canDisplayEndYear ? ` - ${endYear}` : ""}
+        {mediaType === "movie" && runtime ? ` · ${runtime}'` : ""}
       </h3>
     </div>
   );

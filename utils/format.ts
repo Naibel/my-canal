@@ -57,7 +57,9 @@ const checkStatus = (inProduction: boolean, status: string) => {
 
 export const formatTVData = (apiData: APITVSeriesDetails): ModalTVDetails => {
   return {
-    bgImage: `https://image.tmdb.org/t/p/original${apiData.backdrop_path}`,
+    bgImage: apiData.backdrop_path
+      ? `https://image.tmdb.org/t/p/original${apiData.backdrop_path}`
+      : undefined,
     createdBy: apiData.created_by,
     firstAirDate: formatDateToFrLocale(apiData.first_air_date),
     genres: apiData.genres,
@@ -76,6 +78,7 @@ export const formatTVData = (apiData: APITVSeriesDetails): ModalTVDetails => {
     overview: apiData.overview,
     originalTitle: apiData.original_name,
     rating: apiData.vote_average,
+    seasons: apiData.seasons,
     spokenLanguages: apiData.spoken_languages,
     status: checkStatus(apiData.in_production, apiData.status),
     tagline: apiData.tagline,
