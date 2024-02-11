@@ -12,25 +12,36 @@ type ModalHeaderProps = {
   onClose: () => void;
 };
 
-const ModalHeader = ({ modalDetails, onClose }: ModalHeaderProps) => (
-  <ImageBackground bgImage={modalDetails.bgImage}>
-    {modalDetails.tagline && <Tagline tagline={modalDetails.tagline} />}
-    <CloseButton onClose={onClose} />
-    <HeaderGradientOverlay />
-    <div className="absolute px-10 bottom-5 left-0 right-0 flex z-20 flex-col md:flex-row items-center md:items-end">
-      <MainInformation
-        endYear={modalDetails.yearOfEnd}
-        mediaType={modalDetails.mediaType}
-        originalTitle={modalDetails.originalTitle}
-        releaseYear={modalDetails.yearOfRelease}
-        runtime={modalDetails.runtime}
-        title={modalDetails.title}
-      />
-      {modalDetails.nbOfVotes > 0 && (
-        <Rating note={modalDetails.rating} nbOfVotes={modalDetails.nbOfVotes} />
-      )}
-    </div>
-  </ImageBackground>
-);
+const ModalHeader = ({ modalDetails, onClose }: ModalHeaderProps) => {
+  const {
+    bgImage,
+    tagline,
+    mediaType,
+    originalTitle,
+    yearOfRelease,
+    title,
+    rating,
+    nbOfVotes,
+  } = modalDetails;
+
+  return (
+    <ImageBackground bgImage={bgImage}>
+      {tagline && <Tagline tagline={tagline} />}
+      <CloseButton onClose={onClose} />
+      <HeaderGradientOverlay />
+      <div className="absolute px-10 bottom-5 left-0 right-0 flex z-20 flex-col md:flex-row items-center md:items-end">
+        <MainInformation
+          endYear={mediaType === "tv" ? modalDetails.yearOfEnd : undefined}
+          mediaType={mediaType}
+          originalTitle={originalTitle}
+          releaseYear={yearOfRelease}
+          runtime={mediaType === "movie" ? modalDetails.runtime : undefined}
+          title={title}
+        />
+        {nbOfVotes > 0 && <Rating note={rating} nbOfVotes={nbOfVotes} />}
+      </div>
+    </ImageBackground>
+  );
+};
 
 export default ModalHeader;

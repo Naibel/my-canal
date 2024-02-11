@@ -3,12 +3,12 @@ import { useMemo } from "react";
 import { MediaType } from "~/types";
 
 type MainInformationProps = {
-  endYear: number;
   mediaType: MediaType;
   originalTitle: string;
   releaseYear: number;
-  runtime: number;
   title: string;
+  endYear?: number;
+  runtime?: number;
 };
 
 const MainInformation = ({
