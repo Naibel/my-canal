@@ -1,8 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## My Canal
 
-## Getting Started
+Dans le cadre d'un entretien technique visant à rejoindre Canal+, j'ai été amené à réaliser ce site qui permet à la fois de consulter les séries et les films du moment, selon la base de données TheMovieDB, ainsi qu'à chercher n'importe quelle série ou film référencée dans cette base de données grâce au moteur de recherche présent sur la barre de navigation.
 
-First, run the development server:
+## Choix techniques
+
+## NextJS
+
+J'ai souhaité mettre en place un projet se basant sur le couple React/[Next.js](https://nextjs.org/), bootstrapé avec [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), car il me permet de gérer plus facilement le SSR, d'implémenter facilement des fonts customs (comme notre chère Futura), et surtout me permet de déployer ce projet très facilement sur la plateforme [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
+
+### Du Tailwind... et c'est tout !
+
+Quant à la partie graphique, je n'ai utilisé que Tailwind CSS, que l'équipe en charge de l'appli Canal utilise déjà il me semble (n'hésitez pas à me le confirmer !)
+J'avoue, je le confesse, pour m'éviter le syndrome de la page blanche, j'ai souhaité trouvé quelques sources d'inspirations, notamment sur ce que réalise déjà Canal sur leur propre plateforme vidéo.
+
+Si j'ai voulu garder quelques idées qui me semblaient très pertinentes, j'ai tout de même souhaité m'en écarter pour ne pas donner l'impression d'un projet plagié. J'ai aussi voulu utiliser autant que possible les diverses déclinaisons de la célèbre police Futura (Etienne Robial ftw!), afin d'habiller mon projet et de lui donner un air distinctement "Canal +".
+
+Il est important de préciser qu'aucune librairie graphique autre que les classes CSS Tailwind (qui ne sont que des classes) n'ont été utilisés. C'est du fait main de bout en bout !
+
+### Un composant = un fichier !
+
+Je n'aime pas voir dans les projets sur lesquels j'ai travaillé, des sous-composants se balader à l'intérieur de fichier de plus gros composants. Certes, ils ne sont utilisées qu'une fois au sein de ce même gros composant, mais à la fin le fichier ne lui-même devient énorme, confus, et on doit scroller pour retrouver le composant parent derrière une pile de composant enfants.
+
+Quand je souhaite modifier un composant, je souhaite immédiatement le retrouver en faisant _Command + P_ sur mon IDE. Par conséquent chaque composant, même le plus petit, dispose de son propre fichier. S'il n'est utilisé que par un seul composant parent, et n'a pas vocation à être réutilisé ailleurs, il se retrouve au sein du dossier comprenant le composant , tout simplement. Ce n'est pas la pratique la plus employée, mais c'est la mienne (;-p), car c'est celle où je m'y retrouve le plus facilement.
+
+## Lancer le projet
+
+Pour lancer le serveur de developpement, c'est très simple
 
 ```bash
 npm run dev
@@ -14,23 +37,16 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Et vous ouvrez [http://localhost:3000](http://localhost:3000) sur votre navigateur pour voir le résultat.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## TODO
 
-To learn more about Next.js, take a look at the following resources:
+- Plus d'infos affichées sur chaque fiche (casting, réalisateur)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Un moteur de recherche plus élaboré avec plus de critères de recherches (pays, année, acteurs présents, genre, etc.)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Un système d'authentification afin de noter les films ou les séries, de sélectionner des films ou des séries en favoris, ou encore d'ajouter soi-même ses propres entrées.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Plus de tests unitaires et d'intégration !
