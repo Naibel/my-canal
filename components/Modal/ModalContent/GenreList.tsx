@@ -1,5 +1,6 @@
-import { Genre } from "@_types/api";
-import Tag from "@components/Tag/Tag";
+import { Genre } from "~/types/api";
+
+import Tag from "~/components/Tag/Tag";
 
 const GenreList = ({ genres }: { genres: Array<Genre> }) => (
   <div className="flex flex-wrap gap-3">

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
-import { ModalMovieDetails, ModalTVDetails } from "@_types";
-import ModalHeader from "./ModalHeader/ModalHeader";
+import { ModalMovieDetails, ModalTVDetails } from "~/types";
+
 import ModalContent from "./ModalContent/ModalContent";
+import ModalHeader from "./ModalHeader/ModalHeader";
 
 type ModalProps = {
   modalDetails: ModalMovieDetails | ModalTVDetails;

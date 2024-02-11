@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import { ModalMovieDetails, ModalTVDetails } from "@_types";
+import { ModalMovieDetails, ModalTVDetails } from "~/types";
 
 import ModalOtherInfo from "./ModalOtherInfo/ModalOtherInfo";
-import ModalSeasons from "./ModalSeasons";
 import ModalOverview from "./ModalOverview";
+import ModalSeasons from "./ModalSeasons";
 
 type MenuParts = "overview" | "seasons";
 const ModalContent = ({

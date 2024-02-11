@@ -1,4 +1,3 @@
-import { MediaType } from "@_types";
 import { ChangeEvent } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 

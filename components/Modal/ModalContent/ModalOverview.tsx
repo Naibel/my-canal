@@ -1,9 +1,9 @@
-import { ModalMovieDetails, ModalTVDetails } from "@_types";
-import { Person, ProductionCompany } from "@_types/api";
+import { ModalMovieDetails, ModalTVDetails } from "~/types";
+import { Person, ProductionCompany } from "~/types/api";
 
-import PersonCard from "@components/Cards/PersonCard";
-import EpisodeCard from "@components/Cards/EpisodeCard";
-import ProductionCard from "@components/Cards/ProductionCard";
+import EpisodeCard from "~/components/Cards/EpisodeCard";
+import PersonCard from "~/components/Cards/PersonCard";
+import ProductionCard from "~/components/Cards/ProductionCard";
 
 import GenreList from "./GenreList";
 import ModalTitle from "./ModalTitle";

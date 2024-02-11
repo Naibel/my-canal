@@ -1,5 +1,6 @@
-import { APIMovie, APIResponse, APITVSeries } from "@_types/api";
 import axios from "axios";
+
+import { APIMovie, APIResponse, APITVSeries } from "~/types/api";
 
 const API_URL = "https://api.themoviedb.org/3";
 
@@ -33,7 +34,7 @@ export const fetchTrendingSeries = async (): Promise<
 export const search = async (
   query: string,
   mediaType: string
-): Promise<APIResponse<APIMovie>> => {
+): Promise<APIResponse<APIMovie | APITVSeries>> => {
   return await fetch(`/search/${mediaType}`, { query });
 };
 //

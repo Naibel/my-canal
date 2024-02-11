@@ -1,5 +1,3 @@
-import React from "react";
-
 type ProductionCardProps = {
   logo: string;
   name: string;
@@ -18,7 +16,7 @@ const ProductionCard = ({ logo, name }: ProductionCardProps) => (
         }}
         className="flex items-center justify-center text-center"
       >
-        {!logo && <p className="text-sm text-neutral-200">Pas d'image</p>}
+        {!logo && <p className="text-sm text-neutral-200">Pas d&apos;image</p>}
       </div>
     </div>
 

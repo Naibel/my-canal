@@ -1,5 +1,4 @@
-import { BsGenderFemale } from "react-icons/bs";
-import { BsGenderMale } from "react-icons/bs";
+import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
 type PersonCardProps = {
   bgProfile: string;
@@ -17,7 +16,9 @@ const PersonCard = ({ bgProfile, name, gender }: PersonCardProps) => (
       }}
       className="flex items-center justify-center text-center bg-neutral-900"
     >
-      {!bgProfile && <p className="text-sm text-neutral-700">Pas d'image</p>}
+      {!bgProfile && (
+        <p className="text-sm text-neutral-700">Pas d&apos;image</p>
+      )}
     </div>
     <div className="flex gap-1 items-center justify-center bg-neutral-700 p-2 text-center">
       <span className="text-sm italic">{name}</span>

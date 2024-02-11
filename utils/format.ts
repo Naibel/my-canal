@@ -1,5 +1,5 @@
-import { ModalMovieDetails, ModalTVDetails } from "@_types";
-import { APIMovieDetails, APITVSeriesDetails } from "@_types/api";
+import { ModalMovieDetails, ModalTVDetails } from "~/types";
+import { APIMovieDetails, APITVSeriesDetails } from "~/types/api";
 
 const formatDateToFrLocale = (time: string) => {
   return time ? new Date(time).toLocaleDateString("fr") : "";

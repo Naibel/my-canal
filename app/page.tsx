@@ -2,7 +2,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import HomePage from "@views/HomePage/HomePage";
+import HomePage from "~/views/HomePage";
 
 // Create a client
 const queryClient = new QueryClient({

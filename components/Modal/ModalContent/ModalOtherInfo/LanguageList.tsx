@@ -1,4 +1,4 @@
-import { SpokenLanguages } from "@_types/api";
+import { SpokenLanguages } from "~/types/api";
 
 type LanguageListProps = {
   label: string;

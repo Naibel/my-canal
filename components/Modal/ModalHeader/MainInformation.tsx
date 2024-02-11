@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import { MediaType } from "@_types";
+import { MediaType } from "~/types";
 
 type MainInformationProps = {
   endYear: number;
@@ -21,11 +21,11 @@ const MainInformation = ({
 }: MainInformationProps) => {
   const canDisplayOriginalTitle = useMemo(
     () => title.toUpperCase() !== originalTitle.toUpperCase(),
-    []
+    [originalTitle, title]
   );
   const canDisplayEndYear = useMemo(
     () => mediaType === "tv" && endYear && releaseYear !== endYear,
-    []
+    [endYear, mediaType, releaseYear]
   );
   return (
     <div className="flex-1 flex flex-col items-center md:items-start">

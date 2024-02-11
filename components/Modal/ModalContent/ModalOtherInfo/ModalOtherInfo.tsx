@@ -1,8 +1,11 @@
-import { ModalMovieDetails, ModalTVDetails } from "@_types";
+import { LiaImdb } from "react-icons/lia";
+
+import { ModalMovieDetails, ModalTVDetails } from "~/types";
+
+import { LinkButton } from "~/components/Button/Button";
+
 import { InfoLine } from "./InfoLine";
 import { LanguageList } from "./LanguageList";
-import { LinkButton } from "@components/Button/Button";
-import { LiaImdb } from "react-icons/lia";
 
 const ModalOtherInfo = ({
   modalDetails,
@@ -44,7 +47,7 @@ const ModalOtherInfo = ({
       {modalDetails.mediaType === "movie" && (
         <>
           {modalDetails.imdbUrl && (
-            <LinkButton linkTo={modalDetails.imdbUrl} color="yellow-600">
+            <LinkButton linkTo={modalDetails.imdbUrl} color="yellow-700">
               <div className="flex">
                 <LiaImdb size={45} color="black" />
               </div>

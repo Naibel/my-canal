@@ -1,6 +1,6 @@
-import { Season } from "@_types/api";
+import { Season } from "~/types/api";
 
-import { SeasonCard } from "@components/Cards/SeasonCard";
+import { SeasonCard } from "~/components/Cards/SeasonCard";
 
 type ModalSeasonsProps = {
   seasons: Array<Season>;
@@ -9,7 +9,7 @@ type ModalSeasonsProps = {
 const ModalSeasons = ({ seasons }: ModalSeasonsProps) => (
   <div className="grid grid-cols-1 gap-5">
     {seasons.map((season: Season) => (
-      <SeasonCard season={season} />
+      <SeasonCard key={season.id} season={season} />
     ))}
   </div>
 );

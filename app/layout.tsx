@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import futura from "./fonts";
 
 import "./globals.css";

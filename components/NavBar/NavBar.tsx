@@ -1,7 +1,8 @@
 import { ChangeEvent, useState } from "react";
-import { LogoMyCanal } from "../LogoMyCanal/LogoMyCanal";
+
+import { LogoMyCanal } from "~/components/LogoMyCanal/LogoMyCanal";
+
 import { SearchBar } from "./SearchBar";
-import { MediaType } from "@_types";
 
 type NavBarProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -30,16 +31,14 @@ const NavBar = ({
     <div className="flex left-0 right-0 items-center bg-black px-5 py-3 shadow-lg">
       <LogoMyCanal />
       <div className={`duration-600  flex-1`} />
-      <div>
-        <SearchBar
-          onChange={onChange}
-          onSelectChange={onSelectChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          searchValue={searchValue}
-          searchMediaType={searchMediaType}
-        />
-      </div>
+      <SearchBar
+        onChange={onChange}
+        onSelectChange={onSelectChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        searchValue={searchValue}
+        searchMediaType={searchMediaType}
+      />
     </div>
   );
 };

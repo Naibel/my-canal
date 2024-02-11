@@ -1,5 +1,6 @@
-import { Season } from "@_types/api";
-import { LogoMyCanal } from "@components/LogoMyCanal/LogoMyCanal";
+import { Season } from "~/types/api";
+
+import { LogoMyCanal } from "~/components/LogoMyCanal/LogoMyCanal";
 
 type SeasonCardProps = {
   season: Season;

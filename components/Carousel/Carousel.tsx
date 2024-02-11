@@ -1,4 +1,5 @@
-import Item from "@components/Item/Item";
+import Item from "~/components/Item/Item";
+
 import styles from "./Carousel.module.css";
 
 export interface CarouselProps<T> {
@@ -12,8 +13,8 @@ const Carousel = <
   data,
   onClick,
 }: CarouselProps<T>) => (
-  <div className={`${styles.carousel_wrapper} mt-4 overflow-x-auto`}>
-    <div className={`${styles.carousel} flex gap-5`}>
+  <div className={styles.carousel_wrapper}>
+    <div className={styles.carousel}>
       {data?.map((item: T) => (
         <Item
           key={item.id}

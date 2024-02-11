@@ -1,4 +1,4 @@
-import StarRating from "@components/StarRating/StarRating";
+import StarRating from "~/components/StarRating/StarRating";
 
 type RatingProps = {
   note: number;

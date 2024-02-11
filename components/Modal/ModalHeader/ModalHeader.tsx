@@ -1,11 +1,11 @@
-import Tagline from "./Tagline";
+import { ModalMovieDetails, ModalTVDetails } from "~/types";
+
 import CloseButton from "./CloseButton";
-import ImageBackground from "./ImageBackground";
 import HeaderGradientOverlay from "./GradientOverlay";
+import ImageBackground from "./ImageBackground";
 import MainInformation from "./MainInformation";
 import Rating from "./Rating";
-
-import { ModalMovieDetails, ModalTVDetails } from "@_types";
+import Tagline from "./Tagline";
 
 type ModalHeaderProps = {
   modalDetails: ModalMovieDetails | ModalTVDetails;

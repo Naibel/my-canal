@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { LogoMyCanal } from "@components/LogoMyCanal/LogoMyCanal";
+import { LogoMyCanal } from "~/components/LogoMyCanal/LogoMyCanal";
 
 type ImageBackgroundProps = {
   bgImage?: string;
