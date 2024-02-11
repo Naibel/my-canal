@@ -8,6 +8,8 @@ Dans le cadre d'un entretien technique visant à rejoindre Canal+, j'ai été am
 
 J'ai souhaité mettre en place un projet se basant sur le couple React/[Next.js](https://nextjs.org/), bootstrapé avec [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), car il me permet de gérer plus facilement le SSR, d'implémenter facilement des fonts customs (comme notre chère Futura), et surtout me permet de déployer ce projet très facilement sur la plateforme [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
+[Lien du site sur Vercel](https://my-canal.vercel.app/)
+
 ### Du Tailwind... et c'est tout !
 
 Quant à la partie graphique, je n'ai utilisé que Tailwind CSS, que l'équipe en charge de l'appli Canal utilise déjà il me semble (n'hésitez pas à me le confirmer !)
