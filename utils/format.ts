@@ -1,17 +1,21 @@
 import { ModalMovieDetails, ModalTVDetails } from "~/types";
 import { APIMovieDetails, APITVSeriesDetails } from "~/types/api";
 
-const formatDateToFrLocale = (time: string) => {
-  return time ? new Date(time).toLocaleDateString("fr") : "";
+export const formatDateToFrLocale = (time: string) => {
+  return time ? new Date(time).toLocaleDateString("fr") : time;
 };
 
-const formatToUSD = (sum: number) => {
+export const formatToUSD = (sum: number) => {
   let USDollar = new Intl.NumberFormat("fr-FR", {
     style: "currency",
     currency: "USD",
   });
-
-  return sum ? USDollar.format(sum) : "";
+  //using "replace" replaces false white spaces with actual blank strings
+  return sum > 0
+    ? USDollar.format(sum)
+        .replace(/\u00a0/g, " ")
+        .replace(/\u202f/g, " ")
+    : "";
 };
 
 //FORMAT FUNCTIONS
@@ -27,7 +31,7 @@ export const formatMovieData = (
     genres: apiData.genres,
     homepage: apiData.homepage,
     id: apiData.id,
-    imdbUrl: apiData.backdrop_path
+    imdbUrl: apiData.imdb_id
       ? `https://imdb.com/title/${apiData.imdb_id}`
       : undefined,
     mediaType: "movie",
@@ -37,7 +41,7 @@ export const formatMovieData = (
     productionCompanies: apiData.production_companies,
     rating: apiData.vote_average,
     releaseDate: formatDateToFrLocale(apiData.release_date),
-    runtime: apiData.runtime,
+    runtime: apiData.runtime + "'",
     spokenLanguages: apiData.spoken_languages,
     status: apiData.status === "Released" ? "Déjà sorti" : "Pas encore sorti",
     tagline: apiData.tagline,
@@ -46,12 +50,12 @@ export const formatMovieData = (
   };
 };
 
-const checkStatus = (inProduction: boolean, status: string) => {
+export const checkStatus = (inProduction: boolean, status: string) => {
   if (inProduction && status === "In Production")
     return "En cours de production";
   else if (inProduction && status === "Returning Series")
     return "En cours de diffusion";
-  else if (!inProduction && status === "Ended") return "Diffusion terminée";
+  else if (!inProduction && status === "Ended") return "Production terminée";
   else return "Inconnu";
 };
 
@@ -70,13 +74,14 @@ export const formatTVData = (apiData: APITVSeriesDetails): ModalTVDetails => {
       : "",
     lastEpisodeToAir: apiData.last_episode_to_air,
     mediaType: "tv",
-    nextEpisodeToAir: apiData.next_episode_to_air,
     nbOfEpisodes: apiData.number_of_episodes,
     nbOfSeasons: apiData.number_of_seasons,
     nbOfVotes: apiData.vote_count,
     networks: apiData.networks,
-    overview: apiData.overview,
+    nextEpisodeToAir: apiData.next_episode_to_air,
     originalTitle: apiData.original_name,
+    overview: apiData.overview,
+    productionCompanies: apiData.production_companies,
     rating: apiData.vote_average,
     seasons: apiData.seasons,
     spokenLanguages: apiData.spoken_languages,
@@ -84,9 +89,10 @@ export const formatTVData = (apiData: APITVSeriesDetails): ModalTVDetails => {
     tagline: apiData.tagline,
     title: apiData.name,
     yearOfRelease: new Date(apiData.first_air_date).getFullYear(),
-    yearOfEnd: apiData.in_production
-      ? undefined
-      : new Date(apiData.last_air_date).getFullYear(),
+    yearOfEnd:
+      apiData.in_production && apiData.last_air_date
+        ? undefined
+        : new Date(apiData.last_air_date).getFullYear(),
   };
 };
 //
