@@ -1,17 +1,24 @@
+import { MediaType } from "@_types";
 import { ChangeEvent } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 
-export const SearchBar = ({
-  searchValue,
-  onChange,
-  onFocus,
-  onBlur,
-}: {
-  searchValue: string;
+type SearchBarProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onSelectChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   onFocus: () => void;
   onBlur: () => void;
-}) => (
+  searchMediaType: string;
+  searchValue: string;
+};
+
+export const SearchBar = ({
+  onChange,
+  onSelectChange,
+  onFocus,
+  onBlur,
+  searchMediaType,
+  searchValue,
+}: SearchBarProps) => (
   <div>
     <div className="relative rounded-md shadow-sm">
       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -35,9 +42,11 @@ export const SearchBar = ({
           id="mediaType"
           name="mediaType"
           className="h-full border-0 bg-transparent py-0 pl-2 pr-5 text-white  ring-black focus:ring-inset sm:text-sm"
+          onChange={onSelectChange}
+          value={searchMediaType}
         >
-          <option>Films</option>
-          <option>Séries</option>
+          <option value="movie">Films</option>
+          <option value="tv">Séries</option>
         </select>
       </div>
     </div>

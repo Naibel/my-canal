@@ -1,14 +1,21 @@
 import { ChangeEvent, useState } from "react";
-import { LogoMyCanal } from "./LogoMyCanal";
+import { LogoMyCanal } from "../LogoMyCanal/LogoMyCanal";
 import { SearchBar } from "./SearchBar";
+import { MediaType } from "@_types";
+
+type NavBarProps = {
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onSelectChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+  searchValue: string;
+  searchMediaType: string;
+};
 
 const NavBar = ({
   onChange,
+  onSelectChange,
   searchValue,
-}: {
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  searchValue: string;
-}) => {
+  searchMediaType,
+}: NavBarProps) => {
   const [isInputOnFocus, setIsInputOnFocus] = useState<boolean>(false);
 
   const handleFocus = () => {
@@ -25,10 +32,12 @@ const NavBar = ({
       <div className={`duration-600  flex-1`} />
       <div>
         <SearchBar
-          searchValue={searchValue}
           onChange={onChange}
+          onSelectChange={onSelectChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          searchValue={searchValue}
+          searchMediaType={searchMediaType}
         />
       </div>
     </div>
