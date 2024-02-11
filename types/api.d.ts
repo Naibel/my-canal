@@ -32,7 +32,7 @@ export type APIMovie = APIDataItem & {
 };
 export type APIDataItemDetails = {
   adult: boolean;
-  backdrop_path: string;
+  backdrop_path: string | null;
   genres: Array<Genre>;
   homepage: string;
   id: number;
@@ -52,7 +52,7 @@ export type APIDataItemDetails = {
 export type APIMovieDetails = APIDataItemDetails & {
   belongs_to_collection: BelongToCollection | null;
   budget: number;
-  imdb_id: string;
+  imdb_id: string | null;
   original_title: string;
   release_date: string;
   revenue: number;
@@ -71,7 +71,7 @@ export type APITVSeriesDetails = APIDataItemDetails & {
   last_episode_to_air: EpisodeInfo;
   name: string;
   networks: Array<Network>;
-  next_episode_to_air: EpisodeInfo;
+  next_episode_to_air: EpisodeInfo | null;
   number_of_episodes: number;
   number_of_seasons: number;
   origin_country: Array<string>;
@@ -129,7 +129,7 @@ export type Genre = {
 
 export type ProductionCompany = {
   id: number;
-  logo_path: string;
+  logo_path: string | null;
   name: string;
   origin_country: string;
 };

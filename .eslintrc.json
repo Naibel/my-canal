@@ -22,21 +22,21 @@
           "error",
           {
             "groups": [
-              // Packages `react` related packages come first.
+              // Packages related ti `react`  come first.
               ["^react", "^@?\\w"],
-              // Internal packages.
+              // Then internal packages.
               ["^(~/types)(/.*|$)"],
               ["^(~/utils)(/.*|$)"],
               ["^(~/hooks)(/.*|$)"],
               ["^(~/components)(/.*|$)"],
               ["^(~/views)(/.*|$)"],
-              // Side effect imports.
+              // Then side effect imports.
               ["^\\u0000"],
-              // Parent imports. Put `..` last.
+              // Then parent imports. Put `..` last.
               ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
-              // Other relative imports. Put same-folder imports and `.` last.
+              // Then same-folder imports and `.` last.
               ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
-              // Style imports.
+              // And finally style imports.
               ["^.+\\.?(css)$"]
             ]
           }

@@ -15,12 +15,13 @@ export type ModalDetails = {
   nbOfVotes: number;
   overview: string;
   originalTitle: string;
+  productionCompanies: Array<ProductionCompany>;
   rating: number;
-  title: string;
-  yearOfRelease: number;
+  spokenLanguages: Array<SpokenLanguages>;
   status: string;
   tagline: string;
-  spokenLanguages: Array<SpokenLanguages>;
+  title: string;
+  yearOfRelease: number;
 };
 
 export type ModalMovieDetails = ModalDetails & {
@@ -28,9 +29,8 @@ export type ModalMovieDetails = ModalDetails & {
   budget: string;
   imdbUrl?: string;
   mediaType: "movie";
-  productionCompanies: Array<ProductionCompany>;
   releaseDate: string;
-  runtime: number;
+  runtime: string;
 };
 
 export type ModalTVDetails = ModalDetails & {

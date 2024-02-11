@@ -1,5 +1,5 @@
 type ProductionCardProps = {
-  logo: string;
+  logo: string | null;
   name: string;
 };
 
