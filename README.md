@@ -13,6 +13,8 @@ J'ai souhaité mettre en place un projet se basant sur le couple React/[Next.js]
 ### Du Tailwind... et c'est tout !
 
 Quant à la partie graphique, je n'ai utilisé que Tailwind CSS, que l'équipe en charge de l'appli Canal utilise déjà il me semble (n'hésitez pas à me le confirmer !)
+J'ai aussi utilisé de temps en temps quelques fichiers CSS modules destinés à contourner le comportement parfois récalcitrant de Tailwind, avec notamment des classes CSS qui n'étaient pas reconnus au niveau du navigateur.
+
 J'avoue, je le confesse, pour m'éviter le syndrome de la page blanche, j'ai souhaité trouvé quelques sources d'inspirations, notamment sur ce que réalise déjà Canal sur leur propre plateforme vidéo.
 
 Si j'ai voulu garder quelques idées qui me semblaient très pertinentes, j'ai tout de même souhaité m'en écarter pour ne pas donner l'impression d'un projet plagié. J'ai aussi voulu utiliser autant que possible les diverses déclinaisons de la célèbre police Futura (Etienne Robial ftw!), afin d'habiller mon projet et de lui donner un air distinctement "Canal +".
