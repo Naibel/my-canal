@@ -10,11 +10,9 @@ import { formatMovieData, formatTVData } from "~/utils/format";
 
 import useDebounce from "~/hooks/useDebounce";
 
-import Modal from "~/components/Modal/Modal";
-import NavBar from "~/components/NavBar/NavBar";
+import { NavBar } from "~/components";
 
-import SearchResults from "./SearchPage/SearchResults";
-import Trending from "./Trending/Trending";
+import { Modal, SearchResults, Trending } from "~/views";
 
 const HomePage = () => {
   const [modalDetails, setModalDetails] = useState<

@@ -1,8 +1,7 @@
-import HeaderTitle from "~/components/HeaderTitle/HeaderTitle";
-import Item from "~/components/Item/Item";
+import { Card, Title } from "~/components";
 
-import { NoResultsFound } from "./NoResultsFound";
-import { SearchLoadingMessage } from "./SearchLoadingMessage";
+import { NoResultsFound } from "./components/NoResultsFound";
+import { SearchLoadingMessage } from "./components/SearchLoadingMessage";
 
 type SearchResultsProps<T> = {
   results: Array<T> | undefined;
@@ -18,17 +17,15 @@ const SearchResults = <
   loading,
 }: SearchResultsProps<T>) => (
   <div
-    className={`absolute bg-black left-0 right-0 ${
-      results?.length === 0 || loading ? "top-0 bottom-0" : ""
-    } top-16`}
+    className={`absolute flex flex-1 min-h-dvh h-max bg-black left-0 right-0 top-0 h-full bottom-0 top-14`}
   >
-    <div className="flex flex-1 h-full flex-col p-5 gap-5">
-      <HeaderTitle>Résultats de la recherche</HeaderTitle>
+    <div className="flex flex-1 flex-col p-5 gap-5">
+      <Title size="large">Résultats de la recherche</Title>
       {loading && <SearchLoadingMessage />}
       {!loading && results && results?.length > 0 && (
         <div className="grid h-fit grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5">
           {results?.map((item: T) => (
-            <Item
+            <Card
               key={item.id}
               poster={item.poster_path}
               onClick={() => onClick(item.id)}
