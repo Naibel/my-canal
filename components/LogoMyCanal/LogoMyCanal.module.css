@@ -1,0 +1,9 @@
+.normal {
+  font-size: 1.875rem; /* 30px */
+  line-height: 0%;
+}
+
+.large {
+  font-size: 4.5rem; /* 72px */
+  line-height: 0%;
+}

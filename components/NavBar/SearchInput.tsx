@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 
-type SearchBarProps = {
+type SearchInputProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onSelectChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   onFocus: () => void;
@@ -10,17 +10,17 @@ type SearchBarProps = {
   searchValue: string;
 };
 
-export const SearchBar = ({
+const SearchInput = ({
   onChange,
   onSelectChange,
   onFocus,
   onBlur,
   searchMediaType,
   searchValue,
-}: SearchBarProps) => (
+}: SearchInputProps) => (
   <div>
-    <div className="relative rounded-md shadow-sm">
-      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+    <div className="flex gap-3 border-b-2">
+      <div className="pointer-events-none inset-y-0 flex pl-2 items-center">
         <span className="text-white sm:text-sm">
           <IoSearchOutline />
         </span>
@@ -29,14 +29,14 @@ export const SearchBar = ({
         type="search"
         name="search"
         id="searchInput"
-        className="bg-black outline-none text-white block w-full border-b-2 py-1.5 pl-9 pr-24 text-gray-900 ring-1 ring-inset ring-black placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-neutral-600 sm:text-sm sm:leading-6"
+        className="bg-black outline-none text-white block py-1.5 text-gray-900 ring-1 ring-inset ring-black placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-neutral-600 sm:text-sm sm:leading-6"
         placeholder="Rechercher un film/une série"
         value={searchValue}
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
       />
-      <div className="absolute inset-y-0 right-2 flex items-center">
+      <div className=" inset-y-0 flex items-center">
         <select
           id="mediaType"
           name="mediaType"
@@ -51,3 +51,5 @@ export const SearchBar = ({
     </div>
   </div>
 );
+
+export default SearchInput;

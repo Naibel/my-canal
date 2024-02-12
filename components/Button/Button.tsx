@@ -1,25 +1,15 @@
 import { ReactNode } from "react";
 
-type ButtonProps = {
+import styles from "./Button.module.css";
+
+export type ButtonProps = {
   children: ReactNode;
-  color: string;
+  color?: "grey" | "yellow";
 };
 
-export const LinkButton = ({
-  linkTo,
-  color,
-  children,
-}: ButtonProps & {
-  linkTo: string;
-}) => (
-  <a target="_blank" href={linkTo}>
-    <Button color={color}>{children}</Button>
-  </a>
-);
-
-const Button = ({ children, color }: ButtonProps) => (
+const Button = ({ children, color = "grey" }: ButtonProps) => (
   <button
-    className={`flex justify-center items-center duration-600 bg-${color} hover:bg-${color} active:bg-${color} rounded-xl`}
+    className={`flex flex-1 justify-center items-center duration-600 ${styles[color]} rounded-lg`}
   >
     {children}
   </button>

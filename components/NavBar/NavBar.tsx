@@ -1,8 +1,6 @@
 import { ChangeEvent, useState } from "react";
 
-import { LogoMyCanal } from "~/components/LogoMyCanal/LogoMyCanal";
-
-import { SearchBar } from "./SearchBar";
+import { LogoMyCanal, SearchInput } from "~/components";
 
 type NavBarProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -28,10 +26,9 @@ const NavBar = ({
   };
 
   return (
-    <div className="flex left-0 right-0 items-center bg-black px-5 py-3 shadow-lg">
+    <div className="flex justify-between left-0 right-0 items-center bg-black px-5 py-3 shadow-lg">
       <LogoMyCanal />
-      <div className={`duration-600  flex-1`} />
-      <SearchBar
+      <SearchInput
         onChange={onChange}
         onSelectChange={onSelectChange}
         onFocus={handleFocus}

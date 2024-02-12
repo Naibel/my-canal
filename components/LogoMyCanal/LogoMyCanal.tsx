@@ -1,12 +1,16 @@
+import styles from "./LogoMyCanal.module.css";
+
 type LogoProps = {
-  large?: boolean;
+  size?: "normal" | "large";
 };
 
-export const LogoMyCanal = ({ large }: LogoProps) => (
+const LogoMyCanal = ({ size = "normal" }: LogoProps) => (
   <div>
-    <h2 className={`text-${large ? 7 : 3}xl`}>
+    <h2 className={styles[size]}>
       <span>my</span>
       <span className={`font-bold italic`}>CANAL</span>
     </h2>
   </div>
 );
+
+export default LogoMyCanal;
