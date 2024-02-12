@@ -62,28 +62,30 @@ const HomePage = () => {
       {modalDetails !== null && (
         <Modal modalDetails={modalDetails} handleClose={handleClose} />
       )}
-      <div className="flex flex-col h-screen">
+      <div>
         <NavBar
           onChange={handleSearchChange}
           onSelectChange={handleSearchMediaTypeChange}
           searchValue={searchValue}
           searchMediaType={searchMediaType}
         />
-        {debouncedSearch && searchResultsData && (
-          <SearchResults
-            loading={searchResultsData.isPending}
-            results={searchResultsData?.data?.results}
-            onClick={
-              searchMediaType === "tv"
-                ? handleOnTVItemClick
-                : handleOnMovieItemClick
-            }
+        <div className="relative h-fit">
+          {debouncedSearch && searchResultsData && (
+            <SearchResults
+              loading={searchResultsData.isPending}
+              results={searchResultsData?.data?.results}
+              onClick={
+                searchMediaType === "tv"
+                  ? handleOnTVItemClick
+                  : handleOnMovieItemClick
+              }
+            />
+          )}
+          <Trending
+            onMovieItemClick={handleOnMovieItemClick}
+            onTVItemClick={handleOnTVItemClick}
           />
-        )}
-        <Trending
-          onMovieItemClick={handleOnMovieItemClick}
-          onTVItemClick={handleOnTVItemClick}
-        />
+        </div>
 
         <footer className="bg-black px-5 py-3">Dorian Belhaj - 2024</footer>
       </div>

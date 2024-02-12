@@ -26,7 +26,7 @@ const NavBar = ({
   };
 
   return (
-    <div className="flex justify-between left-0 right-0 items-center bg-black px-5 py-3 shadow-lg">
+    <div className="grid grid-rows-2 grid-cols-1 md:flex md:flex-row justify-between items-center bg-black px-5 py-3 shadow-md">
       <LogoMyCanal />
       <SearchInput
         onChange={onChange}

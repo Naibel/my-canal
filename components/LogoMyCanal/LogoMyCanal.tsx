@@ -5,7 +5,7 @@ type LogoProps = {
 };
 
 const LogoMyCanal = ({ size = "normal" }: LogoProps) => (
-  <div>
+  <div className="text-center">
     <h2 className={styles[size]}>
       <span>my</span>
       <span className={`font-bold italic`}>CANAL</span>
