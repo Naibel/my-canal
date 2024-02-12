@@ -69,7 +69,7 @@ const HomePage = () => {
           searchValue={searchValue}
           searchMediaType={searchMediaType}
         />
-        {searchValue && searchResultsData && (
+        {debouncedSearch && searchResultsData && (
           <SearchResults
             loading={searchResultsData.isPending}
             results={searchResultsData?.data?.results}
