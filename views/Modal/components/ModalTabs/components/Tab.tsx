@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { MenuPage } from "../ModalContent/ModalContent";
+import { MenuPage } from "../../ModalContent/ModalContent";
 
 type TabProps = {
   page: MenuPage;

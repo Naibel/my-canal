@@ -4,8 +4,8 @@ import { ModalMovieDetails, ModalTVDetails } from "~/types";
 
 import { LinkButton } from "~/components";
 
-import InfoLine from "./InfoLine";
-import SpokenLanguages from "./SpokenLanguages";
+import InfoLine from "./components/InfoLine";
+import SpokenLanguages from "./components/SpokenLanguages";
 
 const ModalSideBar = ({
   modalDetails,

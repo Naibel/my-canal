@@ -1,6 +1,6 @@
 import { MenuPage } from "../ModalContent/ModalContent";
 
-import Tab from "./Tab";
+import Tab from "./components/Tab";
 
 type TabsProps = {
   currentPage: MenuPage;
