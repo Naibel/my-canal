@@ -5,6 +5,8 @@ import { MediaType } from "~/types";
 
 import { discover } from "~/utils/fetch";
 
+import useStore from "~/hooks/useStore";
+
 import { Button, Card, LoadingOverlay, Title } from "~/components";
 
 import { DiscoverForm } from "./DiscoverForm";
@@ -34,6 +36,7 @@ const Discover = <
   const [mediaType, setMediaType] = useState<MediaType>("tv");
   const [searchResults, setSearchResults] = useState<Array<T>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { setAlertMessage } = useStore();
 
   const handleSearch = () => {
     setIsLoading(true);
@@ -43,6 +46,10 @@ const Discover = <
       })
       ?.catch((error: any) => {
         console.error(error);
+        setAlertMessage({
+          type: "error",
+          message: error.message,
+        });
       })
       .finally(() => setIsLoading(false));
   };
@@ -59,36 +66,34 @@ const Discover = <
   };
 
   return (
-    <>
+    <main className="flex flex-1 flex-col pt-5 gap-5">
       {isLoading && createPortal(<LoadingOverlay />, document.body)}
-      <main className="flex flex-1 flex-col pt-5 gap-5">
-        <div className="flex flex-col gap-5  ">
-          <div className="flex flex-col bg-black rounded-md w-full max-w-4xl m-auto p-5 gap-5">
-            <DiscoverForm onFormChange={handleFormChange} />
-            <Button onClick={handleSearch}>
-              <span className="text-sm uppercase italic font-semibold px-5 py-3">
-                Allez, on recherche du contenu !
-              </span>
-            </Button>
-          </div>
-          {searchResults.length > 0 && (
-            <div className="bg-neutral-800 p-5 flex flex-col gap-5 rounded-md text-center">
-              <Title size="large">Résultats de la recherche : </Title>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5">
-                {searchResults?.map((item: T) => (
-                  <Card
-                    key={item.id}
-                    poster={item.poster_path}
-                    onClick={() => onCardClick(item.id)}
-                    title={item.name || item.title || ""}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
+      <div className="flex flex-col gap-5">
+        <div className="flex flex-col bg-black rounded-md w-full max-w-4xl m-auto mb-5 p-5 gap-5">
+          <DiscoverForm onFormChange={handleFormChange} />
+          <Button onClick={handleSearch}>
+            <span className="text-sm uppercase italic font-semibold px-5 py-3">
+              Allez, on recherche du contenu !
+            </span>
+          </Button>
         </div>
-      </main>
-    </>
+        {searchResults.length > 0 && (
+          <div className="bg-neutral-800 p-5 flex flex-col gap-5 rounded-md text-center">
+            <Title size="large">Résultats de la recherche : </Title>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5">
+              {searchResults?.map((item: T) => (
+                <Card
+                  key={item.id}
+                  poster={item.poster_path}
+                  onClick={() => onCardClick(item.id)}
+                  title={item.name || item.title || ""}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </main>
   );
 };
 

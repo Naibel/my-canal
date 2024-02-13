@@ -4,15 +4,15 @@ import { LogoMyCanal, SearchInput } from "~/components";
 
 import NavBarButton from "./NavBarButton";
 
-export type Page = "trending" | "discover";
+export type PageType = "trending" | "discover";
 
 type NavBarProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onSelectChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   searchValue: string;
   searchMediaType: string;
-  currentPage: Page;
-  onChangePage: (value: Page) => void;
+  currentPage: PageType;
+  onChangePage: (value: PageType) => void;
 };
 
 const NavBar = ({

@@ -1,5 +1,6 @@
 "use client";
 import { ChangeEvent, useState } from "react";
+import { createPortal } from "react-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import { MediaType, ModalMovieDetails, ModalTVDetails } from "~/types";
@@ -9,10 +10,10 @@ import { fetch, search } from "~/utils/fetch";
 import { formatMovieData, formatTVData } from "~/utils/format";
 
 import useDebounce from "~/hooks/useDebounce";
+import useStore from "~/hooks/useStore";
 
 import { Alert, NavBar } from "~/components";
-import { AlertType } from "~/components/Alert/Alert";
-import { Page } from "~/components/NavBar/NavBar";
+import { PageType } from "~/components/NavBar/NavBar";
 
 import { Discover, Modal, SearchResults, Trending } from "~/views";
 
@@ -22,11 +23,10 @@ const HomePage = () => {
   >(null);
   const [searchValue, setSearchValue] = useState<string>("");
   const [searchMediaType, setSearchMediaType] = useState<MediaType>("movie");
-  const [page, setPage] = useState<Page>("trending");
-  const [alertMessage, setAlertMessage] = useState<AlertType | null>(null);
+  const [page, setPage] = useState<PageType>("trending");
 
+  const { alertMessage, setAlertMessage } = useStore();
   const debouncedSearch = useDebounce(searchValue, 300);
-
   const searchResultsData = useQuery({
     queryKey: ["searchValue", debouncedSearch],
     queryFn: () => search(searchValue, searchMediaType),
@@ -56,6 +56,10 @@ const HomePage = () => {
       })
       ?.catch((error) => {
         console.error(error);
+        setAlertMessage({
+          type: "error",
+          message: error.message,
+        });
       });
   };
 
@@ -75,22 +79,26 @@ const HomePage = () => {
     else setSearchMediaType(event.target.value);
   };
 
-  const changePage = (value: Page) => {
+  const changePage = (value: PageType) => {
     setPage(value);
   };
 
   return (
     <>
-      {modalDetails !== null && (
-        <Modal modalDetails={modalDetails} handleClose={handleClose} />
-      )}
-      {alertMessage && (
-        <Alert
-          type={alertMessage.type}
-          message={alertMessage.message}
-          onClose={() => setAlertMessage(null)}
-        />
-      )}
+      {modalDetails !== null &&
+        createPortal(
+          <Modal modalDetails={modalDetails} handleClose={handleClose} />,
+          document.body
+        )}
+      {alertMessage &&
+        createPortal(
+          <Alert
+            type={alertMessage.type}
+            message={alertMessage.message}
+            onClose={() => setAlertMessage(null)}
+          />,
+          document.body
+        )}
       <div>
         <NavBar
           onChange={handleSearchChange}
