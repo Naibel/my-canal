@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { fetchTrendingMovies, fetchTrendingSeries } from "~/utils/fetch";
+import { getTrending } from "~/utils/fetch";
 
 import { Title } from "~/components";
 
@@ -15,11 +15,11 @@ type TrendingProps = {
 const Trending = ({ onMovieItemClick, onTVItemClick }: TrendingProps) => {
   const moviesQuery = useQuery({
     queryKey: ["movies"],
-    queryFn: fetchTrendingMovies,
+    queryFn: () => getTrending("movie"),
   });
   const seriesQuery = useQuery({
     queryKey: ["series"],
-    queryFn: fetchTrendingSeries,
+    queryFn: () => getTrending("tv"),
   });
 
   return (
