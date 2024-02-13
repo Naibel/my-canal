@@ -2,7 +2,7 @@
 import { ChangeEvent, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { ModalMovieDetails, ModalTVDetails } from "~/types";
+import { MediaType, ModalMovieDetails, ModalTVDetails } from "~/types";
 import { APIMovieDetails, APITVSeriesDetails } from "~/types/api";
 
 import { fetch, search } from "~/utils/fetch";
@@ -10,16 +10,20 @@ import { formatMovieData, formatTVData } from "~/utils/format";
 
 import useDebounce from "~/hooks/useDebounce";
 
-import { NavBar } from "~/components";
+import { Alert, NavBar } from "~/components";
+import { AlertType } from "~/components/Alert/Alert";
+import { Page } from "~/components/NavBar/NavBar";
 
-import { Modal, SearchResults, Trending } from "~/views";
+import { Discover, Modal, SearchResults, Trending } from "~/views";
 
 const HomePage = () => {
   const [modalDetails, setModalDetails] = useState<
     ModalMovieDetails | ModalTVDetails | null
   >(null);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [searchMediaType, setSearchMediaType] = useState<string>("movie");
+  const [searchMediaType, setSearchMediaType] = useState<MediaType>("movie");
+  const [page, setPage] = useState<Page>("trending");
+  const [alertMessage, setAlertMessage] = useState<AlertType | null>(null);
 
   const debouncedSearch = useDebounce(searchValue, 300);
 
@@ -30,17 +34,29 @@ const HomePage = () => {
 
   // TODO: N'utiliser qu'une fonction avec un type générique qui dispatchera le bon endpoint et la bonne fonction de formattage
   const handleOnMovieItemClick = (id: number) => {
-    fetch(`/movie/${id}`).then((res: APIMovieDetails) => {
-      const details: ModalMovieDetails = formatMovieData(res);
-      setModalDetails(details);
-    });
+    fetch(`/movie/${id}`)
+      .then((res: APIMovieDetails) => {
+        const details: ModalMovieDetails = formatMovieData(res);
+        setModalDetails(details);
+      })
+      ?.catch((error: any) => {
+        console.error(error);
+        setAlertMessage({
+          type: "error",
+          message: error.message,
+        });
+      });
   };
 
   const handleOnTVItemClick = (id: number) => {
-    fetch(`/tv/${id}`).then((res: APITVSeriesDetails) => {
-      const details: ModalTVDetails = formatTVData(res);
-      setModalDetails(details);
-    });
+    fetch(`/tv/${id}`)
+      .then((res: APITVSeriesDetails) => {
+        const details: ModalTVDetails = formatTVData(res);
+        setModalDetails(details);
+      })
+      ?.catch((error) => {
+        console.error(error);
+      });
   };
 
   const handleClose = () => {
@@ -54,7 +70,13 @@ const HomePage = () => {
   const handleSearchMediaTypeChange = (
     event: ChangeEvent<HTMLSelectElement>
   ) => {
-    setSearchMediaType(event.target.value);
+    if (event.target.value !== "movie" && event.target.value !== "tv")
+      return false; //MediaType Type checking
+    else setSearchMediaType(event.target.value);
+  };
+
+  const changePage = (value: Page) => {
+    setPage(value);
   };
 
   return (
@@ -62,12 +84,21 @@ const HomePage = () => {
       {modalDetails !== null && (
         <Modal modalDetails={modalDetails} handleClose={handleClose} />
       )}
+      {alertMessage && (
+        <Alert
+          type={alertMessage.type}
+          message={alertMessage.message}
+          onClose={() => setAlertMessage(null)}
+        />
+      )}
       <div>
         <NavBar
           onChange={handleSearchChange}
           onSelectChange={handleSearchMediaTypeChange}
           searchValue={searchValue}
           searchMediaType={searchMediaType}
+          currentPage={page}
+          onChangePage={changePage}
         />
         <div className="relative h-fit">
           {debouncedSearch && searchResultsData && (
@@ -81,12 +112,16 @@ const HomePage = () => {
               }
             />
           )}
-          <Trending
-            onMovieItemClick={handleOnMovieItemClick}
-            onTVItemClick={handleOnTVItemClick}
-          />
+          {page === "trending" && (
+            <Trending
+              onMovieItemClick={handleOnMovieItemClick}
+              onTVItemClick={handleOnTVItemClick}
+            />
+          )}
+          {page === "discover" && (
+            <Discover onCardClick={handleOnTVItemClick} />
+          )}
         </div>
-
         <footer className="bg-black px-5 py-3">Dorian Belhaj - 2024</footer>
       </div>
     </>
