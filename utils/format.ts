@@ -18,6 +18,15 @@ export const formatToUSD = (sum: number) => {
     : "";
 };
 
+export const checkStatus = (inProduction: boolean, status: string) => {
+  if (inProduction && status === "In Production")
+    return "En cours de production";
+  else if (inProduction && status === "Returning Series")
+    return "En cours de diffusion";
+  else if (!inProduction && status === "Ended") return "Production terminée";
+  else return "Inconnu";
+};
+
 //FORMAT FUNCTIONS
 export const formatMovieData = (
   apiData: APIMovieDetails
@@ -48,15 +57,6 @@ export const formatMovieData = (
     title: apiData.title,
     yearOfRelease: new Date(apiData.release_date).getFullYear(),
   };
-};
-
-export const checkStatus = (inProduction: boolean, status: string) => {
-  if (inProduction && status === "In Production")
-    return "En cours de production";
-  else if (inProduction && status === "Returning Series")
-    return "En cours de diffusion";
-  else if (!inProduction && status === "Ended") return "Production terminée";
-  else return "Inconnu";
 };
 
 export const formatTVData = (apiData: APITVSeriesDetails): ModalTVDetails => {
