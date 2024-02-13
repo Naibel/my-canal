@@ -5,6 +5,12 @@ export type APIResponse<T> = {
   total_results: number;
 };
 
+export type APIError = {
+  status_code: number;
+  status_message: string;
+  success: booleqn;
+};
+
 export type APIDataItem = {
   adult: boolean;
   backdrop_path: string | null;
