@@ -17,7 +17,7 @@ const SearchResults = <
   loading,
 }: SearchResultsProps<T>) => (
   <div
-    className={`absolute flex flex-1 min-h-dvh h-max bg-black left-0 right-0 top-0 h-full bottom-0`}
+    className={`absolute z-10 flex flex-1 min-h-dvh h-max bg-black left-0 right-0 top-0 h-full bottom-0`}
   >
     <div className="flex flex-1 flex-col p-5 gap-5">
       <Title size="large">Résultats de la recherche</Title>

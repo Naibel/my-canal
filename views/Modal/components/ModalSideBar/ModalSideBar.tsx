@@ -12,7 +12,7 @@ const ModalSideBar = ({
 }: {
   modalDetails: ModalMovieDetails | ModalTVDetails;
 }) => (
-  <div className="bg-neutral-900 flex flex-col gap-2 pr-5 md:pr-8 pl-5 py-5">
+  <div className="bg-neutral-900 flex flex-col gap-2 md:gap-4 pr-5 md:pr-8 pl-5 py-5">
     {modalDetails.homepage && (
       <LinkButton linkTo={modalDetails.homepage}>
         <span className="text-sm uppercase italic font-semibold px-5 py-3">

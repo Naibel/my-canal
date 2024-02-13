@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 
-import { Page } from "./NavBar";
+import { PageType } from "./NavBar";
 
 type NavBarButtonProps = {
-  currentPage: Page;
-  page: Page;
-  onChangePage: (value: Page) => void;
+  currentPage: PageType;
+  page: PageType;
+  onChangePage: (value: PageType) => void;
   children: ReactNode;
 };
 

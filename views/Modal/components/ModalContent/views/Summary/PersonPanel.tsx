@@ -10,7 +10,9 @@ const PersonPanel = ({ bgProfile, name, gender }: PersonPanelProps) => (
   <div className="flex flex-col rounded-sm overflow-hidden">
     <div
       style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/original${bgProfile})`,
+        backgroundImage: bgProfile
+          ? `url(https://image.tmdb.org/t/p/original${bgProfile})`
+          : "",
       }}
       className="bg-cover aspect-[2/3] flex items-center justify-center text-center bg-neutral-900"
     >
