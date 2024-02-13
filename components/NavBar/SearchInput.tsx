@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { IoSearchOutline } from "react-icons/io5";
+import { IoSearchSharp } from "react-icons/io5";
 
 type SearchInputProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -8,6 +8,7 @@ type SearchInputProps = {
   onBlur: () => void;
   searchMediaType: string;
   searchValue: string;
+  isInputOnFocus: boolean;
 };
 
 const SearchInput = ({
@@ -17,29 +18,30 @@ const SearchInput = ({
   onBlur,
   searchMediaType,
   searchValue,
+  isInputOnFocus,
 }: SearchInputProps) => (
-  <div className="flex gap-3 border-b-2">
-    <div className="pointer-events-none inset-y-0 flex pl-2 items-center">
-      <span className="text-white sm:text-sm">
-        <IoSearchOutline />
-      </span>
-    </div>
-    <input
-      type="search"
-      name="search"
-      id="searchInput"
-      className="bg-black flex-1 outline-none text-white block py-1.5 text-gray-900 ring-1 ring-inset ring-black placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-neutral-600 sm:text-sm sm:leading-6"
-      placeholder="Rechercher un film/une série"
-      value={searchValue}
-      onChange={onChange}
-      onFocus={onFocus}
-      onBlur={onBlur}
-    />
-    <div className=" flex items-center">
+  <div
+    className={`duration-300 w-full md:w-96 flex gap-3 items-center bg-neutral-900 rounded-full px-3 ${
+      isInputOnFocus ? "ring-1 ring-inset ring-neutral-600" : ""
+    }`}
+  >
+    <IoSearchSharp size={24} onClick={onFocus} />
+    <div className="flex flex-1 gap-3">
+      <input
+        type="search"
+        name="search"
+        id="searchInput"
+        className="bg-transparent border-0 flex-1 outline-none text-white block py-1.5 text-gray-900 placeholder:text-gray-400"
+        placeholder="Rechercher un film/une série"
+        value={searchValue}
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      />
       <select
         id="mediaType"
         name="mediaType"
-        className="border-0 bg-transparent py-0 pl-2 pr-5 text-white ring-black focus:ring-inset sm:text-sm"
+        className="border-0 bg-transparent py-0 pl-2 pr-5 text-white ring-black focus:ring-inset "
         onChange={onSelectChange}
         value={searchMediaType}
       >
@@ -49,5 +51,4 @@ const SearchInput = ({
     </div>
   </div>
 );
-
 export default SearchInput;
