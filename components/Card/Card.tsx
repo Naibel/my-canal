@@ -3,12 +3,13 @@ import LogoMyCanal from "~/components/LogoMyCanal/LogoMyCanal";
 import styles from "./Card.module.css";
 
 type CardProps = {
+  id: number;
   poster?: string;
-  onClick?: () => void;
+  onClick?: (id: number) => void;
   title?: string;
 };
 
-const Card = ({ poster, onClick, title }: CardProps) => (
+const Card = ({ id, poster, onClick, title }: CardProps) => (
   <div
     style={{
       backgroundImage: poster
@@ -16,7 +17,7 @@ const Card = ({ poster, onClick, title }: CardProps) => (
         : "",
       cursor: onClick ? "pointer" : "default",
     }}
-    onClick={onClick}
+    onClick={() => onClick && onClick(id)}
     className={`${styles.icon} ${
       onClick ? "" : "animate-pulse"
     } aspect-[2/3] w-full flex text-center px-5 justify-center flex-col gap-5 items-center bg-no-repeat bg-cover bg-center bg-neutral-600 rounded-md shadow-sm hover:shadow-md hover:bg-neutral-700 active:bg-neutral-800`}
@@ -29,7 +30,6 @@ const Card = ({ poster, onClick, title }: CardProps) => (
     ) : (
       <></>
     )}
-    <div className="absolute bg-gradient-to-r from-indigo-500 "></div>
   </div>
 );
 

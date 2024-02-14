@@ -26,7 +26,8 @@ const SearchResults = <
         <div className="grid h-fit grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5">
           {results?.map((item: T) => (
             <Card
-              key={item.id}
+              key={"card_" + item.id}
+              id={item.id}
               poster={item.poster_path}
               onClick={() => onClick(item.id)}
               title={item.name || item.title || ""}
