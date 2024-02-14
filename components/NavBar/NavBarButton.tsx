@@ -1,30 +1,29 @@
 import { ReactNode } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { PageType } from "./NavBar";
 
 type NavBarButtonProps = {
-  currentPage: PageType;
-  page: PageType;
-  onChangePage: (value: PageType) => void;
+  to: PageType;
   children: ReactNode;
 };
 
-const NavBarButton = ({
-  currentPage,
-  page,
-  onChangePage,
-  children,
-}: NavBarButtonProps) => (
-  <span
-    className={`duration-300 uppercase italic font-semibold text-base md:text-lg ${
-      currentPage !== page
-        ? "opacity-50 hover:opacity-100 active:opacity-70 cursor-pointer"
-        : ""
-    }`}
-    onClick={() => onChangePage(page)}
-  >
-    {children}
-  </span>
-);
+const NavBarButton = ({ to, children }: NavBarButtonProps) => {
+  const pathname = usePathname();
+  return (
+    <Link href={`/${to}`}>
+      <span
+        className={`duration-300 uppercase italic font-semibold text-base md:text-lg ${
+          pathname !== "/" + to + "/"
+            ? "opacity-50 hover:opacity-100 active:opacity-70 cursor-pointer"
+            : ""
+        }`}
+      >
+        {children}
+      </span>
+    </Link>
+  );
+};
 
 export default NavBarButton;
