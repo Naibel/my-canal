@@ -3,22 +3,20 @@ import { Card, Title } from "~/components";
 import { NoResultsFound } from "./components/NoResultsFound";
 import { SearchLoadingMessage } from "./components/SearchLoadingMessage";
 
-type SearchResultsProps<T> = {
+type NavbarSearchResultsProps<T> = {
   results: Array<T> | undefined;
   onClick: (id: number) => void;
   loading: boolean;
 };
 
-const SearchResults = <
+const NavbarSearchResults = <
   T extends { id: number; poster_path: string; name?: string; title?: string }
 >({
   results,
   onClick,
   loading,
-}: SearchResultsProps<T>) => (
-  <div
-    className={`absolute z-10 flex flex-1 min-h-dvh h-max bg-black left-0 right-0 top-0 h-full bottom-0`}
-  >
+}: NavbarSearchResultsProps<T>) => (
+  <div className="flex flex-1 min-h-screen h-max bg-black left-0 right-0 top-0 h-full bottom-0">
     <div className="flex flex-1 flex-col p-5 gap-5">
       <Title size="large">Résultats de la recherche</Title>
       {loading && <SearchLoadingMessage />}
@@ -40,4 +38,4 @@ const SearchResults = <
   </div>
 );
 
-export default SearchResults;
+export default NavbarSearchResults;

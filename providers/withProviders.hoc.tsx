@@ -4,7 +4,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import AlertProvider from "~/providers/AlertProvider";
 import ModalProvider from "~/providers/ModalProvider";
-import SearchProvider from "~/providers/SearchProvider";
+import NavbarSearchProvider from "~/providers/NavbarSearchProvider";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -21,9 +21,9 @@ const withProviders = (WrappedComponent: React.ComponentType) => {
     <QueryClientProvider client={queryClient}>
       <ModalProvider>
         <AlertProvider>
-          <SearchProvider>
+          <NavbarSearchProvider>
             <WrappedComponent />
-          </SearchProvider>
+          </NavbarSearchProvider>
         </AlertProvider>
       </ModalProvider>
       <ReactQueryDevtools initialIsOpen={false} />
