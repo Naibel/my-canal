@@ -2,7 +2,10 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import HomePage from "~/views/HomePage";
+import AlertProvider from "~/views/AlertProvider";
+import ModalProvider from "~/views/ModalProvider";
+import SearchProvider from "~/views/SearchProvider";
+import TrendingContent from "~/views/Trending/TrendingContent";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -14,10 +17,16 @@ const queryClient = new QueryClient({
   },
 });
 
-export default function Home() {
+export default function Trending() {
   return (
     <QueryClientProvider client={queryClient}>
-      <HomePage />
+      <ModalProvider>
+        <AlertProvider>
+          <SearchProvider>
+            <TrendingContent />
+          </SearchProvider>
+        </AlertProvider>
+      </ModalProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
