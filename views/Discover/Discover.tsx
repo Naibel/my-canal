@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
+import { Button, LoadingOverlay } from "~/components";
+import { useAlertStore, useModalFunctions } from "~/hooks";
 import { MediaType } from "~/types";
-
 import { discover } from "~/utils/fetch";
 
-import useStore from "~/hooks/useStore";
-
-import { Button, Card, LoadingOverlay, Title } from "~/components";
-
-import { DiscoverForm } from "./DiscoverForm";
+import DiscoverForm from "./components/DiscoverForm";
+import DiscoverSearchResults from "./components/DiscoverSearchResults";
 
 export type DiscoverSearchForm = {
   include_adult: boolean;
@@ -18,15 +16,9 @@ export type DiscoverSearchForm = {
   sort_by: string;
 };
 
-type DiscoverProps = {
-  onCardClick: (id: number) => void;
-};
-
 const Discover = <
   T extends { id: number; poster_path: string; name?: string; title?: string }
->({
-  onCardClick,
-}: DiscoverProps) => {
+>() => {
   const [form, setForm] = useState<DiscoverSearchForm>({
     include_adult: false,
     language: "en-EN",
@@ -36,7 +28,9 @@ const Discover = <
   const [mediaType, setMediaType] = useState<MediaType>("tv");
   const [searchResults, setSearchResults] = useState<Array<T>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { setAlertMessage } = useStore();
+
+  const { setAlertMessage } = useAlertStore();
+  const { displayMovieModal, displayTVModal } = useModalFunctions();
 
   const handleSearch = () => {
     setIsLoading(true);
@@ -66,10 +60,10 @@ const Discover = <
   };
 
   return (
-    <main className="flex flex-1 flex-col pt-5 gap-5">
+    <>
       {isLoading && createPortal(<LoadingOverlay />, document.body)}
       <div className="flex flex-col gap-5">
-        <div className="flex flex-col bg-black rounded-md w-full max-w-4xl m-auto mb-5 p-5 gap-5">
+        <div className="flex flex-col bg-black rounded-md w-full max-w-4xl m-auto p-5 gap-5">
           <DiscoverForm onFormChange={handleFormChange} />
           <Button onClick={handleSearch}>
             <span className="text-sm uppercase italic font-semibold px-5 py-3">
@@ -78,22 +72,15 @@ const Discover = <
           </Button>
         </div>
         {searchResults.length > 0 && (
-          <div className="bg-neutral-800 p-5 flex flex-col gap-5 rounded-md text-center">
-            <Title size="large">Résultats de la recherche : </Title>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5">
-              {searchResults?.map((item: T) => (
-                <Card
-                  key={item.id}
-                  poster={item.poster_path}
-                  onClick={() => onCardClick(item.id)}
-                  title={item.name || item.title || ""}
-                />
-              ))}
-            </div>
-          </div>
+          <DiscoverSearchResults
+            searchResults={searchResults}
+            onCardClick={
+              mediaType === "tv" ? displayTVModal : displayMovieModal
+            }
+          />
         )}
       </div>
-    </main>
+    </>
   );
 };
 

@@ -17,9 +17,10 @@ const Carousel = <
     <div className={styles.carousel}>
       {data?.map((item: T) => (
         <Card
-          key={item.id}
+          key={"card_" + item.id}
+          id={item.id}
           poster={item.poster_path}
-          onClick={() => onClick(item.id)}
+          onClick={onClick}
           title={item.name || item.title || ""}
         />
       ))}

@@ -1,9 +1,16 @@
 import axios from "axios";
 
-import { MediaType } from "~/types";
-import { APIMovie, APIResponse, APITVSeries } from "~/types/api";
-
+import { MediaType, ModalMovieDetails, ModalTVDetails } from "~/types";
+import {
+  APIMovie,
+  APIMovieDetails,
+  APIResponse,
+  APITVSeries,
+  APITVSeriesDetails,
+} from "~/types/api";
 import { DiscoverSearchForm } from "~/views/Discover/Discover";
+
+import { formatMovieData, formatTVData } from "./format";
 
 const API_URL = "https://api.themoviedb.org/3";
 
@@ -41,5 +48,39 @@ export const discover = async (
   return await fetch(`/discover/${mediaType}`, {
     ...query,
   });
+};
+//
+
+//----GET FUNCTIONS----
+export const getTVDetails = async (
+  id: number,
+  onSuccess: (res: ModalTVDetails) => void,
+  onFailure: (error: any) => void
+) => {
+  fetch(`/tv/${id}`)
+    .then((res: APITVSeriesDetails) => {
+      const details: ModalTVDetails = formatTVData(res);
+      onSuccess(details);
+    })
+    ?.catch((error: any) => {
+      console.error(error);
+      onFailure(error);
+    });
+};
+
+export const getMovieDetails = async (
+  id: number,
+  onSuccess: (res: ModalMovieDetails) => void,
+  onFailure: (error: any) => void
+) => {
+  fetch(`/movie/${id}`)
+    .then((res: APIMovieDetails) => {
+      const details: ModalMovieDetails = formatMovieData(res);
+      onSuccess(details);
+    })
+    ?.catch((error: any) => {
+      console.error(error);
+      onFailure(error);
+    });
 };
 //

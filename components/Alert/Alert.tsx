@@ -12,7 +12,7 @@ const Alert = ({
   message,
   onClose,
 }: AlertType & { onClose: () => void }) => (
-  <div className={`absolute bottom-10 left-0 right-0 z-30`}>
+  <div className="fixed bottom-10 left-0 right-0 z-30">
     <div
       className={`flex w-fit m-auto gap-5 items-center rounded-md shadow-lg p-5 ${styles[type]} `}
     >

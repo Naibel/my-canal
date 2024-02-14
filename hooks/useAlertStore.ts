@@ -7,10 +7,10 @@ interface StoreState {
   setAlertMessage: (newValue: AlertType | null) => void;
 }
 
-const useStore = create<StoreState>()((set) => ({
+const useAlertStore = create<StoreState>()((set) => ({
   alertMessage: null,
   setAlertMessage: (newValue: AlertType | null) =>
     set(() => ({ alertMessage: newValue })),
 }));
 
-export default useStore;
+export default useAlertStore;

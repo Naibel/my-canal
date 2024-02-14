@@ -1,9 +1,9 @@
-type ProductionPanelProps = {
+type CompanyPanelProps = {
   logo: string | null;
   name: string;
 };
 
-const ProductionPanel = ({ logo, name }: ProductionPanelProps) => (
+const CompanyPanel = ({ logo, name }: CompanyPanelProps) => (
   <div className="flex flex-col rounded-sm overflow-hidden">
     <div className="p-3 bg-neutral-500">
       <div
@@ -24,4 +24,4 @@ const ProductionPanel = ({ logo, name }: ProductionPanelProps) => (
   </div>
 );
 
-export default ProductionPanel;
+export default CompanyPanel;

@@ -1,6 +1,5 @@
-import { Season } from "~/types/api";
-
 import { LogoMyCanal } from "~/components";
+import { Season } from "~/types/api";
 
 type SeasonPanelProps = {
   season: Season;

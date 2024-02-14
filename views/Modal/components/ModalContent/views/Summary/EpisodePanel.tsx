@@ -1,6 +1,5 @@
-import { EpisodeInfo } from "~/types/api";
-
 import { LogoMyCanal } from "~/components";
+import { EpisodeInfo } from "~/types/api";
 
 const EpisodePanel = ({ episode }: { episode: EpisodeInfo }) => (
   <div className="grid rounded-md overflow-hidden">

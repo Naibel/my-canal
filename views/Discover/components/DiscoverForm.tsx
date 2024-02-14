@@ -25,7 +25,7 @@ const mediaTypeOption: SelectOption[] = [
   { label: "Film", value: "movie" },
 ];
 
-export const DiscoverForm = ({
+const DiscoverForm = ({
   onFormChange,
 }: {
   onFormChange: (key: string, value: any) => void;
@@ -63,3 +63,5 @@ export const DiscoverForm = ({
     </div>
   );
 };
+
+export default DiscoverForm;
