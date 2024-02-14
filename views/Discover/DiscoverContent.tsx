@@ -5,7 +5,7 @@ import { MediaType } from "~/types";
 
 import { discover } from "~/utils/fetch";
 
-import useStore from "~/hooks/useStore";
+import useStore from "~/hooks/useAlertStore";
 
 import { Button, Card, LoadingOverlay, Title } from "~/components";
 
@@ -18,15 +18,9 @@ export type DiscoverSearchForm = {
   sort_by: string;
 };
 
-type DiscoverProps = {
-  onCardClick: (id: number) => void;
-};
-
-const Discover = <
+const DiscoverContent = <
   T extends { id: number; poster_path: string; name?: string; title?: string }
->({
-  onCardClick,
-}: DiscoverProps) => {
+>() => {
   const [form, setForm] = useState<DiscoverSearchForm>({
     include_adult: false,
     language: "en-EN",
@@ -85,7 +79,7 @@ const Discover = <
                 <Card
                   key={item.id}
                   poster={item.poster_path}
-                  onClick={() => onCardClick(item.id)}
+                  onClick={() => {}}
                   title={item.name || item.title || ""}
                 />
               ))}
@@ -97,4 +91,4 @@ const Discover = <
   );
 };
 
-export default Discover;
+export default DiscoverContent;

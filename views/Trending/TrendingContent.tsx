@@ -1,18 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getTrending } from "~/utils/fetch";
+import { getMovieDetails, getTrending, getTVDetails } from "~/utils/fetch";
+
+import { useAlertStore, useModalStore } from "~/hooks";
 
 import { Title } from "~/components";
 
 import Carousel from "./components/Carousel";
 import CarouselSkeleton from "./components/CarouselSkeleton";
 
-type TrendingProps = {
-  onMovieItemClick: (id: number) => void;
-  onTVItemClick: (id: number) => void;
-};
+const TrendingContent = () => {
+  const { setModalDetails } = useModalStore();
+  const { setAlertMessage } = useAlertStore();
 
-const Trending = ({ onMovieItemClick, onTVItemClick }: TrendingProps) => {
   const moviesQuery = useQuery({
     queryKey: ["movies"],
     queryFn: () => getTrending("movie"),
@@ -21,6 +21,24 @@ const Trending = ({ onMovieItemClick, onTVItemClick }: TrendingProps) => {
     queryKey: ["series"],
     queryFn: () => getTrending("tv"),
   });
+
+  const onTVItemClick = (id: number) => {
+    getTVDetails(id, setModalDetails, (error: any) =>
+      setAlertMessage({
+        type: "error",
+        message: error.message,
+      })
+    );
+  };
+
+  const onMovieItemClick = (id: number) => {
+    getMovieDetails(id, setModalDetails, (error: any) =>
+      setAlertMessage({
+        type: "error",
+        message: error.message,
+      })
+    );
+  };
 
   return (
     <main className="flex flex-1 flex-col p-5 gap-5">
@@ -45,4 +63,4 @@ const Trending = ({ onMovieItemClick, onTVItemClick }: TrendingProps) => {
   );
 };
 
-export default Trending;
+export default TrendingContent;
