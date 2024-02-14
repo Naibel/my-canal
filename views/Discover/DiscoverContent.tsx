@@ -7,9 +7,10 @@ import { discover } from "~/utils/fetch";
 
 import { useAlertStore, useModalFunctions } from "~/hooks";
 
-import { Button, Card, LoadingOverlay, Title } from "~/components";
+import { Button, LoadingOverlay } from "~/components";
 
 import { DiscoverForm } from "./DiscoverForm";
+import DiscoverSearchResults from "./DiscoverSearchResults";
 
 export type DiscoverSearchForm = {
   include_adult: boolean;
@@ -62,10 +63,10 @@ const DiscoverContent = <
   };
 
   return (
-    <main className="flex flex-1 flex-col pt-5 gap-5">
+    <>
       {isLoading && createPortal(<LoadingOverlay />, document.body)}
       <div className="flex flex-col gap-5">
-        <div className="flex flex-col bg-black rounded-md w-full max-w-4xl m-auto mb-5 p-5 gap-5">
+        <div className="flex flex-col bg-black rounded-md w-full max-w-4xl m-auto p-5 gap-5">
           <DiscoverForm onFormChange={handleFormChange} />
           <Button onClick={handleSearch}>
             <span className="text-sm uppercase italic font-semibold px-5 py-3">
@@ -74,26 +75,15 @@ const DiscoverContent = <
           </Button>
         </div>
         {searchResults.length > 0 && (
-          <div className="bg-neutral-800 p-5 flex flex-col gap-5  text-center">
-            <Title size="large">Résultats de la recherche : </Title>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5">
-              {searchResults?.map((item: T) => (
-                <Card
-                  key={item.id}
-                  poster={item.poster_path}
-                  onClick={
-                    mediaType === "tv"
-                      ? () => displayTVModal(item.id)
-                      : () => displayMovieModal(item.id)
-                  }
-                  title={item.name || item.title || ""}
-                />
-              ))}
-            </div>
-          </div>
+          <DiscoverSearchResults
+            searchResults={searchResults}
+            onCardClick={
+              mediaType === "tv" ? displayTVModal : displayMovieModal
+            }
+          />
         )}
       </div>
-    </main>
+    </>
   );
 };
 
