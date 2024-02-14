@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
+import Navbar from "~/app/Navbar/Navbar";
 import Footer from "~/components/Footer/Footer";
-import NavBar from "~/components/NavBar/NavBar";
 
 import futura from "./fonts";
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={futura.className}>
-        <NavBar />
+        <Navbar />
         <main className="flex flex-1 flex-col p-5 gap-5">{children}</main>
         <Footer />
       </body>
