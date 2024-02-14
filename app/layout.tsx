@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import Footer from "~/components/Footer/Footer";
 import NavBar from "~/components/NavBar/NavBar";
 
 import futura from "./fonts";
@@ -20,10 +21,8 @@ export default function RootLayout({
     <html lang="fr">
       <body className={futura.className}>
         <NavBar />
-        {children}
-        <footer className="bg-black px-5 py-3 uppercase font-semibold italic">
-          Made by Dorian Belhaj - 2024
-        </footer>
+        <main className="flex flex-1 flex-col p-5 gap-5">{children}</main>
+        <Footer />
       </body>
     </html>
   );

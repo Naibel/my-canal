@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-import useNavbarSearchStore from "~/hooks/useNavbarSearchStore";
+import { useNavbarSearchStore } from "~/hooks";
 
 import LogoMyCanal from "../LogoMyCanal/LogoMyCanal";
 
