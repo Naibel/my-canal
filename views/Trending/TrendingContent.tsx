@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getTrending } from "~/utils/fetch";
-
-import { useModalFunctions } from "~/hooks";
-
 import { Title } from "~/components";
+import { useModalFunctions } from "~/hooks";
+import { getTrending } from "~/utils/fetch";
 
 import Carousel from "./components/Carousel";
 import CarouselSkeleton from "./components/CarouselSkeleton";

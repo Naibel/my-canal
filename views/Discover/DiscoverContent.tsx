@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
-import { MediaType } from "~/types";
-
-import { discover } from "~/utils/fetch";
-
-import { useAlertStore, useModalFunctions } from "~/hooks";
-
 import { Button, LoadingOverlay } from "~/components";
+import { useAlertStore, useModalFunctions } from "~/hooks";
+import { MediaType } from "~/types";
+import { discover } from "~/utils/fetch";
 
 import { DiscoverForm } from "./DiscoverForm";
 import DiscoverSearchResults from "./DiscoverSearchResults";

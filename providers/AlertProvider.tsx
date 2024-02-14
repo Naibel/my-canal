@@ -1,9 +1,8 @@
 import { ReactNode } from "react";
 import { createPortal } from "react-dom";
 
-import { useAlertStore } from "~/hooks";
-
 import { Alert } from "~/components";
+import { useAlertStore } from "~/hooks";
 
 const AlertProvider = ({ children }: { children: ReactNode }) => {
   const { alertMessage, setAlertMessage } = useAlertStore();

@@ -25,11 +25,7 @@
               // Packages related ti `react`  come first.
               ["^react", "^@?\\w"],
               // Then internal packages.
-              ["^(~/types)(/.*|$)"],
-              ["^(~/utils)(/.*|$)"],
-              ["^(~/hooks)(/.*|$)"],
-              ["^(~/components)(/.*|$)"],
-              ["^(~/views)(/.*|$)"],
+              ["^~/?\\w"],
               // Then side effect imports.
               ["^\\u0000"],
               // Then parent imports. Put `..` last.

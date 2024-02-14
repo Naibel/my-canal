@@ -8,7 +8,6 @@ import {
   APITVSeries,
   APITVSeriesDetails,
 } from "~/types/api";
-
 import { DiscoverSearchForm } from "~/views/Discover/DiscoverContent";
 
 import { formatMovieData, formatTVData } from "./format";
@@ -50,8 +49,9 @@ export const discover = async (
     ...query,
   });
 };
+//
 
-//GET FUNCTIONS
+//----GET FUNCTIONS----
 export const getTVDetails = async (
   id: number,
   onSuccess: (res: any) => void,
@@ -67,6 +67,7 @@ export const getTVDetails = async (
       onFailure(error);
     });
 };
+
 export const getMovieDetails = async (
   id: number,
   onSuccess: (res: any) => void,
@@ -82,5 +83,4 @@ export const getMovieDetails = async (
       onFailure(error);
     });
 };
-
 //

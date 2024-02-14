@@ -1,9 +1,8 @@
 import { ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { search } from "~/utils/fetch";
-
 import { useDebounce, useModalFunctions, useNavbarSearchStore } from "~/hooks";
+import { search } from "~/utils/fetch";
 
 import SearchResults from "../views/SearchResults/SearchResults";
 
