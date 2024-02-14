@@ -6,8 +6,8 @@ import { useAlertStore, useModalFunctions } from "~/hooks";
 import { MediaType } from "~/types";
 import { discover } from "~/utils/fetch";
 
-import { DiscoverForm } from "./DiscoverForm";
-import DiscoverSearchResults from "./DiscoverSearchResults";
+import DiscoverForm from "./components/DiscoverForm";
+import DiscoverSearchResults from "./components/DiscoverSearchResults";
 
 export type DiscoverSearchForm = {
   include_adult: boolean;
@@ -16,7 +16,7 @@ export type DiscoverSearchForm = {
   sort_by: string;
 };
 
-const DiscoverContent = <
+const Discover = <
   T extends { id: number; poster_path: string; name?: string; title?: string }
 >() => {
   const [form, setForm] = useState<DiscoverSearchForm>({
@@ -84,4 +84,4 @@ const DiscoverContent = <
   );
 };
 
-export default DiscoverContent;
+export default Discover;

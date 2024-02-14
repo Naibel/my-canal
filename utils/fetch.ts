@@ -8,7 +8,7 @@ import {
   APITVSeries,
   APITVSeriesDetails,
 } from "~/types/api";
-import { DiscoverSearchForm } from "~/views/Discover/DiscoverContent";
+import { DiscoverSearchForm } from "~/views/Discover/Discover";
 
 import { formatMovieData, formatTVData } from "./format";
 
@@ -54,7 +54,7 @@ export const discover = async (
 //----GET FUNCTIONS----
 export const getTVDetails = async (
   id: number,
-  onSuccess: (res: any) => void,
+  onSuccess: (res: ModalTVDetails) => void,
   onFailure: (error: any) => void
 ) => {
   fetch(`/tv/${id}`)
@@ -70,7 +70,7 @@ export const getTVDetails = async (
 
 export const getMovieDetails = async (
   id: number,
-  onSuccess: (res: any) => void,
+  onSuccess: (res: ModalMovieDetails) => void,
   onFailure: (error: any) => void
 ) => {
   fetch(`/movie/${id}`)

@@ -7,7 +7,7 @@ import { getTrending } from "~/utils/fetch";
 import Carousel from "./components/Carousel";
 import CarouselSkeleton from "./components/CarouselSkeleton";
 
-const TrendingContent = () => {
+const Trending = () => {
   const { displayMovieModal, displayTVModal } = useModalFunctions();
 
   const moviesQuery = useQuery({
@@ -42,4 +42,4 @@ const TrendingContent = () => {
   );
 };
 
-export default TrendingContent;
+export default Trending;

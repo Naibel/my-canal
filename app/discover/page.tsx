@@ -1,5 +1,5 @@
 "use client";
 import withProviders from "~/providers/withProviders.hoc";
-import DiscoverContent from "~/views/Discover/DiscoverContent";
+import { Discover } from "~/views";
 
-export default withProviders(DiscoverContent);
+export default withProviders(Discover);
