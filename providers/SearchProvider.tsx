@@ -5,7 +5,7 @@ import { search } from "~/utils/fetch";
 
 import { useDebounce, useModalFunctions, useNavbarSearchStore } from "~/hooks";
 
-import SearchResults from "../SearchResults/SearchResults";
+import SearchResults from "../views/SearchResults/SearchResults";
 
 const SearchProvider = ({ children }: { children: ReactNode }) => {
   const { searchValue, searchMediaType } = useNavbarSearchStore();
