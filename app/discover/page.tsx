@@ -2,8 +2,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import AlertProvider from "~/views/Providers/AlertProvider";
 import DiscoverContent from "~/views/Discover/DiscoverContent";
+import AlertProvider from "~/views/Providers/AlertProvider";
 import ModalProvider from "~/views/Providers/ModalProvider";
 import SearchProvider from "~/views/Providers/SearchProvider";
 

@@ -3,9 +3,9 @@ import { createPortal } from "react-dom";
 
 import { MediaType } from "~/types";
 
-import { discover } from "~/utils/fetch";
+import { discover, getMovieDetails, getTVDetails } from "~/utils/fetch";
 
-import useStore from "~/hooks/useAlertStore";
+import { useAlertStore, useModalStore } from "~/hooks";
 
 import { Button, Card, LoadingOverlay, Title } from "~/components";
 
@@ -30,7 +30,8 @@ const DiscoverContent = <
   const [mediaType, setMediaType] = useState<MediaType>("tv");
   const [searchResults, setSearchResults] = useState<Array<T>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { setAlertMessage } = useStore();
+  const { setAlertMessage } = useAlertStore();
+  const { setModalDetails } = useModalStore();
 
   const handleSearch = () => {
     setIsLoading(true);
@@ -59,6 +60,25 @@ const DiscoverContent = <
     }
   };
 
+  // TODO: N'utiliser qu'une fonction avec un type générique qui dispatchera le bon endpoint et la bonne fonction de formattage
+  const handleOnMovieItemClick = (id: number) => {
+    getMovieDetails(id, setModalDetails, (error: any) =>
+      setAlertMessage({
+        type: "error",
+        message: error.message,
+      })
+    );
+  };
+
+  const handleOnTVItemClick = (id: number) => {
+    getTVDetails(id, setModalDetails, (error: any) =>
+      setAlertMessage({
+        type: "error",
+        message: error.message,
+      })
+    );
+  };
+
   return (
     <main className="flex flex-1 flex-col pt-5 gap-5">
       {isLoading && createPortal(<LoadingOverlay />, document.body)}
@@ -72,14 +92,18 @@ const DiscoverContent = <
           </Button>
         </div>
         {searchResults.length > 0 && (
-          <div className="bg-neutral-800 p-5 flex flex-col gap-5 rounded-md text-center">
+          <div className="bg-neutral-800 p-5 flex flex-col gap-5  text-center">
             <Title size="large">Résultats de la recherche : </Title>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5">
               {searchResults?.map((item: T) => (
                 <Card
                   key={item.id}
                   poster={item.poster_path}
-                  onClick={() => {}}
+                  onClick={
+                    mediaType === "tv"
+                      ? () => handleOnTVItemClick(item.id)
+                      : () => handleOnMovieItemClick(item.id)
+                  }
                   title={item.name || item.title || ""}
                 />
               ))}
