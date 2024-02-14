@@ -1,7 +1,7 @@
 import { ModalMovieDetails, ModalTVDetails } from "~/types";
 import { Person, ProductionCompany } from "~/types/api";
 
-import SummarySection from "../../components/ModalSection";
+import ModalContentSection from "../../components/ModalContentSection";
 
 import CompanyPanel from "./CompanyPanel";
 import PersonPanel from "./PersonPanel";
@@ -14,7 +14,7 @@ const MoreInfo = ({ modalDetails }: MoreInfoProps) => (
   <div className="grid grid-cols-1 gap-5">
     <div className="flex flex-col gap-5">
       {modalDetails.mediaType === "tv" && modalDetails.createdBy.length > 0 && (
-        <SummarySection title="Une série créée par">
+        <ModalContentSection title="Une série créée par">
           <div className="grid grid-rows-1 grid-cols-3 md:grid-cols-5 gap-2 md:gap-5">
             {modalDetails.createdBy.map((person: Person) => (
               <PersonPanel
@@ -25,10 +25,10 @@ const MoreInfo = ({ modalDetails }: MoreInfoProps) => (
               />
             ))}
           </div>
-        </SummarySection>
+        </ModalContentSection>
       )}
       {modalDetails.mediaType === "tv" && modalDetails.networks.length > 0 && (
-        <SummarySection title="Série diffusée sur">
+        <ModalContentSection title="Série diffusée sur">
           <div className="grid grid-rows-1 grid-cols-3 md:grid-cols-5 gap-2 md:gap-5">
             {modalDetails.networks.map((company: ProductionCompany) => (
               <CompanyPanel
@@ -38,10 +38,10 @@ const MoreInfo = ({ modalDetails }: MoreInfoProps) => (
               />
             ))}
           </div>
-        </SummarySection>
+        </ModalContentSection>
       )}
       {modalDetails.productionCompanies?.length > 0 && (
-        <SummarySection title="Produit par">
+        <ModalContentSection title="Produit par">
           <div className="grid grid-rows-1 grid-cols-3 md:grid-cols-5 gap-2 md:gap-5">
             {modalDetails.productionCompanies.map(
               (company: ProductionCompany) => (
@@ -53,7 +53,7 @@ const MoreInfo = ({ modalDetails }: MoreInfoProps) => (
               )
             )}
           </div>
-        </SummarySection>
+        </ModalContentSection>
       )}
     </div>
   </div>

@@ -1,6 +1,6 @@
 import { ModalMovieDetails, ModalTVDetails } from "~/types";
 
-import SummarySection from "../../components/ModalSection";
+import ModalContentSection from "../../components/ModalContentSection";
 
 import EpisodePanel from "./EpisodePanel";
 import Genres from "./Genres";
@@ -18,9 +18,9 @@ const Summary = ({
     )}
     <div>
       {modalDetails.overview ? (
-        <SummarySection title="Résumé">
+        <ModalContentSection title="Résumé">
           <p className="text-sm md:text-base">{modalDetails.overview}</p>
-        </SummarySection>
+        </ModalContentSection>
       ) : (
         <p className="italic">Pas de résumé pour le moment...</p>
       )}
@@ -28,14 +28,14 @@ const Summary = ({
     {modalDetails.mediaType === "tv" && (
       <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-2 gap-5">
         {modalDetails.lastEpisodeToAir && (
-          <SummarySection title="Dernier épisode diffusé">
+          <ModalContentSection title="Dernier épisode diffusé">
             <EpisodePanel episode={modalDetails.lastEpisodeToAir} />
-          </SummarySection>
+          </ModalContentSection>
         )}
         {modalDetails.nextEpisodeToAir && (
-          <SummarySection title="Prochain épisode">
+          <ModalContentSection title="Prochain épisode">
             <EpisodePanel episode={modalDetails.nextEpisodeToAir} />
-          </SummarySection>
+          </ModalContentSection>
         )}
       </div>
     )}
