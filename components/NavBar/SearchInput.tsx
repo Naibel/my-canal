@@ -1,9 +1,11 @@
 import { ChangeEvent } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 
+import { MediaType } from "~/types";
+
 type SearchInputProps = {
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  onSelectChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (value: string) => void;
+  onSelectChange: (value: MediaType) => void;
   onFocus: () => void;
   onBlur: () => void;
   searchMediaType: string;
@@ -34,7 +36,9 @@ const SearchInput = ({
         className="bg-transparent border-0 flex-1 outline-none text-white block py-1.5 text-gray-900 placeholder:text-gray-400"
         placeholder="Rechercher un film/une série"
         value={searchValue}
-        onChange={onChange}
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          onChange(event.target.value)
+        }
         onFocus={onFocus}
         onBlur={onBlur}
       />
@@ -42,7 +46,11 @@ const SearchInput = ({
         id="mediaType"
         name="mediaType"
         className="border-0 bg-transparent py-0 pl-2 pr-5 text-white ring-black focus:ring-inset "
-        onChange={onSelectChange}
+        onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+          const newValue = event.target.value;
+          if (newValue !== "tv" && newValue !== "movie") return false;
+          else onSelectChange(newValue);
+        }}
         value={searchMediaType}
       >
         <option value="movie">Films</option>
