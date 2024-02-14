@@ -5,10 +5,9 @@ import { ModalMovieDetails, ModalTVDetails } from "~/types";
 import ModalSideBar from "../ModalSideBar/ModalSideBar";
 import ModalTabs from "../ModalTabs/ModalTabs";
 
-import Seasons from "./views/Seasons/Seasons";
-import Summary from "./views/Summary/Summary";
+import { MoreInfo, Seasons, Summary } from "./views";
 
-export type MenuPage = "summary" | "seasons";
+export type MenuPage = "summary" | "seasons" | "more_info";
 
 const ModalContent = ({
   modalDetails,
@@ -24,13 +23,16 @@ const ModalContent = ({
   return (
     <div className="flex flex-col md:flex-row">
       <div className="flex flex-1 pt-5 p-5 md:p-8 flex-col gap-2 md:gap-5">
-        {modalDetails.mediaType === "tv" && (
-          <ModalTabs currentPage={page} onClick={handlePageChange} />
-        )}
+        <ModalTabs
+          mediaType={modalDetails.mediaType}
+          currentPage={page}
+          onClick={handlePageChange}
+        />
         {page === "summary" && <Summary modalDetails={modalDetails} />}
         {page === "seasons" && modalDetails.mediaType === "tv" && (
           <Seasons seasons={modalDetails.seasons} />
         )}
+        {page === "more_info" && <MoreInfo modalDetails={modalDetails} />}
       </div>
       <ModalSideBar modalDetails={modalDetails} />
     </div>
