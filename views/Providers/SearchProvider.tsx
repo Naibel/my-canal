@@ -10,7 +10,7 @@ import {
   useNavbarSearchStore,
 } from "~/hooks";
 
-import SearchResults from "./SearchResults/SearchResults";
+import SearchResults from "../SearchResults/SearchResults";
 
 const SearchProvider = ({ children }: { children: ReactNode }) => {
   const { searchValue, searchMediaType } = useNavbarSearchStore();

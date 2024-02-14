@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 
 import { useModalStore } from "~/hooks";
 
-import Modal from "./Modal/Modal";
+import Modal from "../Modal/Modal";
 
 const ModalProvider = ({ children }: { children: ReactNode }) => {
   const { modalDetails, closeModal } = useModalStore();

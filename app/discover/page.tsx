@@ -2,10 +2,10 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import AlertProvider from "~/views/AlertProvider";
+import AlertProvider from "~/views/Providers/AlertProvider";
 import DiscoverContent from "~/views/Discover/DiscoverContent";
-import ModalProvider from "~/views/ModalProvider";
-import SearchProvider from "~/views/SearchProvider";
+import ModalProvider from "~/views/Providers/ModalProvider";
+import SearchProvider from "~/views/Providers/SearchProvider";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -17,17 +17,17 @@ const queryClient = new QueryClient({
   },
 });
 
-export default function Discover() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <ModalProvider>
-        <AlertProvider>
-          <SearchProvider>
-            <DiscoverContent />
-          </SearchProvider>
-        </AlertProvider>
-      </ModalProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  );
-}
+const Discover = () => (
+  <QueryClientProvider client={queryClient}>
+    <ModalProvider>
+      <AlertProvider>
+        <SearchProvider>
+          <DiscoverContent />
+        </SearchProvider>
+      </AlertProvider>
+    </ModalProvider>
+    <ReactQueryDevtools initialIsOpen={false} />
+  </QueryClientProvider>
+);
+
+export default Discover;
