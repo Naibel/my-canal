@@ -1,7 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 
-import LogoMyCanal from "../../components/LogoMyCanal/LogoMyCanal";
+import LogoMyCanal from "../LogoMyCanal/LogoMyCanal";
 
 import NavbarButton from "./NavbarButton";
 import NavbarSearchInput from "./NavbarSearchInput";

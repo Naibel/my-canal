@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-import Navbar from "~/app/Navbar/Navbar";
 import Footer from "~/components/Footer/Footer";
+import Navbar from "~/components/Navbar/Navbar";
 
 import futura from "./fonts";
 
