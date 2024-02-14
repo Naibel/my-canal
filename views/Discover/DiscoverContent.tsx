@@ -3,9 +3,9 @@ import { createPortal } from "react-dom";
 
 import { MediaType } from "~/types";
 
-import { discover, getMovieDetails, getTVDetails } from "~/utils/fetch";
+import { discover } from "~/utils/fetch";
 
-import { useAlertStore, useModalStore } from "~/hooks";
+import { useAlertStore, useModalFunctions } from "~/hooks";
 
 import { Button, Card, LoadingOverlay, Title } from "~/components";
 
@@ -30,8 +30,9 @@ const DiscoverContent = <
   const [mediaType, setMediaType] = useState<MediaType>("tv");
   const [searchResults, setSearchResults] = useState<Array<T>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const { setAlertMessage } = useAlertStore();
-  const { setModalDetails } = useModalStore();
+  const { displayMovieModal, displayTVModal } = useModalFunctions();
 
   const handleSearch = () => {
     setIsLoading(true);
@@ -60,25 +61,6 @@ const DiscoverContent = <
     }
   };
 
-  // TODO: N'utiliser qu'une fonction avec un type générique qui dispatchera le bon endpoint et la bonne fonction de formattage
-  const handleOnMovieItemClick = (id: number) => {
-    getMovieDetails(id, setModalDetails, (error: any) =>
-      setAlertMessage({
-        type: "error",
-        message: error.message,
-      })
-    );
-  };
-
-  const handleOnTVItemClick = (id: number) => {
-    getTVDetails(id, setModalDetails, (error: any) =>
-      setAlertMessage({
-        type: "error",
-        message: error.message,
-      })
-    );
-  };
-
   return (
     <main className="flex flex-1 flex-col pt-5 gap-5">
       {isLoading && createPortal(<LoadingOverlay />, document.body)}
@@ -101,8 +83,8 @@ const DiscoverContent = <
                   poster={item.poster_path}
                   onClick={
                     mediaType === "tv"
-                      ? () => handleOnTVItemClick(item.id)
-                      : () => handleOnMovieItemClick(item.id)
+                      ? () => displayTVModal(item.id)
+                      : () => displayMovieModal(item.id)
                   }
                   title={item.name || item.title || ""}
                 />
