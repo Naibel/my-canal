@@ -20,7 +20,7 @@ const Trending = () => {
   });
 
   return (
-    <>
+    <div className="flex flex-1 flex-col p-3 md:p-5 gap-5">
       <div>
         <Title size="large">Les films du moment</Title>
         {moviesQuery.isPending && <CarouselSkeleton />}
@@ -38,7 +38,7 @@ const Trending = () => {
           <Carousel data={seriesQuery.data.results} onClick={displayTVModal} />
         )}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -62,7 +62,7 @@ const Discover = <
   return (
     <>
       {isLoading && createPortal(<LoadingOverlay />, document.body)}
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-1 flex-col p-3 md:p-5 gap-5">
         <div className="flex flex-col bg-black rounded-md w-full max-w-4xl m-auto p-5 gap-5">
           <DiscoverForm onFormChange={handleFormChange} />
           <Button onClick={handleSearch}>
