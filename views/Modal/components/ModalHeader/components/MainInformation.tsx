@@ -29,15 +29,15 @@ const MainInformation = ({
   );
   return (
     <div className="flex-1 flex flex-col items-center md:items-start">
-      <h2 className="text-2xl md:text-3xl text-left uppercase font-semibold italic">
+      <h2 className="text-lg sm:text-2xl md:text-3xl text-center md:text-left uppercase font-semibold italic">
         {title}
       </h2>
       {canDisplayOriginalTitle && (
-        <h2 className="text-md md:text-lg text-left uppercase font-semibold italic">
+        <h2 className="text-sm sm:text-md md:text-lg text-center md:text-left uppercase font-semibold italic">
           {originalTitle}
         </h2>
       )}
-      <h3 className="text-md text-left uppercase italic">
+      <h3 className="text-sm sm:text-md text-center md:text-left uppercase italic">
         {mediaType === "movie" ? "Film" : "Série télévisée"}
         {releaseYear ? ` · ${releaseYear}` : ""}
         {canDisplayEndYear ? ` - ${endYear}` : ""}
