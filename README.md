@@ -65,7 +65,7 @@ bun dev
 
 Et vous ouvrez [http://localhost:3000](http://localhost:3000) sur votre navigateur pour voir le résultat.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Ce projet utilise [`next/font`](https://nextjs.org/docs/basic-features/font-optimization).
 
 ## TODO
 
