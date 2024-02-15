@@ -24,12 +24,12 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex flex-col overflow-hidden">
+    <div className="flex flex-col">
       <nav className="grid grid-rows-2 grid-cols-1 md:flex md:flex-row gap-5 justify-between items-center bg-black px-5 py-4 shadow-md">
         <LogoMyCanal />
-        <div className="relative flex flex-1 flex-row">
+        <div className="relative flex flex-1">
           <div
-            className={`md:duration-500 flex gap-5 ${
+            className={`duration-500 flex gap-5 ${
               isInputOnFocus ? "opacity-0" : "opacity-1"
             } justify-center`}
           >

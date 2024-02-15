@@ -3,22 +3,24 @@ import { IoClose, IoSearchSharp } from "react-icons/io5";
 
 import { useNavbarSearchStore } from "~/hooks";
 
+type NavbarSearchInputProps = {
+  isInputOnFocus: boolean;
+  handleFocus: () => void;
+  handleBlur: () => void;
+};
+
 const NavbarSearchInput = ({
   isInputOnFocus,
   handleFocus,
   handleBlur,
-}: {
-  isInputOnFocus: boolean;
-  handleFocus: () => void;
-  handleBlur: () => void;
-}) => {
+}: NavbarSearchInputProps) => {
   const { searchValue, searchMediaType, setSearchMediaType, setSearchValue } =
     useNavbarSearchStore();
   const inputRef = useRef<HTMLInputElement>(null);
   const selectRef = useRef(null);
   return (
     <div
-      className={`md:duration-500 flex items-center gap-3 absolute -top-2 md:-top-1 right-0 h-9 rounded-full py-1.5 ${
+      className={`duration-500 overflow-hidden flex items-center gap-3 absolute -top-2 md:-top-1 right-0 h-9 rounded-full py-1.5 ${
         isInputOnFocus
           ? "w-full ring-1 ring-inset bg-neutral-900 ring-neutral-600 px-2 md:px-3 "
           : "w-6 md:w-7 px-0"
