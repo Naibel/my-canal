@@ -1,12 +1,13 @@
 import { LogoMyCanal } from "~/components";
 import { EpisodeInfo } from "~/types/api";
+import { IMAGE_PREFIX_URL } from "~/utils/fetch";
 
 const EpisodePanel = ({ episode }: { episode: EpisodeInfo }) => (
   <div className="grid rounded-md overflow-hidden">
     <div
       style={{
         backgroundImage: episode?.still_path
-          ? `url(https://image.tmdb.org/t/p/original${episode.still_path})`
+          ? `url(${IMAGE_PREFIX_URL}${episode.still_path})`
           : "",
       }}
       className="bg-cover aspect-video flex items-center justify-center bg-neutral-900"

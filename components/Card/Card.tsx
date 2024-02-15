@@ -1,4 +1,5 @@
 import LogoMyCanal from "~/components/LogoMyCanal/LogoMyCanal";
+import { IMAGE_PREFIX_URL } from "~/utils/fetch";
 
 import styles from "./Card.module.css";
 
@@ -12,9 +13,7 @@ type CardProps = {
 const Card = ({ id, poster, onClick, title }: CardProps) => (
   <div
     style={{
-      backgroundImage: poster
-        ? `url(https://image.tmdb.org/t/p/original${poster})`
-        : "",
+      backgroundImage: poster ? `url(${IMAGE_PREFIX_URL}${poster})` : "",
       cursor: onClick ? "pointer" : "default",
     }}
     onClick={() => onClick && onClick(id)}

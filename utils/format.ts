@@ -1,6 +1,8 @@
 import { ModalMovieDetails, ModalTVDetails } from "~/types";
 import { APIMovieDetails, APITVSeriesDetails } from "~/types/api";
 
+import { IMAGE_PREFIX_URL } from "./fetch";
+
 export const formatDateToFrLocale = (time: string) => {
   return time ? new Date(time).toLocaleDateString("fr") : time;
 };
@@ -33,7 +35,7 @@ export const formatMovieData = (
 ): ModalMovieDetails => {
   return {
     bgImage: apiData.backdrop_path
-      ? `https://image.tmdb.org/t/p/original${apiData.backdrop_path}`
+      ? `${IMAGE_PREFIX_URL}${apiData.backdrop_path}`
       : undefined,
     boxOffice: formatToUSD(apiData.revenue),
     budget: formatToUSD(apiData.budget),
@@ -62,7 +64,7 @@ export const formatMovieData = (
 export const formatTVData = (apiData: APITVSeriesDetails): ModalTVDetails => {
   return {
     bgImage: apiData.backdrop_path
-      ? `https://image.tmdb.org/t/p/original${apiData.backdrop_path}`
+      ? `${IMAGE_PREFIX_URL}${apiData.backdrop_path}`
       : undefined,
     createdBy: apiData.created_by,
     firstAirDate: formatDateToFrLocale(apiData.first_air_date),

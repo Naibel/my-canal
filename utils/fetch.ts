@@ -13,6 +13,7 @@ import { DiscoverSearchForm } from "~/views/Discover/Discover";
 import { formatMovieData, formatTVData } from "./format";
 
 const API_URL = "https://api.themoviedb.org/3";
+export const IMAGE_PREFIX_URL = "https://image.tmdb.org/t/p/original";
 
 //----FETCHING FUNCTIONS----
 export const fetch = async (endpoint: string, params?: any) => {

@@ -1,5 +1,7 @@
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
+import { IMAGE_PREFIX_URL } from "~/utils/fetch";
+
 type PersonPanelProps = {
   bgProfile: string;
   name: string;
@@ -11,7 +13,7 @@ const PersonPanel = ({ bgProfile, name, gender }: PersonPanelProps) => (
     <div
       style={{
         backgroundImage: bgProfile
-          ? `url(https://image.tmdb.org/t/p/original${bgProfile})`
+          ? `url(${IMAGE_PREFIX_URL}${bgProfile})`
           : "",
       }}
       className="bg-cover aspect-[2/3] flex items-center justify-center text-center bg-neutral-900"

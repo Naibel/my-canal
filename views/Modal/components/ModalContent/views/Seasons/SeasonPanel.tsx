@@ -1,5 +1,6 @@
 import { LogoMyCanal } from "~/components";
 import { Season } from "~/types/api";
+import { IMAGE_PREFIX_URL } from "~/utils/fetch";
 
 type SeasonPanelProps = {
   season: Season;
@@ -13,7 +14,7 @@ export const SeasonPanel = ({ season }: SeasonPanelProps) => (
     <div
       style={{
         backgroundImage: season?.poster_path
-          ? `url(https://image.tmdb.org/t/p/original${season.poster_path})`
+          ? `url(${IMAGE_PREFIX_URL}${season.poster_path})`
           : "",
       }}
       className="flex bg-cover aspect-[2/3] items-center justify-center bg-neutral-900"
