@@ -24,8 +24,8 @@ const MainInformation = ({
     [originalTitle, title]
   );
   const canDisplayEndYear = useMemo(
-    () => mediaType === "tv" && endYear && releaseYear !== endYear,
-    [endYear, mediaType, releaseYear]
+    () => endYear && releaseYear !== endYear,
+    [endYear, releaseYear]
   );
   return (
     <div className="flex-1 flex flex-col items-center md:items-start">

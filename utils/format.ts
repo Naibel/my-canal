@@ -92,9 +92,9 @@ export const formatTVData = (apiData: APITVSeriesDetails): ModalTVDetails => {
     title: apiData.name,
     yearOfRelease: new Date(apiData.first_air_date).getFullYear(),
     yearOfEnd:
-      apiData.in_production && apiData.last_air_date
-        ? undefined
-        : new Date(apiData.last_air_date).getFullYear(),
+      !apiData.in_production && apiData.last_air_date
+        ? new Date(apiData.last_air_date).getFullYear()
+        : undefined,
   };
 };
 //
