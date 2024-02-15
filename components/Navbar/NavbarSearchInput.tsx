@@ -1,59 +1,77 @@
-import { ChangeEvent, useState } from "react";
-import { IoSearchSharp } from "react-icons/io5";
+import { ChangeEvent, useRef, useState } from "react";
+import { IoClose, IoSearchSharp } from "react-icons/io5";
 
 import { useNavbarSearchStore } from "~/hooks";
 
-const NavbarSearchInput = () => {
+const NavbarSearchInput = ({
+  isInputOnFocus,
+  handleFocus,
+  handleBlur,
+}: {
+  isInputOnFocus: boolean;
+  handleFocus: () => void;
+  handleBlur: () => void;
+}) => {
   const { searchValue, searchMediaType, setSearchMediaType, setSearchValue } =
     useNavbarSearchStore();
-
-  const [isInputOnFocus, setIsInputOnFocus] = useState<boolean>(false);
-
-  const handleFocus = () => {
-    setIsInputOnFocus(true);
-  };
-
-  const handleBlur = () => {
-    setIsInputOnFocus(false);
-  };
-
+  const inputRef = useRef<HTMLInputElement>(null);
+  const selectRef = useRef(null);
   return (
     <div
-      className={`duration-300 w-full md:w-96 flex gap-3 items-center bg-neutral-900 rounded-full px-3 ${
-        isInputOnFocus ? "ring-1 ring-inset ring-neutral-600" : ""
+      className={`md:duration-500 flex items-center gap-3 absolute -top-2 md:-top-1 right-0 h-9 rounded-full py-1.5 ${
+        isInputOnFocus
+          ? "w-full ring-1 ring-inset bg-neutral-900 ring-neutral-600 px-2 md:px-3 "
+          : "w-6 md:w-7 px-0"
       }`}
     >
-      <IoSearchSharp size={24} onClick={handleFocus} />
-      <div className="flex flex-1 gap-3">
-        <input
-          type="search"
-          name="search"
-          id="searchInput"
-          className="bg-transparent border-0 flex-1 outline-none text-white block py-1.5 text-gray-900 placeholder:text-gray-400"
-          placeholder="Rechercher un film/une série"
-          value={searchValue}
-          onChange={(event: ChangeEvent<HTMLInputElement>) =>
-            setSearchValue(event.target.value)
-          }
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-        />
-        <select
-          id="mediaType"
-          name="mediaType"
-          className="border-0 bg-transparent py-0 pl-2 pr-5 text-white ring-black focus:ring-inset "
-          onChange={(event: ChangeEvent<HTMLSelectElement>) => {
-            const newValue = event.target.value;
-            return newValue === "tv" || newValue === "movie"
-              ? setSearchMediaType(newValue)
-              : false;
-          }}
-          value={searchMediaType}
-        >
-          <option value="movie">Films</option>
-          <option value="tv">Séries</option>
-        </select>
-      </div>
+      <IoSearchSharp
+        size={24}
+        onClick={handleFocus}
+        className="opacity-80 hover:opacity-100 cursor-pointer"
+      />
+      {isInputOnFocus && (
+        <div className=" flex flex-1 items-center">
+          <input
+            autoFocus
+            ref={inputRef}
+            type="search"
+            name="search"
+            id="searchInput"
+            className="bg-transparent border-0 flex-1 pr-2 outline-none text-white block text-gray-900 placeholder:text-gray-400 placeholder:hidden"
+            placeholder="Rechercher un film/une série"
+            value={searchValue}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setSearchValue(event.target.value)
+            }
+          />
+          <IoClose
+            className="opacity-80 hover:opacity-100 cursor-pointer rounded-full p-1 bg-black/70 "
+            size={29}
+            onClick={() => {
+              setSearchValue("");
+              handleBlur();
+            }}
+          />
+          <select
+            ref={selectRef}
+            id="mediaType"
+            name="mediaType"
+            className="border-0 bg-transparent py-0 pl-2 md:pr-5 text-white ring-black focus:ring-inset "
+            onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+              const newValue = event.target.value;
+              inputRef?.current?.focus();
+
+              return newValue === "tv" || newValue === "movie"
+                ? setSearchMediaType(newValue)
+                : false;
+            }}
+            value={searchMediaType}
+          >
+            <option value="movie">Films</option>
+            <option value="tv">Séries</option>
+          </select>
+        </div>
+      )}
     </div>
   );
 };
