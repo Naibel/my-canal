@@ -1,6 +1,5 @@
 import axios from "axios";
 
-import { MediaType, ModalMovieDetails, ModalTVDetails } from "~/types";
 import {
   APIMovie,
   APIMovieDetails,
@@ -8,6 +7,7 @@ import {
   APITVSeries,
   APITVSeriesDetails,
 } from "~/types/api";
+import { MediaType, ModalMovieDetails, ModalTVDetails } from "~/types/modal";
 import { DiscoverSearchForm } from "~/views/Discover/Discover";
 
 import { formatMovieData, formatTVData } from "./format";

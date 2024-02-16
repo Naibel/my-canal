@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { ModalMovieDetails, ModalTVDetails } from "~/types";
+import { ModalMovieDetails, ModalTVDetails } from "~/types/modal";
 
 interface StoreState {
   modalDetails: ModalMovieDetails | ModalTVDetails | null;

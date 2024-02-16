@@ -1,6 +1,4 @@
-import { MediaType } from "~/types";
-
-import { MenuPage } from "../ModalContent/ModalContent";
+import { MediaType, MenuPage } from "~/types/modal";
 
 import Tab from "./components/Tab";
 

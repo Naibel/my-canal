@@ -1,13 +1,11 @@
 import { useState } from "react";
 
-import { ModalMovieDetails, ModalTVDetails } from "~/types";
+import { MenuPage, ModalMovieDetails, ModalTVDetails } from "~/types/modal";
 
 import ModalSideBar from "../ModalSideBar/ModalSideBar";
 import ModalTabs from "../ModalTabs/ModalTabs";
 
 import { MoreInfo, Seasons, Summary } from "./views";
-
-export type MenuPage = "summary" | "seasons" | "more_info";
 
 const ModalContent = ({
   modalDetails,

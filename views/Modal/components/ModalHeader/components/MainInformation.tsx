@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import { MediaType } from "~/types";
+import { MediaType } from "~/types/modal";
 
 type MainInformationProps = {
   mediaType: MediaType;

@@ -1,4 +1,4 @@
-import { ModalMovieDetails, ModalTVDetails } from "~/types";
+import { ModalMovieDetails, ModalTVDetails } from "~/types/modal";
 
 import ModalContentSection from "../../components/ModalContentSection";
 

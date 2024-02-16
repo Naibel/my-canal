@@ -6,6 +6,7 @@ import {
 } from "./api";
 
 export type MediaType = "movie" | "tv";
+export type MenuPage = "summary" | "seasons" | "more_info";
 
 export type ModalDetails = {
   bgImage?: string;

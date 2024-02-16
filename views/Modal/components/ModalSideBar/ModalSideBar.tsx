@@ -1,7 +1,7 @@
 import { LiaImdb } from "react-icons/lia";
 
 import { LinkButton } from "~/components";
-import { ModalMovieDetails, ModalTVDetails } from "~/types";
+import { ModalMovieDetails, ModalTVDetails } from "~/types/modal";
 
 import InfoLine from "./components/InfoLine";
 import SpokenLanguages from "./components/SpokenLanguages";

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { ModalMovieDetails, ModalTVDetails } from "~/types";
+import { ModalMovieDetails, ModalTVDetails } from "~/types/modal";
 
 import ModalContent from "./components/ModalContent/ModalContent";
 import ModalHeader from "./components/ModalHeader/ModalHeader";

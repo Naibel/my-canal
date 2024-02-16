@@ -1,5 +1,5 @@
-import { ModalMovieDetails, ModalTVDetails } from "~/types";
 import { Person, ProductionCompany } from "~/types/api";
+import { ModalMovieDetails, ModalTVDetails } from "~/types/modal";
 
 import ModalContentSection from "../../components/ModalContentSection";
 

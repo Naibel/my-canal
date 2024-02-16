@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { MediaType } from "~/types";
+import { MediaType } from "~/types/modal";
 
 interface StoreState {
   searchValue: string;

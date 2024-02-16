@@ -1,5 +1,5 @@
-import { ModalMovieDetails, ModalTVDetails } from "~/types";
 import { APIMovieDetails, APITVSeriesDetails } from "~/types/api";
+import { ModalMovieDetails, ModalTVDetails } from "~/types/modal";
 
 import { IMAGE_PREFIX_URL } from "./fetch";
 

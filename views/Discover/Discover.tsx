@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 
 import { Button, LoadingOverlay } from "~/components";
 import { useAlertStore, useModalFunctions } from "~/hooks";
-import { MediaType } from "~/types";
+import { MediaType } from "~/types/modal";
 import { discover } from "~/utils/fetch";
 
 import DiscoverForm from "./components/DiscoverForm";
