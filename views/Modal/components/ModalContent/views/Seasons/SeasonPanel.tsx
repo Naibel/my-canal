@@ -9,7 +9,7 @@ type SeasonPanelProps = {
 export const SeasonPanel = ({ season }: SeasonPanelProps) => (
   <div
     key={season.id}
-    className="grid grid-rows-1 grid-cols-3 col-span-1 rounded-md overflow-hidden bg-neutral-900"
+    className="grid grid-rows-1 grid-cols-4 col-span-1 rounded-md overflow-hidden bg-neutral-900"
   >
     <div
       style={{
@@ -21,7 +21,7 @@ export const SeasonPanel = ({ season }: SeasonPanelProps) => (
     >
       {!season?.poster_path && <LogoMyCanal />}
     </div>
-    <div className="bg-neutral-700 col-span-2 p-5">
+    <div className="bg-neutral-700 col-span-3 p-5">
       <p className="text-xs uppercase italic">
         Saison {season.season_number || "spéciale"}
       </p>
