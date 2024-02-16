@@ -5,6 +5,8 @@ import { ModalMovieDetails, ModalTVDetails } from "~/types/modal";
 import ModalContent from "./components/ModalContent/ModalContent";
 import ModalHeader from "./components/ModalHeader/ModalHeader";
 
+import styles from "./Modal.module.css";
+
 type ModalProps = {
   modalDetails: ModalMovieDetails | ModalTVDetails;
   handleClose: () => void;
@@ -33,19 +35,14 @@ const Modal = ({ modalDetails, handleClose }: ModalProps) => {
 
   return (
     <div
-      style={{
-        opacity: displayModal ? 1 : 0,
-        transition: "300ms",
-      }}
-      className="bg-black/70 fixed overflow-auto left-0 right-0 top-0 h-screen z-20"
+      className={`${
+        displayModal ? "opacity-1" : "opacity-0"
+      } duration-300 bg-black/70 fixed overflow-auto left-0 right-0 top-0 h-screen z-20`}
     >
       <div
-        style={{
-          marginTop: displayModal ? 20 : 60,
-          opacity: displayModal ? 1 : 0,
-          transition: "600ms",
-        }}
-        className={`bg-black max-w-5xl overflow-hidden mx-auto md:rounded-md shadow-lg`}
+        className={`${
+          displayModal ? styles.displayed : styles.hidden
+        } duration-500 bg-black mb-5 max-w-5xl overflow-hidden mx-auto md:rounded-md shadow-lg`}
       >
         <ModalHeader modalDetails={modalDetails} onClose={onClose} />
         <ModalContent modalDetails={modalDetails} />

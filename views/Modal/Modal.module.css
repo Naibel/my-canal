@@ -1,0 +1,16 @@
+.displayed {
+  margin-top: 1.25rem;
+  opacity: 1;
+}
+
+.hidden {
+  margin-top: 4rem;
+  opacity: 0;
+}
+
+@media (max-width: 1024px) {
+  .displayed {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+  }
+}

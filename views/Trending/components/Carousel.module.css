@@ -21,6 +21,7 @@
     width: 500%;
   }
 }
+
 @media (max-width: 640px) {
   .carousel {
     width: 800%;
