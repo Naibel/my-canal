@@ -1,4 +1,4 @@
-import { ModalMovieDetails, ModalTVDetails } from "~/types";
+import { MediaType, ModalDetailsHeader } from "~/types";
 
 import {
   CloseButton,
@@ -10,21 +10,25 @@ import {
 } from "./components";
 
 type ModalHeaderProps = {
-  modalDetails: ModalMovieDetails | ModalTVDetails;
+  mediaType: MediaType;
+  headerContent: ModalDetailsHeader;
   onClose: () => void;
 };
 
-const ModalHeader = ({ modalDetails, onClose }: ModalHeaderProps) => {
+const ModalHeader = ({
+  mediaType,
+  headerContent,
+  onClose,
+}: ModalHeaderProps) => {
   const {
     bgImage,
     tagline,
-    mediaType,
     originalTitle,
     yearOfRelease,
     title,
     rating,
     nbOfVotes,
-  } = modalDetails;
+  } = headerContent;
 
   return (
     <ImageBackground bgImage={bgImage}>
@@ -33,11 +37,11 @@ const ModalHeader = ({ modalDetails, onClose }: ModalHeaderProps) => {
       <GradientOverlay />
       <div className="absolute md:px-10 bottom-0 md:bottom-5 left-0 right-0 flex z-10 flex-col md:flex-row items-center md:items-end">
         <MainInformation
-          endYear={mediaType === "tv" ? modalDetails.yearOfEnd : undefined}
+          endYear={mediaType === "tv" ? headerContent.yearOfEnd : undefined}
           mediaType={mediaType}
           originalTitle={originalTitle}
           releaseYear={yearOfRelease}
-          runtime={mediaType === "movie" ? modalDetails.runtime : undefined}
+          runtime={mediaType === "movie" ? headerContent.runtime : undefined}
           title={title}
         />
         {nbOfVotes > 0 && <Rating rating={rating} nbOfVotes={nbOfVotes} />}

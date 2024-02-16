@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { MediaType, ModalMovieDetails, ModalTVDetails } from "~/types";
+import { MediaType, ModalDetailsNew } from "~/types";
 import {
   APIMovie,
   APIMovieDetails,
@@ -10,7 +10,7 @@ import {
 } from "~/types/api";
 import { DiscoverSearchForm } from "~/views/Discover/Discover";
 
-import { formatMovieData, formatTVData } from "./format";
+import { formatMovieDataNew, formatTVDataNew } from "./format";
 
 const API_URL = "https://api.themoviedb.org/3";
 export const IMAGE_PREFIX_URL = "https://image.tmdb.org/t/p/original";
@@ -55,12 +55,12 @@ export const discover = async (
 //----GET FUNCTIONS----
 export const getTVDetails = async (
   id: number,
-  onSuccess: (res: ModalTVDetails) => void,
+  onSuccess: (res: ModalDetailsNew) => void,
   onFailure: (error: any) => void
 ) => {
   fetch(`/tv/${id}`, { language: "fr-FR" })
     .then((res: APITVSeriesDetails) => {
-      const details: ModalTVDetails = formatTVData(res);
+      const details: ModalDetailsNew = formatTVDataNew(res);
       onSuccess(details);
     })
     ?.catch((error: any) => {
@@ -71,12 +71,12 @@ export const getTVDetails = async (
 
 export const getMovieDetails = async (
   id: number,
-  onSuccess: (res: ModalMovieDetails) => void,
+  onSuccess: (res: ModalDetailsNew) => void,
   onFailure: (error: any) => void
 ) => {
   fetch(`/movie/${id}`, { language: "fr-FR" })
     .then((res: APIMovieDetails) => {
-      const details: ModalMovieDetails = formatMovieData(res);
+      const details: ModalDetailsNew = formatMovieDataNew(res);
       onSuccess(details);
     })
     ?.catch((error: any) => {

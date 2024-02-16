@@ -1,6 +1,6 @@
 type InfoLineProps = {
   label: string;
-  value: string | number;
+  value: string | number | undefined;
 };
 
 const InfoLine = ({ label, value }: InfoLineProps) =>

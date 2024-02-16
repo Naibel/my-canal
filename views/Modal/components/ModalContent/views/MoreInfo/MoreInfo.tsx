@@ -1,4 +1,4 @@
-import { ModalMovieDetails, ModalTVDetails } from "~/types";
+import { ModalDetailsMoreInfo } from "~/types";
 import { Person, ProductionCompany } from "~/types/api";
 
 import ModalContentSection from "../../components/ModalContentSection";
@@ -7,16 +7,16 @@ import CompanyPanel from "./CompanyPanel";
 import PersonPanel from "./PersonPanel";
 
 type MoreInfoProps = {
-  modalDetails: ModalMovieDetails | ModalTVDetails;
+  moreInfoDetails: ModalDetailsMoreInfo;
 };
 
-const MoreInfo = ({ modalDetails }: MoreInfoProps) => (
+const MoreInfo = ({ moreInfoDetails }: MoreInfoProps) => (
   <div className="grid grid-cols-1 gap-5">
     <div className="flex flex-col gap-5">
-      {modalDetails.mediaType === "tv" && modalDetails.createdBy.length > 0 && (
+      {moreInfoDetails.createdBy && moreInfoDetails.createdBy.length > 0 && (
         <ModalContentSection title="Une série créée par">
           <div className="grid grid-rows-1 grid-cols-3 md:grid-cols-5 gap-2 md:gap-5">
-            {modalDetails.createdBy.map((person: Person) => (
+            {moreInfoDetails.createdBy.map((person: Person) => (
               <PersonPanel
                 key={person.id}
                 bgProfile={person.profile_path}
@@ -27,10 +27,10 @@ const MoreInfo = ({ modalDetails }: MoreInfoProps) => (
           </div>
         </ModalContentSection>
       )}
-      {modalDetails.mediaType === "tv" && modalDetails.networks.length > 0 && (
+      {moreInfoDetails.networks && moreInfoDetails.networks.length > 0 && (
         <ModalContentSection title="Série diffusée sur">
           <div className="grid grid-rows-1 grid-cols-3 md:grid-cols-5 gap-2 md:gap-5">
-            {modalDetails.networks.map((company: ProductionCompany) => (
+            {moreInfoDetails.networks.map((company: ProductionCompany) => (
               <CompanyPanel
                 key={company.id}
                 logo={company.logo_path}
@@ -40,21 +40,22 @@ const MoreInfo = ({ modalDetails }: MoreInfoProps) => (
           </div>
         </ModalContentSection>
       )}
-      {modalDetails.productionCompanies?.length > 0 && (
-        <ModalContentSection title="Produit par">
-          <div className="grid grid-rows-1 grid-cols-3 md:grid-cols-5 gap-2 md:gap-5">
-            {modalDetails.productionCompanies.map(
-              (company: ProductionCompany) => (
-                <CompanyPanel
-                  key={company.id}
-                  logo={company.logo_path}
-                  name={company.name}
-                />
-              )
-            )}
-          </div>
-        </ModalContentSection>
-      )}
+      {moreInfoDetails.productionCompanies &&
+        moreInfoDetails.productionCompanies?.length > 0 && (
+          <ModalContentSection title="Produit par">
+            <div className="grid grid-rows-1 grid-cols-3 md:grid-cols-5 gap-2 md:gap-5">
+              {moreInfoDetails.productionCompanies.map(
+                (company: ProductionCompany) => (
+                  <CompanyPanel
+                    key={company.id}
+                    logo={company.logo_path}
+                    name={company.name}
+                  />
+                )
+              )}
+            </div>
+          </ModalContentSection>
+        )}
     </div>
   </div>
 );

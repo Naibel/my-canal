@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { LogoMyCanal } from "~/components";
 
 type ImageBackgroundProps = {
-  bgImage?: string;
+  bgImage: string | null;
   children: ReactNode;
 };
 

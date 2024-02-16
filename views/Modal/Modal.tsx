@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-import { ModalMovieDetails, ModalTVDetails } from "~/types";
+import { ModalDetailsNew } from "~/types";
 
 import ModalContent from "./components/ModalContent/ModalContent";
 import ModalHeader from "./components/ModalHeader/ModalHeader";
 
 type ModalProps = {
-  modalDetails: ModalMovieDetails | ModalTVDetails;
+  modalDetails: ModalDetailsNew;
   handleClose: () => void;
 };
 
@@ -47,8 +47,12 @@ const Modal = ({ modalDetails, handleClose }: ModalProps) => {
         }}
         className={`bg-black max-w-5xl overflow-hidden mx-auto md:rounded-md shadow-lg`}
       >
-        <ModalHeader modalDetails={modalDetails} onClose={onClose} />
-        <ModalContent modalDetails={modalDetails} />
+        <ModalHeader
+          mediaType={modalDetails.mediaType}
+          headerContent={modalDetails.header}
+          onClose={onClose}
+        />
+        <ModalContent contentDetails={modalDetails.content} />
       </div>
     </div>
   );

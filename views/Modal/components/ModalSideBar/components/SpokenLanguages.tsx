@@ -2,11 +2,11 @@ import { SpokenLanguages as SpokenLanguagesType } from "~/types/api";
 
 type SpokenLanguagesProps = {
   label: string;
-  values: SpokenLanguagesType[];
+  values: SpokenLanguagesType[] | undefined;
 };
 
 const SpokenLanguages = ({ label, values }: SpokenLanguagesProps) =>
-  values.length === 0 ? (
+  !values || values.length === 0 ? (
     false
   ) : (
     <div>

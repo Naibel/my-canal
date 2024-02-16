@@ -1,4 +1,4 @@
-import { ModalMovieDetails, ModalTVDetails } from "~/types";
+import { ModalDetailsNew, ModalMovieDetails, ModalTVDetails } from "~/types";
 import { APIMovieDetails, APITVSeriesDetails } from "~/types/api";
 
 import { IMAGE_PREFIX_URL } from "./fetch";
@@ -97,4 +97,123 @@ export const formatTVData = (apiData: APITVSeriesDetails): ModalTVDetails => {
         : undefined,
   };
 };
+
+export const formatMovieDataNew = (
+  apiData: APIMovieDetails
+): ModalDetailsNew => {
+  let modalData: ModalDetailsNew = {
+    mediaType: "movie",
+    id: apiData.id,
+    header: {
+      bgImage: apiData.backdrop_path
+        ? `${IMAGE_PREFIX_URL}${apiData.backdrop_path}`
+        : null,
+      nbOfVotes: apiData.vote_count,
+      originalTitle: apiData.original_title,
+      rating: apiData.vote_average,
+      runtime: apiData.runtime + "'",
+      tagline: apiData.tagline,
+      title: apiData.title,
+      yearOfRelease: new Date(apiData.release_date).getFullYear(),
+    },
+    content: {
+      summary: {
+        genres: apiData.genres,
+        overview: apiData.overview,
+      },
+      sidebar: {
+        boxOffice: formatToUSD(apiData.revenue),
+        budget: formatToUSD(apiData.budget),
+        homepage: apiData.homepage,
+        imdbUrl: apiData.imdb_id
+          ? `https://imdb.com/title/${apiData.imdb_id}`
+          : undefined,
+        releaseDate: formatDateToFrLocale(apiData.release_date),
+        spokenLanguages: apiData.spoken_languages,
+        status:
+          apiData.status === "Released" ? "Déjà sorti" : "Pas encore sorti",
+      },
+    },
+  };
+
+  if (apiData.production_companies.length > 0) {
+    modalData = {
+      ...modalData,
+      content: {
+        ...modalData.content,
+        moreInfo: {
+          productionCompanies: apiData.production_companies,
+        },
+      },
+    };
+  }
+
+  return modalData;
+};
+
+export const formatTVDataNew = (
+  apiData: APITVSeriesDetails
+): ModalDetailsNew => {
+  const { created_by, networks, production_companies } = apiData;
+  let modalData: ModalDetailsNew = {
+    mediaType: "tv",
+    id: apiData.id,
+    header: {
+      bgImage: apiData.backdrop_path
+        ? `${IMAGE_PREFIX_URL}${apiData.backdrop_path}`
+        : null,
+      nbOfVotes: apiData.vote_count,
+      originalTitle: apiData.original_name,
+      rating: apiData.vote_average,
+      tagline: apiData.tagline,
+      title: apiData.name,
+      yearOfRelease: new Date(apiData.first_air_date).getFullYear(),
+      yearOfEnd:
+        !apiData.in_production && apiData.last_air_date
+          ? new Date(apiData.last_air_date).getFullYear()
+          : undefined,
+    },
+    content: {
+      summary: {
+        genres: apiData.genres,
+        lastEpisodeToAir: apiData.last_episode_to_air,
+        nextEpisodeToAir: apiData.next_episode_to_air,
+        overview: apiData.overview,
+      },
+      sidebar: {
+        firstAirDate: formatDateToFrLocale(apiData.first_air_date),
+        homepage: apiData.homepage,
+        lastAirDate: apiData.last_air_date
+          ? new Date(apiData.last_air_date).toLocaleDateString("fr")
+          : "",
+        nbOfEpisodes: apiData.number_of_episodes,
+        nbOfSeasons: apiData.number_of_seasons,
+        spokenLanguages: apiData.spoken_languages,
+        status:
+          apiData.status === "Released" ? "Déjà sorti" : "Pas encore sorti",
+      },
+      seasons: apiData.seasons,
+    },
+  };
+
+  if (
+    production_companies.length > 0 ||
+    networks.length > 0 ||
+    created_by.length > 0
+  ) {
+    modalData = {
+      ...modalData,
+      content: {
+        ...modalData.content,
+        moreInfo: {
+          createdBy: created_by,
+          networks: networks,
+          productionCompanies: production_companies,
+        },
+      },
+    };
+  }
+  return modalData;
+};
+
 //
