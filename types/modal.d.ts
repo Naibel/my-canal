@@ -36,7 +36,7 @@ export interface ModalDetails {
 export type ModalMovieDetails = ModalDetails & {
   mediaType: "movie";
   header: {
-    runtime: string;
+    runtime: number;
   };
   sidebar: {
     boxOffice: string;

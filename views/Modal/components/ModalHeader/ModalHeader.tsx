@@ -33,9 +33,7 @@ const ModalHeader = ({ modalDetails, onClose }: ModalHeaderProps) => {
           originalTitle={header.originalTitle}
           releaseYear={header.yearOfRelease}
           runtime={
-            modalDetails.mediaType === "movie"
-              ? modalDetails.header.runtime
-              : undefined
+            modalDetails.mediaType === "movie" ? modalDetails.header.runtime : 0
           }
           title={header.title}
         />

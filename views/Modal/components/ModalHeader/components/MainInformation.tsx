@@ -8,7 +8,7 @@ type MainInformationProps = {
   releaseYear: number;
   title: string;
   endYear?: number;
-  runtime?: string;
+  runtime: number;
 };
 
 const MainInformation = ({
@@ -41,7 +41,7 @@ const MainInformation = ({
         {mediaType === "movie" ? "Film" : "Série télévisée"}
         {releaseYear ? ` · ${releaseYear}` : ""}
         {canDisplayEndYear ? ` - ${endYear}` : ""}
-        {mediaType === "movie" && runtime ? ` · ${runtime}` : ""}
+        {mediaType === "movie" && runtime ? ` · ${runtime}'` : ""}
       </h3>
     </div>
   );

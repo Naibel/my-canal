@@ -43,7 +43,7 @@ export const formatMovieData = (
       nbOfVotes: apiData.vote_count,
       originalTitle: apiData.original_title,
       rating: apiData.vote_average,
-      runtime: apiData.runtime + "'",
+      runtime: apiData.runtime,
       tagline: apiData.tagline,
       title: apiData.title,
       yearOfRelease: new Date(apiData.release_date).getFullYear(),

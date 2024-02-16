@@ -9,7 +9,7 @@ export const expectedMovieResult: ModalMovieDetails = {
     nbOfVotes: 10020,
     originalTitle: "Dune",
     rating: 7.785,
-    runtime: "155'",
+    runtime: 155,
     tagline: "It begins.",
     title: "Dune",
     yearOfRelease: 2021,
