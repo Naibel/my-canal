@@ -32,14 +32,14 @@ export const fetch = async (endpoint: string, params?: any) => {
 export const getTrending = async (
   mediaType: MediaType
 ): Promise<APIResponse<APIMovie | APITVSeries>> => {
-  return await fetch(`/trending/${mediaType}/day?language=en-US`);
+  return await fetch(`/trending/${mediaType}/day?language=fr-FR`);
 };
 
 export const search = async (
   query: string,
   mediaType: MediaType
 ): Promise<APIResponse<APIMovie | APITVSeries>> => {
-  return await fetch(`/search/${mediaType}`, { query });
+  return await fetch(`/search/${mediaType}?language=fr-FR`, { query });
 };
 
 export const discover = async (
@@ -58,7 +58,7 @@ export const getTVDetails = async (
   onSuccess: (res: ModalTVDetails) => void,
   onFailure: (error: any) => void
 ) => {
-  fetch(`/tv/${id}`)
+  fetch(`/tv/${id}`, { language: "fr-FR" })
     .then((res: APITVSeriesDetails) => {
       const details: ModalTVDetails = formatTVData(res);
       onSuccess(details);
@@ -74,7 +74,7 @@ export const getMovieDetails = async (
   onSuccess: (res: ModalMovieDetails) => void,
   onFailure: (error: any) => void
 ) => {
-  fetch(`/movie/${id}`)
+  fetch(`/movie/${id}`, { language: "fr-FR" })
     .then((res: APIMovieDetails) => {
       const details: ModalMovieDetails = formatMovieData(res);
       onSuccess(details);
