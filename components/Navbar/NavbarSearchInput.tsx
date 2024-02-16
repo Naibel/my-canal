@@ -29,7 +29,7 @@ const NavbarSearchInput = ({
       <IoSearchSharp
         size={24}
         onClick={handleFocus}
-        className="opacity-80 hover:opacity-100 cursor-pointer"
+        className="duration-300 opacity-70 hover:opacity-100 cursor-pointer"
       />
       {isInputOnFocus && (
         <div className=" flex flex-1 items-center">
@@ -47,7 +47,7 @@ const NavbarSearchInput = ({
             }
           />
           <IoClose
-            className="opacity-80 hover:opacity-100 cursor-pointer rounded-full p-1 bg-black/70 "
+            className="duration-300 opacity-70 hover:opacity-100 cursor-pointer rounded-full p-1 bg-black/70 "
             size={29}
             onClick={() => {
               setSearchValue("");
