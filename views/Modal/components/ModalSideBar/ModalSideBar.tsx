@@ -12,8 +12,8 @@ const ModalSideBar = ({
   modalDetails: ModalMovieDetails | ModalTVDetails;
 }) => (
   <div className="bg-neutral-900 flex flex-col gap-2 md:gap-4 pr-5 md:pr-8 pl-5 py-5">
-    {modalDetails.homepage && (
-      <LinkButton linkTo={modalDetails.homepage}>
+    {modalDetails.sidebar.homepage && (
+      <LinkButton linkTo={modalDetails.sidebar.homepage}>
         <span className="text-sm uppercase italic font-semibold px-5 py-3">
           Site officiel
         </span>
@@ -23,35 +23,47 @@ const ModalSideBar = ({
       <>
         <InfoLine
           label="Première diffusion"
-          value={modalDetails.firstAirDate}
+          value={modalDetails.sidebar.firstAirDate}
         />
-        <InfoLine label="Dernière diffusion" value={modalDetails.lastAirDate} />
+        <InfoLine
+          label="Dernière diffusion"
+          value={modalDetails.sidebar.lastAirDate}
+        />
 
-        <InfoLine label="Nombre d'épisodes" value={modalDetails.nbOfEpisodes} />
-        <InfoLine label="Nombre de saisons" value={modalDetails.nbOfSeasons} />
+        <InfoLine
+          label="Nombre d'épisodes"
+          value={modalDetails.sidebar.nbOfEpisodes}
+        />
+        <InfoLine
+          label="Nombre de saisons"
+          value={modalDetails.sidebar.nbOfSeasons}
+        />
         <SpokenLanguages
           label="Langues"
-          values={modalDetails.spokenLanguages}
+          values={modalDetails.sidebar.spokenLanguages}
         />
-        <InfoLine label="Statut" value={modalDetails.status} />
+        <InfoLine label="Statut" value={modalDetails.sidebar.status} />
       </>
     )}
     {modalDetails.mediaType === "movie" && (
       <>
-        {modalDetails.imdbUrl && (
-          <LinkButton color="yellow" linkTo={modalDetails.imdbUrl}>
+        {modalDetails.sidebar.imdbUrl && (
+          <LinkButton color="yellow" linkTo={modalDetails.sidebar.imdbUrl}>
             <div className="flex">
               <LiaImdb size={45} color="black" />
             </div>
           </LinkButton>
         )}
-        <InfoLine label="Date de sortie" value={modalDetails.releaseDate} />
+        <InfoLine
+          label="Date de sortie"
+          value={modalDetails.sidebar.releaseDate}
+        />
         <SpokenLanguages
           label="Langues"
-          values={modalDetails.spokenLanguages}
+          values={modalDetails.sidebar.spokenLanguages}
         />
-        <InfoLine label="Budget" value={modalDetails.budget} />
-        <InfoLine label="Box Office" value={modalDetails.boxOffice} />
+        <InfoLine label="Budget" value={modalDetails.sidebar.budget} />
+        <InfoLine label="Box Office" value={modalDetails.sidebar.boxOffice} />
       </>
     )}
   </div>

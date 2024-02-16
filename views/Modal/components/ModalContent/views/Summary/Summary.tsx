@@ -9,37 +9,40 @@ const Summary = ({
   modalDetails,
 }: {
   modalDetails: ModalMovieDetails | ModalTVDetails;
-}) => (
-  <div className="flex flex-col gap-3 md:gap-5">
-    {modalDetails.genres.length > 0 && (
-      <div className="flex justify-between items-start">
-        <Genres genres={modalDetails.genres} />
+}) => {
+  const { summary } = modalDetails;
+  return (
+    <div className="flex flex-col gap-3 md:gap-5">
+      {summary.genres.length > 0 && (
+        <div className="flex justify-between items-start">
+          <Genres genres={summary.genres} />
+        </div>
+      )}
+      <div>
+        {summary.overview ? (
+          <ModalContentSection title="Résumé">
+            <p className="text-sm md:text-base">{summary.overview}</p>
+          </ModalContentSection>
+        ) : (
+          <p className="italic">Pas de résumé pour le moment...</p>
+        )}
       </div>
-    )}
-    <div>
-      {modalDetails.overview ? (
-        <ModalContentSection title="Résumé">
-          <p className="text-sm md:text-base">{modalDetails.overview}</p>
-        </ModalContentSection>
-      ) : (
-        <p className="italic">Pas de résumé pour le moment...</p>
+      {modalDetails.mediaType === "tv" && (
+        <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-2 gap-5">
+          {modalDetails.summary.lastEpisodeToAir && (
+            <ModalContentSection title="Dernier épisode diffusé">
+              <EpisodePanel episode={modalDetails.summary.lastEpisodeToAir} />
+            </ModalContentSection>
+          )}
+          {modalDetails.summary.nextEpisodeToAir && (
+            <ModalContentSection title="Prochain épisode">
+              <EpisodePanel episode={modalDetails.summary.nextEpisodeToAir} />
+            </ModalContentSection>
+          )}
+        </div>
       )}
     </div>
-    {modalDetails.mediaType === "tv" && (
-      <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-2 gap-5">
-        {modalDetails.lastEpisodeToAir && (
-          <ModalContentSection title="Dernier épisode diffusé">
-            <EpisodePanel episode={modalDetails.lastEpisodeToAir} />
-          </ModalContentSection>
-        )}
-        {modalDetails.nextEpisodeToAir && (
-          <ModalContentSection title="Prochain épisode">
-            <EpisodePanel episode={modalDetails.nextEpisodeToAir} />
-          </ModalContentSection>
-        )}
-      </div>
-    )}
-  </div>
-);
+  );
+};
 
 export default Summary;

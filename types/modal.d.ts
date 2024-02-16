@@ -6,44 +6,64 @@ import {
 } from "./api";
 
 export type MediaType = "movie" | "tv";
-export type MenuPage = "summary" | "seasons" | "more_info";
+export type MenuPage = "summary" | "seasons" | "moreInfo";
 
-export type ModalDetails = {
-  bgImage?: string;
-  genres: Array<Genre>;
-  homepage: string;
+export interface ModalDetails {
   id: number;
-  nbOfVotes: number;
-  overview: string;
-  originalTitle: string;
-  productionCompanies: Array<ProductionCompany>;
-  rating: number;
-  spokenLanguages: Array<SpokenLanguages>;
-  status: string;
-  tagline: string;
-  title: string;
-  yearOfRelease: number;
-};
+  header: {
+    bgImage?: string;
+    nbOfVotes: number;
+    originalTitle: string;
+    rating: number;
+    tagline: string;
+    title: string;
+    yearOfRelease: number;
+  };
+  moreInfo?: {
+    productionCompanies: Array<ProductionCompany>;
+  };
+  sidebar: {
+    homepage: string;
+    spokenLanguages: Array<SpokenLanguages>;
+    status: string;
+  };
+  summary: {
+    genres: Array<Genre>;
+    overview: string;
+  };
+}
 
 export type ModalMovieDetails = ModalDetails & {
-  boxOffice: string;
-  budget: string;
-  imdbUrl?: string;
   mediaType: "movie";
-  releaseDate: string;
-  runtime: string;
+  header: {
+    runtime: string;
+  };
+  sidebar: {
+    boxOffice: string;
+    budget: string;
+    imdbUrl?: string;
+    releaseDate: string;
+  };
 };
 
 export type ModalTVDetails = ModalDetails & {
-  createdBy: Array<Person>;
-  firstAirDate: string;
-  lastAirDate: string;
-  lastEpisodeToAir: EpisodeDetails;
   mediaType: "tv";
-  networks: Array<Network>;
-  nextEpisodeToAir: EpisodeDetails;
-  nbOfEpisodes: number;
-  nbOfSeasons: number;
+  header: {
+    yearOfEnd?: number;
+  };
+  moreInfo?: {
+    createdBy: Array<Person>;
+    networks: Array<Network>;
+  };
+  sidebar: {
+    firstAirDate: string;
+    lastAirDate: string;
+    nbOfEpisodes: number;
+    nbOfSeasons: number;
+  };
   seasons: Array<Season>;
-  yearOfEnd?: number;
+  summary: {
+    lastEpisodeToAir: EpisodeDetails;
+    nextEpisodeToAir: EpisodeDetails;
+  };
 };

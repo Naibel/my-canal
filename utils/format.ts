@@ -33,68 +33,103 @@ export const checkStatus = (inProduction: boolean, status: string) => {
 export const formatMovieData = (
   apiData: APIMovieDetails
 ): ModalMovieDetails => {
-  return {
-    bgImage: apiData.backdrop_path
-      ? `${IMAGE_PREFIX_URL}${apiData.backdrop_path}`
-      : undefined,
-    boxOffice: formatToUSD(apiData.revenue),
-    budget: formatToUSD(apiData.budget),
-    genres: apiData.genres,
-    homepage: apiData.homepage,
+  let formattedData: ModalMovieDetails = {
     id: apiData.id,
-    imdbUrl: apiData.imdb_id
-      ? `https://imdb.com/title/${apiData.imdb_id}`
-      : undefined,
     mediaType: "movie",
-    nbOfVotes: apiData.vote_count,
-    overview: apiData.overview,
-    originalTitle: apiData.original_title,
-    productionCompanies: apiData.production_companies,
-    rating: apiData.vote_average,
-    releaseDate: formatDateToFrLocale(apiData.release_date),
-    runtime: apiData.runtime + "'",
-    spokenLanguages: apiData.spoken_languages,
-    status: apiData.status === "Released" ? "Déjà sorti" : "Pas encore sorti",
-    tagline: apiData.tagline,
-    title: apiData.title,
-    yearOfRelease: new Date(apiData.release_date).getFullYear(),
+    header: {
+      bgImage: apiData.backdrop_path
+        ? `${IMAGE_PREFIX_URL}${apiData.backdrop_path}`
+        : undefined,
+      nbOfVotes: apiData.vote_count,
+      originalTitle: apiData.original_title,
+      rating: apiData.vote_average,
+      runtime: apiData.runtime + "'",
+      tagline: apiData.tagline,
+      title: apiData.title,
+      yearOfRelease: new Date(apiData.release_date).getFullYear(),
+    },
+    summary: {
+      genres: apiData.genres,
+      overview: apiData.overview,
+    },
+    sidebar: {
+      boxOffice: formatToUSD(apiData.revenue),
+      budget: formatToUSD(apiData.budget),
+      homepage: apiData.homepage,
+      imdbUrl: apiData.imdb_id
+        ? `https://imdb.com/title/${apiData.imdb_id}`
+        : undefined,
+      releaseDate: formatDateToFrLocale(apiData.release_date),
+      spokenLanguages: apiData.spoken_languages,
+      status: apiData.status === "Released" ? "Déjà sorti" : "Pas encore sorti",
+    },
   };
+
+  if (apiData.production_companies.length > 0) {
+    formattedData = {
+      ...formattedData,
+      moreInfo: {
+        ...formattedData.moreInfo,
+        productionCompanies: apiData.production_companies,
+      },
+    };
+  }
+  return formattedData;
 };
 
 export const formatTVData = (apiData: APITVSeriesDetails): ModalTVDetails => {
-  return {
-    bgImage: apiData.backdrop_path
-      ? `${IMAGE_PREFIX_URL}${apiData.backdrop_path}`
-      : undefined,
-    createdBy: apiData.created_by,
-    firstAirDate: formatDateToFrLocale(apiData.first_air_date),
-    genres: apiData.genres,
-    homepage: apiData.homepage,
+  let formattedData: ModalTVDetails = {
     id: apiData.id,
-    lastAirDate: apiData.last_air_date
-      ? new Date(apiData.last_air_date).toLocaleDateString("fr")
-      : "",
-    lastEpisodeToAir: apiData.last_episode_to_air,
     mediaType: "tv",
-    nbOfEpisodes: apiData.number_of_episodes,
-    nbOfSeasons: apiData.number_of_seasons,
-    nbOfVotes: apiData.vote_count,
-    networks: apiData.networks,
-    nextEpisodeToAir: apiData.next_episode_to_air,
-    originalTitle: apiData.original_name,
-    overview: apiData.overview,
-    productionCompanies: apiData.production_companies,
-    rating: apiData.vote_average,
-    seasons: apiData.seasons,
-    spokenLanguages: apiData.spoken_languages,
-    status: checkStatus(apiData.in_production, apiData.status),
-    tagline: apiData.tagline,
-    title: apiData.name,
-    yearOfRelease: new Date(apiData.first_air_date).getFullYear(),
-    yearOfEnd:
-      !apiData.in_production && apiData.last_air_date
-        ? new Date(apiData.last_air_date).getFullYear()
+    header: {
+      bgImage: apiData.backdrop_path
+        ? `${IMAGE_PREFIX_URL}${apiData.backdrop_path}`
         : undefined,
+      nbOfVotes: apiData.vote_count,
+      originalTitle: apiData.original_name,
+      rating: apiData.vote_average,
+      tagline: apiData.tagline,
+      title: apiData.name,
+      yearOfRelease: new Date(apiData.first_air_date).getFullYear(),
+      yearOfEnd:
+        !apiData.in_production && apiData.last_air_date
+          ? new Date(apiData.last_air_date).getFullYear()
+          : undefined,
+    },
+    summary: {
+      genres: apiData.genres,
+      lastEpisodeToAir: apiData.last_episode_to_air,
+      overview: apiData.overview,
+      nextEpisodeToAir: apiData.next_episode_to_air,
+    },
+    sidebar: {
+      homepage: apiData.homepage,
+      firstAirDate: formatDateToFrLocale(apiData.first_air_date),
+      lastAirDate: apiData.last_air_date
+        ? new Date(apiData.last_air_date).toLocaleDateString("fr")
+        : "",
+      nbOfEpisodes: apiData.number_of_episodes,
+      nbOfSeasons: apiData.number_of_seasons,
+      spokenLanguages: apiData.spoken_languages,
+      status: checkStatus(apiData.in_production, apiData.status),
+    },
+    seasons: apiData.seasons,
   };
+  if (
+    apiData.created_by.length > 0 ||
+    apiData.networks.length > 0 ||
+    apiData.production_companies.length > 0
+  ) {
+    formattedData = {
+      ...formattedData,
+      moreInfo: {
+        ...formattedData.moreInfo,
+        createdBy: apiData.created_by,
+        productionCompanies: apiData.production_companies,
+        networks: apiData.networks,
+      },
+    };
+  }
+  return formattedData;
 };
 //

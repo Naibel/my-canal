@@ -7,11 +7,11 @@ import ModalTabs from "../ModalTabs/ModalTabs";
 
 import { MoreInfo, Seasons, Summary } from "./views";
 
-const ModalContent = ({
-  modalDetails,
-}: {
+type ModalContentProps = {
   modalDetails: ModalMovieDetails | ModalTVDetails;
-}) => {
+};
+
+const ModalContent = ({ modalDetails }: ModalContentProps) => {
   const [page, setPage] = useState<MenuPage>("summary");
 
   const handlePageChange = (value: MenuPage) => {
@@ -22,7 +22,7 @@ const ModalContent = ({
     <div className="flex flex-col md:flex-row">
       <div className="flex flex-1 pt-5 p-5 md:p-8 flex-col gap-2 md:gap-5">
         <ModalTabs
-          mediaType={modalDetails.mediaType}
+          modalDetails={modalDetails}
           currentPage={page}
           onClick={handlePageChange}
         />
@@ -30,7 +30,9 @@ const ModalContent = ({
         {page === "seasons" && modalDetails.mediaType === "tv" && (
           <Seasons seasons={modalDetails.seasons} />
         )}
-        {page === "more_info" && <MoreInfo modalDetails={modalDetails} />}
+        {page === "moreInfo" && modalDetails.moreInfo && (
+          <MoreInfo modalDetails={modalDetails} />
+        )}
       </div>
       <ModalSideBar modalDetails={modalDetails} />
     </div>

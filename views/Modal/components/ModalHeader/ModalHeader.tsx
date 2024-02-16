@@ -15,32 +15,33 @@ type ModalHeaderProps = {
 };
 
 const ModalHeader = ({ modalDetails, onClose }: ModalHeaderProps) => {
-  const {
-    bgImage,
-    tagline,
-    mediaType,
-    originalTitle,
-    yearOfRelease,
-    title,
-    rating,
-    nbOfVotes,
-  } = modalDetails;
+  const { header } = modalDetails;
 
   return (
-    <ImageBackground bgImage={bgImage}>
-      {tagline && <Tagline tagline={tagline} />}
+    <ImageBackground bgImage={header.bgImage}>
+      {header.tagline && <Tagline tagline={header.tagline} />}
       <CloseButton onClose={onClose} />
       <GradientOverlay />
       <div className="absolute md:px-10 bottom-0 md:bottom-5 left-0 right-0 flex z-10 flex-col md:flex-row items-center md:items-end">
         <MainInformation
-          endYear={mediaType === "tv" ? modalDetails.yearOfEnd : undefined}
-          mediaType={mediaType}
-          originalTitle={originalTitle}
-          releaseYear={yearOfRelease}
-          runtime={mediaType === "movie" ? modalDetails.runtime : undefined}
-          title={title}
+          endYear={
+            modalDetails.mediaType === "tv"
+              ? modalDetails.header.yearOfEnd
+              : undefined
+          }
+          mediaType={modalDetails.mediaType}
+          originalTitle={header.originalTitle}
+          releaseYear={header.yearOfRelease}
+          runtime={
+            modalDetails.mediaType === "movie"
+              ? modalDetails.header.runtime
+              : undefined
+          }
+          title={header.title}
         />
-        {nbOfVotes > 0 && <Rating rating={rating} nbOfVotes={nbOfVotes} />}
+        {header.nbOfVotes > 0 && (
+          <Rating rating={header.rating} nbOfVotes={header.nbOfVotes} />
+        )}
       </div>
     </ImageBackground>
   );
