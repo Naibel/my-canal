@@ -1,153 +1,181 @@
 import { ModalMovieDetails, ModalTVDetails } from "~/types/modal";
 
 export const expectedMovieResult: ModalMovieDetails = {
-  bgImage:
-    "https://image.tmdb.org/t/p/original/jYEW5xZkZk2WTrdbMGAPFuBqbDc.jpg",
-  boxOffice: "402 027 830,00 $US",
-  budget: "165 000 000,00 $US",
-  genres: [
-    {
-      id: 878,
-      name: "Science Fiction",
-    },
-    {
-      id: 12,
-      name: "Adventure",
-    },
-  ],
-  homepage: "https://www.dunemovie.com/",
   id: 438631,
-  imdbUrl: "https://imdb.com/title/tt1160419",
   mediaType: "movie",
-  nbOfVotes: 10020,
-  overview:
-    "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.",
-  originalTitle: "Dune",
-  productionCompanies: [
-    {
-      id: 923,
-      logo_path: "/8M99Dkt23MjQMTTWukq4m5XsEuo.png",
-      name: "Legendary Pictures",
-      origin_country: "US",
-    },
-  ],
-  rating: 7.785,
-  releaseDate: "15/09/2021",
-  runtime: "155'",
-  spokenLanguages: [
-    {
-      english_name: "Mandarin",
-      iso_639_1: "zh",
-      name: "普通话",
-    },
-    {
-      english_name: "English",
-      iso_639_1: "en",
-      name: "English",
-    },
-  ],
-  status: "Déjà sorti",
-  tagline: "It begins.",
-  title: "Dune",
-  yearOfRelease: 2021,
+  header: {
+    bgImage:
+      "https://image.tmdb.org/t/p/original/jYEW5xZkZk2WTrdbMGAPFuBqbDc.jpg",
+    nbOfVotes: 10020,
+    originalTitle: "Dune",
+    rating: 7.785,
+    runtime: "155'",
+    tagline: "It begins.",
+    title: "Dune",
+    yearOfRelease: 2021,
+  },
+  moreInfo: {
+    productionCompanies: [
+      {
+        id: 923,
+        logo_path: "/8M99Dkt23MjQMTTWukq4m5XsEuo.png",
+        name: "Legendary Pictures",
+        origin_country: "US",
+      },
+    ],
+  },
+  sidebar: {
+    boxOffice: "402 027 830,00 $US",
+    budget: "165 000 000,00 $US",
+    imdbUrl: "https://imdb.com/title/tt1160419",
+    homepage: "https://www.dunemovie.com/",
+    releaseDate: "15/09/2021",
+    spokenLanguages: [
+      {
+        english_name: "Mandarin",
+        iso_639_1: "zh",
+        name: "普通话",
+      },
+      {
+        english_name: "English",
+        iso_639_1: "en",
+        name: "English",
+      },
+    ],
+    status: "Déjà sorti",
+  },
+  summary: {
+    genres: [
+      {
+        id: 878,
+        name: "Science Fiction",
+      },
+      {
+        id: 12,
+        name: "Adventure",
+      },
+    ],
+    overview:
+      "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.",
+  },
 };
 
 export const expectedTVSeriesResult: ModalTVDetails = {
-  bgImage:
-    "https://image.tmdb.org/t/p/original/rIe3PnM6S7IBUmvNwDkBMX0i9EZ.jpg",
-  createdBy: [
-    {
-      id: 9813,
-      credit_id: "5256c8c219c2956ff604858a",
-      name: "David Benioff",
-      gender: 2,
-      profile_path: "/xvNN5huL0X8yJ7h3IZfGG4O2zBD.jpg",
-    },
-    {
-      id: 228068,
-      credit_id: "552e611e9251413fea000901",
-      name: "D.B. Weiss",
-      gender: 2,
-      profile_path: "/2RMejaT793U9KRk2IEbFfteQntE.jpg",
-    },
-  ],
-  firstAirDate: "17/04/2011",
-  genres: [
-    {
-      id: 10765,
-      name: "Sci-Fi & Fantasy",
-    },
-    {
-      id: 18,
-      name: "Drama",
-    },
-    {
-      id: 10759,
-      name: "Action & Adventure",
-    },
-  ],
-  homepage: "http://www.hbo.com/game-of-thrones",
   id: 1399,
-  lastAirDate: "19/05/2019",
-  lastEpisodeToAir: {
-    id: 1551830,
-    name: "The Iron Throne",
-    overview:
-      "In the aftermath of the devastating attack on King's Landing, Daenerys must face the survivors.",
-    vote_average: 4.642,
-    vote_count: 279,
-    air_date: "2019-05-19",
-    episode_number: 6,
-    episode_type: "finale",
-    production_code: "806",
-    runtime: 80,
-    season_number: 8,
-    show_id: 1399,
-    still_path: "/zBi2O5EJfgTS6Ae0HdAYLm9o2nf.jpg",
-  },
   mediaType: "tv",
-  nbOfEpisodes: 73,
-  nbOfSeasons: 8,
-  nbOfVotes: 22609,
-  networks: [
-    {
-      id: 49,
-      logo_path: "/tuomPhY2UtuPTqqFnKMVHvSb724.png",
-      name: "HBO",
-      origin_country: "US",
+  header: {
+    bgImage:
+      "https://image.tmdb.org/t/p/original/rIe3PnM6S7IBUmvNwDkBMX0i9EZ.jpg",
+    nbOfVotes: 22609,
+    originalTitle: "Game of Thrones",
+    rating: 8.444,
+    tagline: "Winter Is Coming",
+    title: "Game of Thrones",
+    yearOfRelease: 2011,
+    yearOfEnd: 2019,
+  },
+  moreInfo: {
+    createdBy: [
+      {
+        id: 9813,
+        credit_id: "5256c8c219c2956ff604858a",
+        name: "David Benioff",
+        gender: 2,
+        profile_path: "/xvNN5huL0X8yJ7h3IZfGG4O2zBD.jpg",
+      },
+      {
+        id: 228068,
+        credit_id: "552e611e9251413fea000901",
+        name: "D.B. Weiss",
+        gender: 2,
+        profile_path: "/2RMejaT793U9KRk2IEbFfteQntE.jpg",
+      },
+    ],
+    networks: [
+      {
+        id: 49,
+        logo_path: "/tuomPhY2UtuPTqqFnKMVHvSb724.png",
+        name: "HBO",
+        origin_country: "US",
+      },
+    ],
+    productionCompanies: [
+      {
+        id: 76043,
+        logo_path: "/9RO2vbQ67otPrBLXCaC8UMp3Qat.png",
+        name: "Revolution Sun Studios",
+        origin_country: "US",
+      },
+      {
+        id: 12525,
+        logo_path: null,
+        name: "Television 360",
+        origin_country: "",
+      },
+      {
+        id: 5820,
+        logo_path: null,
+        name: "Generator Entertainment",
+        origin_country: "GB",
+      },
+      {
+        id: 12526,
+        logo_path: null,
+        name: "Bighead Littlehead",
+        origin_country: "US",
+      },
+    ],
+  },
+  sidebar: {
+    firstAirDate: "17/04/2011",
+    homepage: "http://www.hbo.com/game-of-thrones",
+    lastAirDate: "19/05/2019",
+    nbOfEpisodes: 73,
+    nbOfSeasons: 8,
+    spokenLanguages: [
+      {
+        english_name: "English",
+        iso_639_1: "en",
+        name: "English",
+      },
+    ],
+    status: "Production terminée",
+  },
+  summary: {
+    genres: [
+      {
+        id: 10765,
+        name: "Sci-Fi & Fantasy",
+      },
+      {
+        id: 18,
+        name: "Drama",
+      },
+      {
+        id: 10759,
+        name: "Action & Adventure",
+      },
+    ],
+    lastEpisodeToAir: {
+      id: 1551830,
+      name: "The Iron Throne",
+      overview:
+        "In the aftermath of the devastating attack on King's Landing, Daenerys must face the survivors.",
+      vote_average: 4.642,
+      vote_count: 279,
+      air_date: "2019-05-19",
+      episode_number: 6,
+      episode_type: "finale",
+      production_code: "806",
+      runtime: 80,
+      season_number: 8,
+      show_id: 1399,
+      still_path: "/zBi2O5EJfgTS6Ae0HdAYLm9o2nf.jpg",
     },
-  ],
-  nextEpisodeToAir: null,
-  overview:
-    "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
-  originalTitle: "Game of Thrones",
-  productionCompanies: [
-    {
-      id: 76043,
-      logo_path: "/9RO2vbQ67otPrBLXCaC8UMp3Qat.png",
-      name: "Revolution Sun Studios",
-      origin_country: "US",
-    },
-    {
-      id: 12525,
-      logo_path: null,
-      name: "Television 360",
-      origin_country: "",
-    },
-    {
-      id: 5820,
-      logo_path: null,
-      name: "Generator Entertainment",
-      origin_country: "GB",
-    },
-    {
-      id: 12526,
-      logo_path: null,
-      name: "Bighead Littlehead",
-      origin_country: "US",
-    },
-  ],
-  rating: 8.444,
+    nextEpisodeToAir: null,
+    overview:
+      "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
+  },
   seasons: [
     {
       air_date: "2010-12-05",
@@ -248,16 +276,4 @@ export const expectedTVSeriesResult: ModalTVDetails = {
       vote_average: 6.4,
     },
   ],
-  spokenLanguages: [
-    {
-      english_name: "English",
-      iso_639_1: "en",
-      name: "English",
-    },
-  ],
-  status: "Production terminée",
-  tagline: "Winter Is Coming",
-  title: "Game of Thrones",
-  yearOfRelease: 2011,
-  yearOfEnd: 2019,
 };

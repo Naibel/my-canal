@@ -47,7 +47,10 @@ describe("formatTVData", () => {
     };
     const expectedResult: ModalTVDetails = {
       ...expectedTVSeriesResult,
-      bgImage: undefined,
+      header: {
+        ...expectedTVSeriesResult.header,
+        bgImage: undefined,
+      },
     };
 
     expect(formatTVData(apiMock)).toStrictEqual(expectedResult);
@@ -61,8 +64,14 @@ describe("formatTVData", () => {
     };
     const expectedResult: ModalTVDetails = {
       ...expectedTVSeriesResult,
-      status: "En cours de production",
-      yearOfEnd: undefined,
+      header: {
+        ...expectedTVSeriesResult.header,
+        yearOfEnd: undefined,
+      },
+      sidebar: {
+        ...expectedTVSeriesResult.sidebar,
+        status: "En cours de production",
+      },
     };
 
     expect(formatTVData(apiMock)).toStrictEqual(expectedResult);
@@ -75,8 +84,14 @@ describe("formatTVData", () => {
     };
     const expectedResult: ModalTVDetails = {
       ...expectedTVSeriesResult,
-      lastAirDate: "",
-      yearOfEnd: NaN, //TEST A CORRIGER
+      header: {
+        ...expectedTVSeriesResult.header,
+        yearOfEnd: undefined,
+      },
+      sidebar: {
+        ...expectedTVSeriesResult.sidebar,
+        lastAirDate: "",
+      },
     };
 
     expect(formatTVData(apiMock)).toStrictEqual(expectedResult);
@@ -97,7 +112,10 @@ describe("formatMovieData", () => {
     };
     const expectedResult: ModalMovieDetails = {
       ...expectedMovieResult,
-      bgImage: undefined,
+      header: {
+        ...expectedMovieResult.header,
+        bgImage: undefined,
+      },
     };
 
     expect(formatMovieData(apiMock)).toStrictEqual(expectedResult);
@@ -110,7 +128,10 @@ describe("formatMovieData", () => {
     };
     const expectedResult: ModalMovieDetails = {
       ...expectedMovieResult,
-      imdbUrl: undefined,
+      sidebar: {
+        ...expectedMovieResult.sidebar,
+        imdbUrl: undefined,
+      },
     };
 
     expect(formatMovieData(apiMock)).toStrictEqual(expectedResult);
@@ -123,7 +144,10 @@ describe("formatMovieData", () => {
     };
     const expectedResult: ModalMovieDetails = {
       ...expectedMovieResult,
-      status: "Déjà sorti",
+      sidebar: {
+        ...expectedMovieResult.sidebar,
+        status: "Déjà sorti",
+      },
     };
 
     expect(formatMovieData(apiMock)).toStrictEqual(expectedResult);
@@ -136,7 +160,10 @@ describe("formatMovieData", () => {
     };
     const expectedResult: ModalMovieDetails = {
       ...expectedMovieResult,
-      status: "Pas encore sorti",
+      sidebar: {
+        ...expectedMovieResult.sidebar,
+        status: "Pas encore sorti",
+      },
     };
 
     expect(formatMovieData(apiMock)).toStrictEqual(expectedResult);
