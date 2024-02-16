@@ -17,7 +17,7 @@ const MoreInfo = ({ modalDetails }: MoreInfoProps) => (
         modalDetails.moreInfo &&
         modalDetails.moreInfo.createdBy.length > 0 && (
           <ModalContentSection title="Une série créée par">
-            <div className="grid grid-rows-1 grid-cols-3 md:grid-cols-5 gap-2 md:gap-5">
+            <div className="grid grid-rows-1 grid-cols-4 md:grid-cols-5 gap-2 md:gap-5">
               {modalDetails.moreInfo.createdBy.map((person: Person) => (
                 <PersonPanel
                   key={person.id}
