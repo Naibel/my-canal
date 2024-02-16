@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-import { ModalDetailsNew } from "~/types";
+import { ModalDetails } from "~/types";
 
 import ModalContent from "./components/ModalContent/ModalContent";
 import ModalHeader from "./components/ModalHeader/ModalHeader";
 
 type ModalProps = {
-  modalDetails: ModalDetailsNew;
+  modalDetails: ModalDetails;
   handleClose: () => void;
 };
 

@@ -8,43 +8,10 @@ import {
 export type MediaType = "movie" | "tv";
 
 export type ModalDetails = {
-  bgImage?: string;
-  genres: Array<Genre>;
-  homepage: string;
+  mediaType: MediaType;
   id: number;
-  nbOfVotes: number;
-  overview: string;
-  originalTitle: string;
-  productionCompanies: Array<ProductionCompany>;
-  rating: number;
-  spokenLanguages: Array<SpokenLanguages>;
-  status: string;
-  tagline: string;
-  title: string;
-  yearOfRelease: number;
-};
-
-export type ModalMovieDetails = ModalDetails & {
-  boxOffice: string;
-  budget: string;
-  imdbUrl?: string;
-  mediaType: "movie";
-  releaseDate: string;
-  runtime: string;
-};
-
-export type ModalTVDetails = ModalDetails & {
-  createdBy: Array<Person>;
-  firstAirDate: string;
-  lastAirDate: string;
-  lastEpisodeToAir: EpisodeDetails;
-  mediaType: "tv";
-  networks: Array<Network>;
-  nextEpisodeToAir: EpisodeDetails;
-  nbOfEpisodes: number;
-  nbOfSeasons: number;
-  seasons: Array<Season>;
-  yearOfEnd?: number;
+  header: ModalDetailsHeader;
+  content: ModalDetailsContent;
 };
 
 export type ModalDetailsHeader = {
@@ -91,11 +58,4 @@ export type ModalDetailsMoreInfo = {
   createdBy?: Array<Person>;
   networks?: Array<Network>;
   productionCompanies?: Array<ProductionCompany>;
-};
-
-export type ModalDetailsNew = {
-  mediaType: MediaType;
-  id: number;
-  header: ModalDetailsHeader;
-  content: ModalDetailsContent;
 };

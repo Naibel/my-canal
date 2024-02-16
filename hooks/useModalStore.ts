@@ -1,16 +1,16 @@
 import { create } from "zustand";
 
-import { ModalDetailsNew } from "~/types";
+import { ModalDetails } from "~/types";
 
 interface StoreState {
-  modalDetails: ModalDetailsNew | null;
-  setModalDetails: (modalDetails: ModalDetailsNew | null) => void;
+  modalDetails: ModalDetails | null;
+  setModalDetails: (modalDetails: ModalDetails | null) => void;
   closeModal: () => void;
 }
 
 const useModalStore = create<StoreState>()((set) => ({
   modalDetails: null,
-  setModalDetails: (newValue: ModalDetailsNew | null) =>
+  setModalDetails: (newValue: ModalDetails | null) =>
     set(() => ({ modalDetails: newValue })),
   closeModal: () => set(() => ({ modalDetails: null })),
 }));
