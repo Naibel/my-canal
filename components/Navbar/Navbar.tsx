@@ -24,7 +24,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col text-white">
       <nav className="grid grid-rows-2 grid-cols-1 md:flex md:flex-row gap-5 justify-between items-center bg-black px-5 py-4 shadow-md">
         <LogoMyCanal />
         <div className="relative flex flex-1">
