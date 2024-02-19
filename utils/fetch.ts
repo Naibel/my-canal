@@ -14,6 +14,7 @@ import { formatMovieData, formatTVData } from "./format";
 
 const API_URL = "https://api.themoviedb.org/3";
 export const IMAGE_PREFIX_URL = "https://image.tmdb.org/t/p/original";
+export const IMAGE_W_342_PREFIX_URL = "https://image.tmdb.org/t/p/w342";
 
 //----FETCHING FUNCTIONS----
 export const fetch = async (endpoint: string, params?: any) => {
@@ -27,6 +28,10 @@ export const fetch = async (endpoint: string, params?: any) => {
   const data = response.data;
   if (data) return data;
   //Errors will be checked only when calling this function
+};
+
+export const getConfigInfo = async (): Promise<APIResponse<any>> => {
+  return await fetch(`/configuration`);
 };
 
 export const getTrending = async (
