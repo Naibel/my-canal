@@ -58,6 +58,14 @@ export const discover = async (
 //
 
 //----GET FUNCTIONS----
+export const getDetails = async (
+  pathname: string
+): Promise<APIMovieDetails | APITVSeriesDetails> => {
+  return await fetch(pathname.slice(0, -1), {
+    language: "fr-FR",
+  });
+};
+
 export const getTVDetails = async (
   id: number,
   onSuccess: (res: ModalTVDetails) => void,
