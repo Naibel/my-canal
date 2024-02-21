@@ -1,5 +1,5 @@
 "use client";
 import withProviders from "~/providers/withProviders.hoc";
-import Details from "~/views/Details/Details";
+import TVDetails from "~/views/TVDetails/TVDetails";
 
-export default withProviders(Details);
+export default withProviders(TVDetails);
