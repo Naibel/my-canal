@@ -22,14 +22,14 @@ const Trending = () => {
         <Title size="large">Les films du moment</Title>
         {moviesQuery.isPending && <CarouselSkeleton />}
         {moviesQuery.data?.results && (
-          <Carousel data={moviesQuery.data.results} mediaType="movie" />
+          <Carousel data={moviesQuery.data.results} />
         )}
       </div>
       <div>
         <Title size="large">Les séries du moment</Title>
         {seriesQuery.isPending && <CarouselSkeleton />}
         {seriesQuery.data?.results && (
-          <Carousel data={seriesQuery.data.results} mediaType="tv" />
+          <Carousel data={seriesQuery.data.results} />
         )}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { Card } from "~/components";
 import { MediaType } from "~/types/modal";
@@ -8,21 +8,19 @@ import styles from "./Carousel.module.css";
 
 export interface CarouselProps<T> {
   data: Array<T>;
-  mediaType: MediaType;
 }
 
 const Carousel = <
-  T extends { id: number; poster_path: string; name?: string; title?: string }
+  T extends {
+    id: number;
+    poster_path: string;
+    media_type: MediaType;
+    name?: string;
+    title?: string;
+  }
 >({
   data,
-  mediaType,
 }: CarouselProps<T>) => {
-  const router = useRouter();
-
-  const goToDetailsPage = (mediaType: MediaType, id: number) => {
-    router.push(`${mediaType}/${id}`);
-  };
-
   const carouselRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -30,13 +28,15 @@ const Carousel = <
       <div ref={carouselRef} className={styles.carousel_wrapper}>
         <div className={styles.carousel}>
           {data?.map((item: T) => (
-            <Card
+            <Link
               key={"card_" + item.id}
-              id={item.id}
-              poster={item.poster_path}
-              title={item.name || item.title || ""}
-              onClick={() => goToDetailsPage(mediaType, item.id)}
-            />
+              href={`/${item.media_type}/${item.id}`}
+            >
+              <Card
+                poster={item.poster_path}
+                title={item.name || item.title || ""}
+              />
+            </Link>
           ))}
         </div>
       </div>
