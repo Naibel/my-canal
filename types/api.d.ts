@@ -157,3 +157,97 @@ export type BelongToCollection = {
   name: string;
   poster_path: string;
 };
+
+export type APITVCredits = {
+  cast: Array<CastTVPerson>;
+  crew: Array<CrewPerson>;
+  id: number;
+};
+
+export type APIMovieCredits = {
+  cast: Array<CastMoviePerson>;
+  crew: Array<CrewPerson>;
+  id: number;
+};
+
+export type CastTVPerson = {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  order: number;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+  roles: Array<Role>;
+  total_episode_count: number;
+};
+
+export type CastMoviePerson = {
+  adult: boolean;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  order: number;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+};
+
+export type Role = {
+  credit_id: string;
+  character: string;
+  episode_count: number;
+};
+
+export type CrewTVPerson = {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string | null;
+  jobs: Array<Job>;
+  department: string;
+  total_episode_count: number;
+};
+
+export type CrewMoviePerson = {
+  adult: boolean;
+  credit_id: string;
+  department: string;
+  gender: number;
+  id: number;
+  job: string;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string | null;
+};
+
+export type Job = {
+  credit_id: string;
+  job: string;
+  episode_count: string;
+};
+
+export type APIConfig = {
+  images: {
+    base_url: string;
+    secure_base_url: string;
+    backdrop_sizes: Array<string>;
+    logo_sizes: Array<string>;
+    poster_sizes: Array<string>;
+    profile_sizes: Array<string>;
+    still_sizes: Array<string>;
+  };
+  change_keys: Array<string>;
+};
