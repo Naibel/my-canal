@@ -8,7 +8,7 @@ export const formatDateToFrLocale = (time: string) => {
 };
 
 export const formatToUSD = (sum: number) => {
-  let USDollar = new Intl.NumberFormat("fr-FR", {
+  let USDollar = new Intl.NumberFormat("en-EN", {
     style: "currency",
     currency: "USD",
   });
