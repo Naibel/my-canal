@@ -5,7 +5,6 @@
 }
 
 .carousel {
-  width: 300%;
   display: flex;
   gap: 1.25rem;
 }
