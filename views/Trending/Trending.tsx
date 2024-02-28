@@ -18,14 +18,14 @@ const Trending = () => {
 
   return (
     <div className="flex flex-1 flex-col p-3 md:p-5 gap-5">
-      <div>
+      <div className="flex flex-col gap-5">
         <Title size="large">Les films du moment</Title>
         {moviesQuery.isPending && <CarouselSkeleton />}
         {moviesQuery.data?.results && (
           <Carousel data={moviesQuery.data.results} />
         )}
       </div>
-      <div>
+      <div className="flex flex-col gap-5">
         <Title size="large">Les séries du moment</Title>
         {seriesQuery.isPending && <CarouselSkeleton />}
         {seriesQuery.data?.results && (
