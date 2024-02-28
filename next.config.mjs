@@ -2,7 +2,18 @@
 const nextConfig = {
   trailingSlash: true,
   images: {
-    domains: ["image.tmdb.org", "themoviedb.org"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "image.tmdb.org",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "themoviedb.org",
+        port: "",
+      },
+    ],
   },
 };
 
