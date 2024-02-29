@@ -8,7 +8,8 @@ import { search } from "~/utils/fetch";
 import NavbarSearchResults from "../views/NavbarSearchResults/NavbarSearchResults";
 
 const NavbarSearchProvider = ({ children }: { children: ReactNode }) => {
-  const { searchValue, searchMediaType } = useNavbarSearchStore();
+  const { searchValue, searchMediaType, setSearchValue } =
+    useNavbarSearchStore();
 
   const debouncedSearch = useDebounce(searchValue, 300);
   const searchResultsData = useQuery({
@@ -16,21 +17,22 @@ const NavbarSearchProvider = ({ children }: { children: ReactNode }) => {
     queryFn: () => search(searchValue, searchMediaType),
   });
 
-  return (
-    <>
-      {debouncedSearch && searchResultsData ? (
-        createPortal(
-          <NavbarSearchResults
-            loading={searchResultsData.isPending}
-            results={searchResultsData?.data?.results}
-            searchMediaType={searchMediaType}
-          />,
-          document.getElementById("search_results")!
-        )
-      ) : (
-        <>{children}</>
-      )}
-    </>
+  const onCardClick = () => {
+    setSearchValue("");
+  };
+
+  return debouncedSearch && searchResultsData ? (
+    createPortal(
+      <NavbarSearchResults
+        loading={searchResultsData.isPending}
+        results={searchResultsData?.data?.results}
+        searchMediaType={searchMediaType}
+        onCardClick={onCardClick}
+      />,
+      document.getElementById("search_results")!
+    )
+  ) : (
+    <>{children}</>
   );
 };
 
