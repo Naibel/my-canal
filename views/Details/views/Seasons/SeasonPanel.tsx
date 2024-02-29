@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { LogoMyCanal } from "~/components";
 import { Season } from "~/types/api";
 import { IMAGE_W_342_PREFIX_URL } from "~/utils/fetch";
 
@@ -10,16 +11,22 @@ type SeasonPanelProps = {
 export const SeasonPanel = ({ season }: SeasonPanelProps) => (
   <div
     key={season.id}
-    className="grid grid-rows-1 grid-cols-5 col-span-1 rounded-md overflow-hidden bg-neutral-900"
+    className="flex flex-col md:grid md:grid-rows-1 md:grid-cols-5 rounded-md overflow-hidden bg-neutral-900"
   >
-    <Image
-      src={`${IMAGE_W_342_PREFIX_URL}${season.poster_path}`}
-      width={342}
-      height={0}
-      className="flex aspect-[2/3] bg-neutral-900"
-      alt="image season"
-    />
-    <div className="bg-neutral-700 col-span-4 p-5">
+    <div className="flex aspect-[2/3] w-4/12 items-center justify-center m-auto md:w-full bg-neutral-900">
+      {season.poster_path ? (
+        <Image
+          src={`${IMAGE_W_342_PREFIX_URL}${season.poster_path}`}
+          width={342}
+          height={0}
+          alt="image season"
+        />
+      ) : (
+        <LogoMyCanal size="small" />
+      )}
+    </div>
+
+    <div className="bg-neutral-700 md:col-span-4 p-5">
       <p className="text-xs uppercase italic">
         Saison {season.season_number || "spéciale"}
       </p>

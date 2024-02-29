@@ -11,6 +11,7 @@ export type APIError = {
   success: booleqn;
 };
 
+//TYPES FOR CAROUSEL ITEMS
 export type APIDataItem = {
   adult: boolean;
   backdrop_path: string | null;
@@ -31,15 +32,19 @@ export type APITVSeries = APIDataItem & {
   first_air_date: string;
   name: string;
 };
+
 export type APIMovie = APIDataItem & {
   media_type: "movie";
   release_date: string;
   title: string;
 };
+//
+
+//TYPES FOR DETAILS PAGE
 export type APIDataItemDetails = {
   adult: boolean;
   backdrop_path: string | null;
-  genres: Array<Genre>;
+  genres: Array<Object>;
   homepage: string;
   id: number;
   original_language: string;
@@ -56,10 +61,15 @@ export type APIDataItemDetails = {
 };
 
 export type APIMovieDetails = APIDataItemDetails & {
+  credits: APIMovieCredits;
   belongs_to_collection: BelongToCollection | null;
   budget: number;
   imdb_id: string | null;
+  keywords: {
+    keywords: Array<Object>;
+  };
   original_title: string;
+  recommendations: APIResponse<APIMovie>;
   release_date: string;
   revenue: number;
   runtime: number;
@@ -67,11 +77,19 @@ export type APIMovieDetails = APIDataItemDetails & {
   video: boolean;
 };
 
+export type MovieDetails = APIMovieDetails & {
+  media_type: "movie";
+};
+
 export type APITVSeriesDetails = APIDataItemDetails & {
+  aggregate_credits: APITVCredits;
   created_by: Array<Person>;
   episode_run_time: Array<number>;
   first_air_date: string;
   in_production: boolean;
+  keywords: {
+    results: Array<Object>;
+  };
   languages: Array<string>;
   last_air_date: string;
   last_episode_to_air: EpisodeInfo;
@@ -82,9 +100,15 @@ export type APITVSeriesDetails = APIDataItemDetails & {
   number_of_seasons: number;
   origin_country: Array<string>;
   original_name: string;
+  recommendations: APIResponse<APITVSeries>;
   seasons: Array<Season>;
   type: string;
 };
+
+export type TVSeriesDetails = APITVSeriesDetails & {
+  media_type: "tv";
+};
+//
 
 export type Person = {
   credit_id: string;
@@ -128,7 +152,7 @@ export type Season = {
   vote_average: number;
 };
 
-export type Genre = {
+export type Object = {
   id: number;
   name: string;
 };
@@ -160,14 +184,22 @@ export type BelongToCollection = {
 
 export type APITVCredits = {
   cast: Array<CastTVPerson>;
-  crew: Array<CrewPerson>;
+  crew: Array<CrewTVPerson>;
   id: number;
+};
+
+export type TVCredits = APITVCredits & {
+  media_type: "tv";
 };
 
 export type APIMovieCredits = {
   cast: Array<CastMoviePerson>;
-  crew: Array<CrewPerson>;
+  crew: Array<CrewMoviePerson>;
   id: number;
+};
+
+export type MovieCredits = APIMovieCredits & {
+  media_type: "movie";
 };
 
 export type CastTVPerson = {

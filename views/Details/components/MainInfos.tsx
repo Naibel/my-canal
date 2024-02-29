@@ -1,21 +1,35 @@
 import { useMemo } from "react";
 
+import { MediaType } from "~/types/modal";
+
 type MainInfosProps = {
+  mediaType: MediaType;
   originalTitle: string;
   releaseYear: number;
   title: string;
-  runtime: number;
+  runtime: number | null;
+  endYear?: number;
+  nbOfEpisodes?: number;
+  nbOfSeasons?: number;
 };
 
 const MainInfos = ({
+  endYear,
+  nbOfEpisodes,
+  nbOfSeasons,
+  mediaType,
   originalTitle,
   releaseYear,
   runtime,
   title,
 }: MainInfosProps) => {
   const canDisplayOriginalTitle = useMemo(
-    () => title?.toUpperCase() !== originalTitle?.toUpperCase(),
+    () => title.toUpperCase() !== originalTitle.toUpperCase(),
     [originalTitle, title]
+  );
+  const canDisplayEndYear = useMemo(
+    () => endYear && releaseYear !== endYear,
+    [endYear, releaseYear]
   );
   return (
     <div className="flex flex-col items-center md:items-start">
@@ -28,7 +42,15 @@ const MainInfos = ({
         </h2>
       )}
       <h3 className="text-md sm:text-lg text-center md:text-left uppercase italic">
-        Film {releaseYear ? ` · ${releaseYear}` : ""}
+        {mediaType === "movie" ? "Film" : "Série télévisée"}
+        {releaseYear ? ` · ${releaseYear}` : ""}
+        {canDisplayEndYear ? ` - ${endYear}` : ""}
+        {nbOfSeasons
+          ? ` · ${nbOfSeasons} saison${nbOfSeasons > 1 ? "s" : ""}`
+          : ""}
+        {nbOfEpisodes
+          ? ` · ${nbOfEpisodes} épisode${nbOfEpisodes > 1 ? "s" : ""}`
+          : ""}
         {runtime ? ` · ${runtime}'` : ""}
       </h3>
     </div>

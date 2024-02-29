@@ -3,23 +3,38 @@ import { ReactNode } from "react";
 import { LogoMyCanal } from "~/components";
 
 type ImageBackgroundProps = {
-  bgImage?: string;
   children: ReactNode;
+  bgImage?: string;
+  small?: boolean;
+  isSkeleton?: boolean;
 };
 
-const ImageBackground = ({ bgImage, children }: ImageBackgroundProps) => (
+const ImageBackground = ({
+  bgImage,
+  children,
+  small = false,
+  isSkeleton,
+}: ImageBackgroundProps) => (
   <header
     style={{
-      backgroundImage: bgImage ? `url(${bgImage})` : "",
+      backgroundImage: !isSkeleton && bgImage ? `url(${bgImage})` : "",
     }}
-    className="bg-neutral-700 flex justify-center relative px-5 md:px-10 md:pt-72 pb-4 bg-cover bg-top"
+    className={`${
+      isSkeleton ? "animate-pulse" : ""
+    } bg-neutral-700 flex justify-center relative bg-cover bg-top`}
   >
-    {!bgImage && (
+    <div
+      className={`flex flex-1 px-5 ${
+        small ? "py-4 md:py-8" : "py-5 md:py-20"
+      } bg-black/20 backdrop-saturate-125 backdrop-blur-md`}
+    >
+      {children}
+    </div>
+    {!isSkeleton && !bgImage && (
       <div className="opacity-30">
         <LogoMyCanal size="large" />
       </div>
     )}
-    {children}
   </header>
 );
 

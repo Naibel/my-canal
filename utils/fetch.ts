@@ -63,40 +63,15 @@ export const getAPIConfig = async (): Promise<APIConfig> => {
   return await fetch("/configuration");
 };
 
-export const getDetails = async (
-  pathname: string
-): Promise<APIMovieDetails | APITVSeriesDetails> => {
-  return await fetch(pathname.slice(0, -1), {
-    language: "fr-FR",
-  });
-};
-
 export const getMovieDetails = async (id: string): Promise<APIMovieDetails> => {
   return await fetch("/movie/" + id, {
     language: "fr-FR",
+    append_to_response: "credits,keywords,recommendations",
   });
 };
 
-export const getMovieCreditsDetails = async (
-  id: string
-): Promise<APIMovieCredits> => {
+export const getMovieCredits = async (id: string): Promise<APIMovieCredits> => {
   return await fetch("/movie/" + id + "/credits", {
-    language: "fr-FR",
-  });
-};
-
-export const getMovieKeywords = async (
-  id: string
-): Promise<APIMovieDetails> => {
-  return await fetch("/movie/" + id + "/keywords", {
-    language: "fr-FR",
-  });
-};
-
-export const getMovieRecommendations = async (
-  id: string
-): Promise<APIResponse<APIMovie>> => {
-  return await fetch("/movie/" + id + "/recommendations", {
     language: "fr-FR",
   });
 };
@@ -104,62 +79,12 @@ export const getMovieRecommendations = async (
 export const getTVDetails = async (id: string): Promise<APITVSeriesDetails> => {
   return await fetch("/tv/" + id, {
     language: "fr-FR",
+    append_to_response: "aggregate_credits,keywords,recommendations",
   });
 };
 
-export const getTVCreditsDetails = async (
-  id: string
-): Promise<APITVCredits> => {
+export const getTVCredits = async (id: string): Promise<APITVCredits> => {
   return await fetch("/tv/" + id + "/aggregate_credits", {
     language: "fr-FR",
   });
 };
-
-export const getTVKeywords = async (
-  id: string
-): Promise<APITVSeriesDetails> => {
-  return await fetch("/tv/" + id + "/keywords", {
-    language: "fr-FR",
-  });
-};
-
-export const getTVRecommendations = async (
-  id: string
-): Promise<APIResponse<APITVSeries>> => {
-  return await fetch("/tv/" + id + "/recommendations", {
-    language: "fr-FR",
-  });
-};
-
-// export const getTVDetails = async (
-//   id: number,
-//   onSuccess: (res: ModalTVDetails) => void,
-//   onFailure: (error: any) => void
-// ) => {
-//   fetch(`/tv/${id}`, { language: "fr-FR" })
-//     .then((res: APITVSeriesDetails) => {
-//       const details: ModalTVDetails = formatTVData(res);
-//       onSuccess(details);
-//     })
-//     ?.catch((error: any) => {
-//       console.error(error);
-//       onFailure(error);
-//     });
-// };
-
-// export const getMovieDetails = async (
-//   id: number,
-//   onSuccess: (res: ModalMovieDetails) => void,
-//   onFailure: (error: any) => void
-// ) => {
-//   fetch(`/movie/${id}`, { language: "fr-FR" })
-//     .then((res: APIMovieDetails) => {
-//       const details: ModalMovieDetails = formatMovieData(res);
-//       onSuccess(details);
-//     })
-//     ?.catch((error: any) => {
-//       console.error(error);
-//       onFailure(error);
-//     });
-// };
-//

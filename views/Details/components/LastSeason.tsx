@@ -2,9 +2,9 @@ import { GoArrowRight } from "react-icons/go";
 import Link from "next/link";
 
 import { Season } from "~/types/api";
-import ModalContentSection from "~/views/Modal/components/ModalContent/components/ModalContentSection";
+import ModalContentSection from "~/views/Details/components/ContentSection";
 
-import { SeasonPanel } from "../Seasons/SeasonPanel";
+import { SeasonPanel } from "../views/Seasons/SeasonPanel";
 
 type LastSeasonProps = {
   season: Season;
@@ -12,13 +12,11 @@ type LastSeasonProps = {
 };
 
 const LastSeason = ({ season, serieId }: LastSeasonProps) => (
-  <>
-    <ModalContentSection title="Dernière saison diffusée">
-      <SeasonPanel season={season} />
-    </ModalContentSection>
+  <ModalContentSection title="Dernière saison diffusée">
+    <SeasonPanel season={season} />
     <div>
       <Link
-        className="flex justify-end text-right gap-2"
+        className="opacity-100 hover:opacity-80 duration-300 flex justify-end text-right gap-2"
         href={`/tv/${serieId}/seasons`}
       >
         <span className="uppercase font-semibold italic text-sm ">
@@ -27,7 +25,7 @@ const LastSeason = ({ season, serieId }: LastSeasonProps) => (
         <GoArrowRight />
       </Link>
     </div>
-  </>
+  </ModalContentSection>
 );
 
 export default LastSeason;

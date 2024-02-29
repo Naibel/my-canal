@@ -5,6 +5,7 @@ import {
   SpokenLanguages,
 } from "./api";
 
+export type PageParams = { id: string };
 export type MediaType = "movie" | "tv";
 export type MenuPage = "summary" | "seasons" | "moreInfo";
 

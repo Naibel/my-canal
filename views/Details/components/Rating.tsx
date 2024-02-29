@@ -6,7 +6,7 @@ type RatingProps = {
 };
 
 const Rating = ({ rating, nbOfVotes }: RatingProps) => (
-  <div className="flex flex-col items-center md:items-start pt-2 py-5 md:py-0">
+  <div className="flex flex-col items-center md:items-start md:py-0">
     <div className="hidden md:block">
       <Stars rating={rating} />
     </div>
