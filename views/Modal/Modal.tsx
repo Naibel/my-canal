@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react";
-
-import { ModalMovieDetails, ModalTVDetails } from "~/types/modal";
-
-import ModalContent from "./components/ModalContent/ModalContent";
-import ModalHeader from "./components/ModalHeader/ModalHeader";
+import { ReactNode, useEffect, useState } from "react";
 
 import styles from "./Modal.module.css";
 
 type ModalProps = {
-  modalDetails: ModalMovieDetails | ModalTVDetails;
+  children: ReactNode;
   handleClose: () => void;
 };
 
-const Modal = ({ modalDetails, handleClose }: ModalProps) => {
+const Modal = ({ children, handleClose }: ModalProps) => {
   const [displayModal, setDisplayModal] = useState(false);
 
   //EASE-IN ANIMATION
@@ -44,8 +39,7 @@ const Modal = ({ modalDetails, handleClose }: ModalProps) => {
           displayModal ? styles.displayed : styles.hidden
         } duration-500 bg-black mb-5 max-w-5xl overflow-hidden mx-auto md:rounded-md shadow-lg`}
       >
-        <ModalHeader modalDetails={modalDetails} onClose={onClose} />
-        <ModalContent modalDetails={modalDetails} />
+        {children}
       </div>
     </div>
   );
