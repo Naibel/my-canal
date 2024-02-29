@@ -1,7 +1,7 @@
 import styles from "./LogoMyCanal.module.css";
 
 type LogoProps = {
-  size?: "normal" | "large";
+  size?: "small" | "normal" | "large";
 };
 
 const LogoMyCanal = ({ size = "normal" }: LogoProps) => (
