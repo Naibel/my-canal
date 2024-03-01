@@ -1,20 +1,17 @@
+import { ReactNode } from "react";
 import { create } from "zustand";
 
-import { ModalMovieDetails, ModalTVDetails } from "~/types/modal";
-
 interface StoreState {
-  modalDetails: ModalMovieDetails | ModalTVDetails | null;
-  setModalDetails: (
-    modalDetails: ModalMovieDetails | ModalTVDetails | null
-  ) => void;
+  content: ReactNode | null;
+  setModalContent: (content: ReactNode | null) => void;
   closeModal: () => void;
 }
 
 const useModalStore = create<StoreState>()((set) => ({
-  modalDetails: null,
-  setModalDetails: (newValue: ModalMovieDetails | ModalTVDetails | null) =>
-    set(() => ({ modalDetails: newValue })),
-  closeModal: () => set(() => ({ modalDetails: null })),
+  content: null,
+  setModalContent: (newValue: ReactNode | null) =>
+    set(() => ({ content: newValue })),
+  closeModal: () => set(() => ({ content: null })),
 }));
 
 export default useModalStore;

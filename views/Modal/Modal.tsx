@@ -3,11 +3,11 @@ import { ReactNode, useEffect, useState } from "react";
 import styles from "./Modal.module.css";
 
 type ModalProps = {
-  children: ReactNode;
+  content: ReactNode;
   handleClose: () => void;
 };
 
-const Modal = ({ children, handleClose }: ModalProps) => {
+const Modal = ({ content, handleClose }: ModalProps) => {
   const [displayModal, setDisplayModal] = useState(false);
 
   //EASE-IN ANIMATION
@@ -39,7 +39,7 @@ const Modal = ({ children, handleClose }: ModalProps) => {
           displayModal ? styles.displayed : styles.hidden
         } duration-500 bg-black mb-5 max-w-5xl overflow-hidden mx-auto md:rounded-md shadow-lg`}
       >
-        {children}
+        {content}
       </div>
     </div>
   );

@@ -6,13 +6,13 @@ import { useModalStore } from "~/hooks";
 import Modal from "../views/Modal/Modal";
 
 const ModalProvider = ({ children }: { children: ReactNode }) => {
-  const { modalDetails, closeModal } = useModalStore();
+  const { content, closeModal } = useModalStore();
 
   return (
     <>
-      {modalDetails !== null &&
+      {content !== null &&
         createPortal(
-          <Modal modalDetails={modalDetails} handleClose={closeModal} />,
+          <Modal content={content} handleClose={closeModal} />,
           document.body
         )}
       {children}
