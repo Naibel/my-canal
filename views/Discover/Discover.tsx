@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 
 import { Button, LoadingOverlay } from "~/components";
-import { useAlertStore, useModalFunctions } from "~/hooks";
+import { useAlertStore } from "~/hooks";
 import { MediaType } from "~/types/modal";
 import { discover } from "~/utils/fetch";
 
@@ -30,7 +30,6 @@ const Discover = <
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { setAlertMessage } = useAlertStore();
-  const { displayMovieModal, displayTVModal } = useModalFunctions();
 
   const handleSearch = () => {
     setIsLoading(true);
@@ -73,10 +72,8 @@ const Discover = <
         </div>
         {searchResults.length > 0 && (
           <DiscoverSearchResults
+            mediaType={mediaType}
             searchResults={searchResults}
-            onCardClick={
-              mediaType === "tv" ? displayTVModal : displayMovieModal
-            }
           />
         )}
       </div>
